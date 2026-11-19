@@ -39,7 +39,7 @@ Updated Nov 19 from photos he sent. The keys match the `mine:true` entries in in
   - Black Columbia zip jacket, regular fit.
   - Tan canvas work jacket with a cream corduroy collar. His strongest piece.
   - Denim jacket (FF.LA).
-  - Long taupe coat (FF.LA).
+  - Taupe nylon jacket (FF.LA), regular length.
   - Light stone zip jacket.
 - **Shoes:** white sneakers and brown Uggs.
 
@@ -95,6 +95,6 @@ Sources read: MR PORTER's Derek Guy style guide (only partly readable) and Jake 
 
 ### 2026-11-19 (closet photos)
 
-- His closet is much deeper than the board knew: a tan work jacket, denim jacket, long coat, oxford, flannel, waffle knits, chinos and cream pants. The board now has 25 more looks built only from what he owns.
+- His closet is much deeper than the board knew: a tan work jacket, denim jacket, taupe jacket, oxford, flannel, waffle knits, chinos and cream pants. The board now has 25 more looks built only from what he owns.
 - New ideas should use these as the "own" half. Good partners for new pieces: tan work jacket, cream pants, slate and khaki chinos, navy waffle.
 - The black floral shirt covers the loud-shirt slot, so loud-print buys should be knits or jackets instead.
