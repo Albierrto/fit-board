@@ -29,6 +29,7 @@ The whole site is one file, `index.html`. Edit it directly. There is no build st
   - A look with an `added` date in the last 21 days shows a "New find" chip and appears under Ideas, "New finds".
 - **`const HUNT=[...]`**: saved secondhand searches shown under Ideas, Zany. Shape: `{name, what, range, url}`. Searches should be sorted cheapest first and filtered to his size where the site allows it.
 - **UI code** is below `/* ================= Fit Board UI`. You usually don't need to touch it.
+- **Wear tab filters:** a Show row (What I own, New ideas, Everything) and an occasion row (Any, Everyday, Date night, Going out, Cozy, Zany). New ideas lists the fresh looks (added in the last 21 days) that still need a piece. The Show choice is remembered per device.
 
 ## Rules (from Bort)
 

@@ -248,6 +248,7 @@ footer p{margin:0 0 8px; max-width:70ch}
   <!-- WEAR -->
   <section data-view="wear" aria-labelledby="viewTitle">
     <p class="count" id="wearCount"></p>
+    <div class="seg" role="group" aria-label="Show" id="src"></div>
     <div class="seg" role="group" aria-label="Occasion" id="occ"></div>
     <div class="pick">
       <button class="btn primary" type="button" id="pickBtn">Pick an outfit for me</button>
@@ -881,27 +882,45 @@ function card(l,big){
 }
 
 /* ================= WEAR ================= */
-const OCC=[['any','Any'],['everyday','Everyday'],['date','Date night'],['going-out','Going out'],['cozy','Cozy']];
-let occ='any', lastPick=null;
+const OCC=[['any','Any'],['everyday','Everyday'],['date','Date night'],['going-out','Going out'],['cozy','Cozy'],['zany','Zany']];
+const SRC=[['own','What I own'],['new','New ideas'],['all','Everything']];
+let occ='any', lastPick=null, src='own';
+try{const v=localStorage.getItem('fitboard-src');if(SRC.some(x=>x[0]===v))src=v;}catch(e){}
+/* the pool the Wear tab shows: looks you can wear now, fresh ideas that need a piece, or every look */
+function pool(){
+  if(src==='own') return wearable();
+  if(src==='new') return LOOKS.filter(l=>isFresh(l)&&missing(l).length).sort((a,b)=>(b.added||'').localeCompare(a.added||'')||missing(a).length-missing(b).length||costToFinish(a)-costToFinish(b));
+  return LOOKS.slice().sort((a,b)=>missing(a).length-missing(b).length||costToFinish(a)-costToFinish(b));
+}
+function renderSrc(){
+  $('#src').innerHTML=SRC.map(([k,v])=>`<button type="button" data-s="${k}" aria-pressed="${k===src}">${v}</button>`).join('');
+}
+$('#src').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;src=b.dataset.s;try{localStorage.setItem('fitboard-src',src);}catch(x){}renderSrc();renderWear();$('#pickOut').innerHTML='';lastPick=null;});
 const occMatch=(l,o)=>o==='any'||(o==='cozy'?(l.tags.includes('cold')||l.tags.includes('chill')):l.tags.includes(o));
 function renderOcc(){
   $('#occ').innerHTML=OCC.map(([k,v])=>`<button type="button" data-o="${k}" aria-pressed="${k===occ}">${v}</button>`).join('');
 }
 $('#occ').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;occ=b.dataset.o;renderOcc();renderWear();$('#pickOut').innerHTML='';});
 function renderWear(){
-  const all=wearable(), list=all.filter(l=>occMatch(l,occ));
-  $('#wearCount').textContent=`You can make ${all.length} outfits from what you own.`;
-  $('#wearListTitle').textContent=occ==='any'?'Everything you can wear':`${OCC.find(o=>o[0]===occ)[1]} outfits you can wear`;
-  $('#wearGrid').innerHTML=list.length?list.map(l=>card(l)).join(''):`<div class="empty">Nothing for this one yet with what you own. Check the Buy next tab.</div>`;
+  const all=pool(), list=all.filter(l=>occMatch(l,occ)), o=OCC.find(x=>x[0]===occ)[1];
+  const own=wearable().length;
+  $('#wearCount').textContent=src==='own'?`You can make ${own} outfits from what you own.`
+    :src==='new'?`${all.length} new ideas from the latest hunts. Each needs a piece or two.`
+    :`${LOOKS.length} looks in all. ${own} you can wear today.`;
+  $('#wearListTitle').textContent=src==='own'?(occ==='any'?'Everything you can wear':`${o} outfits you can wear`)
+    :src==='new'?(occ==='any'?'New ideas, newest first':`New ${o.toLowerCase()} ideas`)
+    :(occ==='any'?'Every look, closest to wearable first':`Every ${o.toLowerCase()} look`);
+  $('#pickBtn').textContent=src==='own'?'Pick an outfit for me':'Pick an idea for me';
+  $('#wearGrid').innerHTML=list.length?list.map(l=>card(l)).join(''):`<div class="empty">${src==='own'?'Nothing for this one yet with what you own. Try New ideas above.':'Nothing here for this one yet.'}</div>`;
   $('#pickBtn').disabled=!list.length;
 }
 $('#pickBtn').addEventListener('click',()=>{
-  const list=wearable().filter(l=>occMatch(l,occ));
+  const list=pool().filter(l=>occMatch(l,occ));
   if(!list.length)return;
-  let pool=list.filter(l=>l!==lastPick); if(!pool.length)pool=list;
-  const l=pool[Math.floor(Math.random()*pool.length)]; lastPick=l;
+  let cand=list.filter(l=>l!==lastPick); if(!cand.length)cand=list;
+  const l=cand[Math.floor(Math.random()*cand.length)]; lastPick=l;
   $('#pickOut').innerHTML=`<p class="sr">Picked: ${l.name}</p>`+card(l,true);
-  $('#pickBtn').textContent='Pick another one';
+  $('#pickBtn').textContent=src==='own'?'Pick another one':'Pick another idea';
 });
 
 /* ================= BUY NEXT ================= */
@@ -978,7 +997,7 @@ let dirty=false;
 
 /* ================= ROUTING ================= */
 const VIEWS={
-  wear:['What to wear','Outfits you can put on today with what you already own.'],
+  wear:['What to wear','Outfits you can put on today, or switch to New ideas to see what to get next.'],
   buy:['What to buy next','The few pieces that add the most new outfits.'],
   ideas:['Outfit ideas','Looks to work toward. Each one shows exactly what you would need.'],
   closet:['My closet','Everything the board knows you own.']
@@ -989,7 +1008,7 @@ function show(){
   document.querySelectorAll('nav.tabs a').forEach(a=>{if(a.dataset.tab===v)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
   $('#viewTitle').textContent=VIEWS[v][0]; $('#viewLede').textContent=VIEWS[v][1];
   document.title=`${VIEWS[v][0]} · Fit Board`;
-  if(v==='wear'){renderOcc();renderWear(); if(dirty){$('#pickOut').innerHTML='';}}
+  if(v==='wear'){renderSrc();renderOcc();renderWear(); if(dirty){$('#pickOut').innerHTML='';}}
   if(v==='buy') renderBuy();
   if(v==='ideas'){renderIdeaSeg();renderIdeas();}
   if(v==='closet') renderCloset();
