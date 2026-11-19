@@ -145,3 +145,63 @@ Bort's reaction: he liked this batch a lot ("project Hail Mary vibes"). He wants
 - Fashion Formulas Aztec fleece cardigan (eBay 188866759847): a women's brand, with a mended hole.
 - Autumn leaf quilted hoodie (eBay 860087569606): too costume-y.
 - Urban Outfitters cardigans: mostly $90 to $230.
+
+## 2026-11-19, fifth run (Bort asked for 50 more fits)
+
+**Added: 52 looks, 35 new pieces.** Prices are cheap ($30 to $50), mid ($50 to $100) and a few splurges ($110 to $200). Everything was in stock in his size on Nov 19 (XL, a 36 waist for pants, shoes in 8 to 12).
+
+New sources this run: Vinted, Todd Snyder, plus Uniqlo, H&M, ASOS, Old Navy and eBay.
+
+- **Vinted** (live in Vinted's catalog search on Nov 19, all tagged XL; shipping is added at checkout, so each price includes a $7 estimate):
+  - Andersson Bell patchwork mohair zip cardigan, $165.20: https://www.vinted.com/items/8828237587
+  - German wool and mohair grandpa cardigan, $60.20: https://www.vinted.com/items/9937128288
+  - Todd Snyder boucle tie-dye chore coat, $128.45: https://www.vinted.com/items/10356364708
+  - Gap field chore jacket, new with tags, $51.80: https://www.vinted.com/items/10791509748
+  - Carhartt Detroit-style jacket, dark brown, $96.95: https://www.vinted.com/items/10845908017
+  - Stussy swirl knit, $38.99: https://www.vinted.com/items/10867566097
+  - Black leather A-2 bomber, never worn, $70.70: https://www.vinted.com/items/10691557614
+  - Gordon & Ferguson brown leather bomber, $60.20: https://www.vinted.com/items/10880467636
+  - 80s Herman's Nordic ski sweater, $48.65: https://www.vinted.com/items/10727265685
+  - Issey Miyake orange button-down, never worn, $112.70: https://www.vinted.com/items/10876131890
+  - Pendleton board shirt, navy and green, $60.20: https://www.vinted.com/items/10815507706
+- **Todd Snyder sale:**
+  - Red check camp collar flannel, $84: https://www.toddsnyder.com/products/red-check-boxy-flannel-shirtred
+  - Essex green chamois shirt, $94: https://www.toddsnyder.com/products/chamois-cape-shirtessex-green
+- **Uniqlo:**
+  - Color block fleece in purple ($39.90) and olive ($39.90).
+  - Orange fleece snap pullover, $39.90.
+  - Red shadow plaid pile blouson, $49.90.
+  - Corduroy easy pants in wine ($49.90) and olive ($49.90).
+  - Uniqlo : C padded corduroy vest, $29.90.
+- **H&M:**
+  - Fuzzy brown hooded zip cardigan, $59.99. XL was down to a few pieces.
+  - Black and gray plaid overshirt, $39.99.
+  - Dark green twill overshirt, $54.99.
+  - Brown denim overshirt with coated collar, $54.99.
+  - Navy cord workwear overshirt, $59.99.
+  - Beige felted overshirt, $59.99.
+- **ASOS:**
+  - Threadbare faux suede jacket, chocolate, $84.
+  - Green suede harrington, $99.99.
+  - Burgundy wool look overcoat, $129.
+  - Cobalt fisherman rib sweater, $47.99.
+- **Old Navy:**
+  - Russet faux leather loafers, $49.99.
+  - Cognac Chelsea boots, $59.99.
+- **eBay:**
+  - Rebuild by Needles flannel, $67.47: https://www.ebay.com/itm/820258344414
+  - Engineered Garments wool duffle coat, $199: https://www.ebay.com/itm/336344776430
+  - Our Legacy boucle sweater, $63.60: https://www.ebay.com/itm/287646046930
+
+**Couldn't use:**
+
+- **Target.** The search page lists items (Goodfellow floral cardigan $45, patchwork cable sweater jacket $45, vintage Fair Isle $40), but product pages never render the size picker here. Its stock API was blocked as unauthorized. No Target pieces were added.
+- **Vinted item pages and Depop.** Vinted item pages sit behind a "verify you are human" check, so its pieces were judged from catalog photos and titles. On Depop, the good finds (Huf merged cardigan, 90s plaid mohair, John Elliott mohair) were all M, L or S, or the size wasn't clear.
+
+**Passed on:**
+
+- Beams Heart cardigan (eBay 257828896915): 22 in. pit to pit.
+- VTG 1946 Aztec fleece: 23 in. pit to pit.
+- H&M striped half-zip: XL sold out.
+- ASOS red suede bomber: XL sold out.
+- Urban Outfitters cardigans: $90 to $230.

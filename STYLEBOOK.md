@@ -98,3 +98,10 @@ Sources read: MR PORTER's Derek Guy style guide (only partly readable) and Jake 
 - His closet is much deeper than the board knew: a tan work jacket, denim jacket, taupe jacket, oxford, flannel, waffle knits, chinos and cream pants. The board now has 25 more looks built only from what he owns.
 - New ideas should use these as the "own" half. Good partners for new pieces: tan work jacket, cream pants, slate and khaki chinos, navy waffle.
 - The black floral shirt covers the loud-shirt slot, so loud-print buys should be knits or jackets instead.
+
+### 2026-11-19 (fifth run)
+
+- Shoes were the missing piece. Brown loafers and cognac Chelsea boots turn a lot of closet outfits into smart ones. Add a shoe now and then.
+- Colored pants (wine or olive cords) are an easy zany move. Use them with plain navy, cream or honey tops.
+- Leather jackets work best over soft light colors (white tee, light blue or cream pants), so they read fresh, not tough.
+- New sources: Vinted's catalog search loads fine but its item pages don't. Todd Snyder's sale is good for $84 to $94 shirts.

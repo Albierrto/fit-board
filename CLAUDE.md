@@ -71,7 +71,10 @@ Use the built-in browser on Bort's computer (`mcp__remote-devices__Claude_Browse
   - The search API at `https://api.gap.com/commerce/search/products/v2/cc?brand=on&market=us&...` works from an oldnavy tab.
 - **Shopify stores** (many indie brands): `/products/<handle>.js` returns variants with `available` true or false. Untested here, but standard.
 - **Anything else:** read the size picker. Disabled, crossed-out, "sold out" or "notify me" means no. If you can't tell for sure, don't add it.
-- **Target:** product pages 404 and search renders blank. Skip it.
+- **Target:** search pages render, but product pages never show the size picker, and its stock API is off limits. Skip it until that changes.
+- **Vinted:** fetch `/catalog?search_text=...&catalog[]=5` from a vinted.com tab and parse the `a[href*="/items/"]` titles (they include size and price). Item pages sit behind a human check, so judge from catalog photos and titles. Add about $7 for shipping.
+- **Depop:** read size and price from the product page text. Most good finds turn out to be M or L, so check before adding.
+- **Shopify brands** (Todd Snyder and others): `/collections/sale/products.json` and `/products/<handle>.js` both work.
 
 ## Test and ship
 
