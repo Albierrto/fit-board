@@ -29,8 +29,8 @@ Updated Nov 19 from photos he sent. The keys match the `mine:true` entries in in
   - Shirts: cream plaid flannel (FF.LA), pale blue oxford (FF.LA), black floral print shirt.
   - White hoodie with a small chest logo and a big back print. Keep it to chill looks.
 - **Pants:**
-  - Light blue and dark navy wide drawstring pants (Uniqlo).
-  - Cream drawstring pants.
+  - Light blue and dark navy wide wool drawstring pants (Uniqlo).
+  - Cream baggy wool drawstring pants (same dressy drape as the Uniqlo wool pants).
   - Olive and black ripstop drawstring pants (All in Motion).
   - Tan baggy workwear pants (Old Navy).
   - Khaki chinos, slate blue chinos, gray work pants.
