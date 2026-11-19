@@ -57,3 +57,15 @@ This is the board's working style knowledge. Each hunt reads it first and adds w
 ## Learned notes
 
 (Each hunt adds dated notes here: a combo idea or rule, where it came from, and whether it made the board.)
+
+### 2026-11-19
+
+Sources read: END. Fall Knitwear Report 2026, FashionUnited on Pitti Uomo (Jan 2026) street style, Highsnobiety "Texture Is the New Black". Next run, rotate to Die, Workwear!, Put This On and a Popeye issue.
+
+- **Duffle coat over everyday clothes** (Pitti). A long toggle coat in a soft neutral replaces the trench or blazer, worn over a crewneck. Made the board: Uniqlo : C brown duffle over honey and light blue.
+- **Knit polos** are the fall shirt (END.). A knit collar reads dressier than a crewneck and still feels like a sweater. Made the board: vintage Italian argyle polo with light blue wool pants and loafers.
+- **Fair Isle and Cowichan patterns** are back (END., Pitti folk knits). Keep the rest plain and modern so it doesn't look like a costume. Made the board: JW Anderson Fair Isle with light blue wool pants.
+- **Complementary pairs:** rust with blue, seafoam with brown. Made the board: rust V-neck over dusty blue, mint cardigan over brown.
+- **Texture against texture** (Highsnobiety, END.): fuzzy cardigan over a smooth tee, ribbed under fuzzy. The souffle and mohair cardigans both use it.
+- **One deliberate clash** (END.: a red stripe under a lemon cardigan). Not on the board yet. Try a mustard or yellow cardigan over his blue long sleeve next time.
+- **Fit note:** vintage XL from the 60s and 70s often measures 21 to 23 in. pit to pit, too small. 80s and 90s XL is usually right. Ask for measurements before trusting an older tag.
