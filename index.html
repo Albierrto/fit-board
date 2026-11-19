@@ -105,6 +105,7 @@ nav.tabs a[aria-current="page"] svg{stroke-width:2.4}
 .pcs .need{font-weight:600}
 .buys{display:flex; flex-direction:column; gap:8px; margin-top:4px}
 .ref{margin:0; font-size:14px; color:var(--muted)}
+.fresh{align-self:flex-start; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); background:var(--accent-soft); padding:3px 8px; border-radius:999px}
 .ref a{color:var(--accent)}
 .card.big{grid-template-columns:1fr; border-width:2px; border-color:var(--accent)}
 .card.big .art{padding:18px}
@@ -276,7 +277,7 @@ footer p{margin:0 0 8px; max-width:70ch}
   </section>
 
   <footer>
-    <p>Every piece this board suggests buying was checked on Nov 19, 2026 and was in stock in XL (36 waist for pants, US 9 to 12 for shoes). Stock moves fast during sales, so a size can still sell out after that.</p>
+    <p>Every piece this board suggests buying was in stock in XL (36 waist for pants, US 9 to 12 for shoes) on the date shown on its shop button. Stock moves fast during sales, so a size can still sell out after that.</p>
     <p>The outfits are drawings in each piece's real color. Tap a shop button to see the real product photos.</p>
   </footer>
 </main>
@@ -632,14 +633,14 @@ const CLOSET_LOOKS=[
   {name:'Black Jacket + Sky Blue',layer:'myColumbia',top:'onBrownShirt',bottom:'uqWoolLight',shoes:'myWhite',tags:['closet','going-out','cold'],why:'Your black Columbia jacket worn open over the brown and light blue combo. Black on the outside sharpens the softer colors underneath.'}
 ];
 const NEW_LOOKS=[
-  {name:'Marni Stripes + Navy Wool',layer:'marniStripe',top:'onBrownShirt',bottom:'uqWoolDark',shoes:'myWhite',tags:['zany','everyday','date'],why:'A real Marni stripe cardigan, worn open over your brown shirt with your dark blue wool pants. The stripes are loud, so everything else stays calm.'},
-  {name:'Cobalt + Sky Blue',top:'marniCobalt',bottom:'uqWoolLight',shoes:'myWhite',tags:['zany','date','cold'],why:'Bright cobalt Marni knit with light blue trim, and your light blue wool pants pick up the trim. Two blues, one loud, one soft. Very designer.'},
-  {name:'Marni Knit Hoodie',layer:'marniHoodie',top:'onLSBlue',bottom:'myBlackPants',shoes:'myWhite',tags:['zany','everyday','chill'],why:'A fuzzy camel knit zip hoodie from the Marni collab, open over your dusty blue long sleeve. Camel and blue always look good together.'},
-  {name:'80s Mohair Cardigan',layer:'mohair80s',top:'onBrownShirt',bottom:'myBlackPants',shoes:'myWhite',tags:['zany','going-out','date'],why:'A wild 80s geometric cardigan in black and teal, open over your brown shirt with black pants. Weird in the good way.'},
-  {name:'3D Knit + Olive',top:'knit3d',bottom:'aimOlive',shoes:'myUggs',tags:['zany','chill','cold'],why:'A chunky 90s 3D-knit pullover in black, cream and tan with your olive ripstop pants and Uggs. Grandpa sweater energy, and it is $26.'},
-  {name:'Red Mohair + Denim',layer:'redMohair',top:'onBrownShirt',bottom:'myBlueJeans',shoes:'myWhite',tags:['zany','everyday'],why:'A fuzzy red mohair zip cardigan, open, with your blue jeans. Peak 90s grunge, and the red is the only loud thing.'},
-  {name:'Damask Under Black',layer:'myColumbia',top:'damaskShirt',bottom:'myBlackPants',shoes:'myWhite',tags:['zany','going-out','date'],why:'A busy vintage damask print shirt under your black Columbia jacket with black pants. The black frames the print so it looks intentional.'},
-  {name:'Kenzo Flowers + Navy',top:'kenzoShirt',bottom:'uqWoolDark',shoes:'myWhite',tags:['zany','date'],why:'A real vintage Kenzo flower shirt on a dark base with your dark blue wool pants. The priciest one here, but it is actual designer.'},
+  {name:'Marni Stripes + Navy Wool',added:'2026-11-19',layer:'marniStripe',top:'onBrownShirt',bottom:'uqWoolDark',shoes:'myWhite',tags:['zany','everyday','date'],why:'A real Marni stripe cardigan, worn open over your brown shirt with your dark blue wool pants. The stripes are loud, so everything else stays calm.'},
+  {name:'Cobalt + Sky Blue',added:'2026-11-19',top:'marniCobalt',bottom:'uqWoolLight',shoes:'myWhite',tags:['zany','date','cold'],why:'Bright cobalt Marni knit with light blue trim, and your light blue wool pants pick up the trim. Two blues, one loud, one soft. Very designer.'},
+  {name:'Marni Knit Hoodie',added:'2026-11-19',layer:'marniHoodie',top:'onLSBlue',bottom:'myBlackPants',shoes:'myWhite',tags:['zany','everyday','chill'],why:'A fuzzy camel knit zip hoodie from the Marni collab, open over your dusty blue long sleeve. Camel and blue always look good together.'},
+  {name:'80s Mohair Cardigan',added:'2026-11-19',layer:'mohair80s',top:'onBrownShirt',bottom:'myBlackPants',shoes:'myWhite',tags:['zany','going-out','date'],why:'A wild 80s geometric cardigan in black and teal, open over your brown shirt with black pants. Weird in the good way.'},
+  {name:'3D Knit + Olive',added:'2026-11-19',top:'knit3d',bottom:'aimOlive',shoes:'myUggs',tags:['zany','chill','cold'],why:'A chunky 90s 3D-knit pullover in black, cream and tan with your olive ripstop pants and Uggs. Grandpa sweater energy, and it is $26.'},
+  {name:'Red Mohair + Denim',added:'2026-11-19',layer:'redMohair',top:'onBrownShirt',bottom:'myBlueJeans',shoes:'myWhite',tags:['zany','everyday'],why:'A fuzzy red mohair zip cardigan, open, with your blue jeans. Peak 90s grunge, and the red is the only loud thing.'},
+  {name:'Damask Under Black',added:'2026-11-19',layer:'myColumbia',top:'damaskShirt',bottom:'myBlackPants',shoes:'myWhite',tags:['zany','going-out','date'],why:'A busy vintage damask print shirt under your black Columbia jacket with black pants. The black frames the print so it looks intentional.'},
+  {name:'Kenzo Flowers + Navy',added:'2026-11-19',top:'kenzoShirt',bottom:'uqWoolDark',shoes:'myWhite',tags:['zany','date'],why:'A real vintage Kenzo flower shirt on a dark base with your dark blue wool pants. The priciest one here, but it is actual designer.'},
   {name:'Honey + Tan',top:'onLSHoney',bottom:'onWorkTan',shoes:'myUggs',tags:['deal','chill','everyday'],why:'All warm tones: honey, tan, brown Uggs. Tonal like this reads put-together even though it is just a tee and pants.'},
   {name:'Blue + Black',top:'onLSBlue',bottom:'myBlackPants',shoes:'myWhite',tags:['deal','everyday'],why:'Dusty blue up top, black below, white sneakers. The simplest fit you own, and dark pants with a lighter top is an easy win.'},
   {name:'Black Jacket Over Honey',layer:'myColumbia',top:'onLSHoney',bottom:'myBlackPants',shoes:'myWhite',tags:['closet','going-out','cold'],why:'Your black jacket turns the honey long sleeve into a going-out fit. Wear it open so the honey shows down the middle.'},
@@ -727,15 +728,18 @@ function shortName(k){
 function bestBuy(k){
   const p=PR[k], a=ALT[k]?SW[ALT[k]]:null;
   if(a&&a.price<p.price) return {k,label:cap(a.name.split(' (')[0]),store:a.store,price:a.price,url:a.url,note:a.note,instead:`${shortName(k)} (${money(p.price)})`};
-  return {k,label:shortName(k),store:p.used?'eBay':(p.store||p.brand),price:p.price,url:p.url,used:p.used};
+  return {k,label:shortName(k),store:p.store||p.brand,price:p.price,url:p.url,used:p.used};
 }
 /* every piece the board suggests buying was checked for stock in his size on this date */
 const STOCK_DATE='Nov 19';
 const SIZE_NOTE={loaferB:'US 9 to 12',tailBrown:'36 waist',pinBarrel:'36 waist',onChinoGray:'36 and 38 waist'};
-const stockNote=k=>PR[k].used?`Listing still up as of ${STOCK_DATE}`:`In stock in ${SIZE_NOTE[k]||'XL'} as of ${STOCK_DATE}`;
+/* a piece can carry its own check date (checked:'Nov 26') and size note (size:'36 waist'); otherwise the board-wide ones apply */
+const stockNote=k=>{const p=PR[k],d=p.checked||STOCK_DATE;return p.used?`Listing still up as of ${d}`:`In stock in ${p.size||SIZE_NOTE[k]||'XL'} as of ${d}`;};
 const art=(l,label)=>outfitSVG(l,label||('Outfit: '+l.pieces.map(shortName).join(', ')));
 
 /* ---- outfit card ---- */
+/* looks carry added:'YYYY-MM-DD' when the hunt adds them; they count as fresh for 21 days */
+const isFresh=l=>{if(!l.added)return false;const t=Date.parse(l.added+'T12:00:00');return !isNaN(t)&&Date.now()-t<21*864e5;};
 function card(l,big){
   const miss=missing(l);
   const pcs=l.pieces.map(k=>owns(k)
@@ -752,7 +756,7 @@ function card(l,big){
   return `<article class="card${big?' big':''}">
     <div class="art">${art(l)}</div>
     <div class="cb">
-      <h3>${l.name}</h3>
+      ${isFresh(l)?'<span class="fresh">New find</span>':''}<h3>${l.name}</h3>
       ${status}
       <p class="why">${l.why}</p>
       <ul class="pcs" aria-label="Pieces">${pcs}</ul>
@@ -816,14 +820,15 @@ function renderBuy(){
 
 /* ================= IDEAS ================= */
 const IDEAS=[
+  ['new','New finds','The newest finds from the hunt, each checked for your size on the date shown.'],
   ['deal','Old Navy deals','Built around Old Navy sale pieces. Prices from Nov 18.'],
-  ['zany','Zany','Weird designer-ish pieces and loud prints, mostly found used on eBay.'],
+  ['zany','Zany','Weird designer-ish pieces and loud prints, a lot of them found used.'],
   ['cool','Cool','Statement pieces that still look easy: houndstooth, argyle, pinstripes.'],
   ['classic','Classics','The core outfits: overshirts, cardigans, bombers, coats.']
 ];
-let idea='deal';
-const ideaMatch=(l,k)=>k==='classic'?!['deal','zany','cool','closet'].some(t=>l.tags.includes(t)):l.tags.includes(k);
-function renderIdeaSeg(){$('#ideaSeg').innerHTML=IDEAS.map(([k,v])=>`<button type="button" data-i="${k}" aria-pressed="${k===idea}">${v}</button>`).join('');}
+let idea=LOOKS.some(l=>isFresh(l)&&missing(l).length)?'new':'deal';
+const ideaMatch=(l,k)=>k==='new'?isFresh(l):k==='classic'?!['deal','zany','cool','closet'].some(t=>l.tags.includes(t)):l.tags.includes(k);
+function renderIdeaSeg(){$('#ideaSeg').innerHTML=IDEAS.filter(([k])=>k!=='new'||LOOKS.some(l=>isFresh(l)&&missing(l).length)).map(([k,v])=>`<button type="button" data-i="${k}" aria-pressed="${k===idea}">${v}</button>`).join('');}
 $('#ideaSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;idea=b.dataset.i;renderIdeaSeg();renderIdeas();});
 const costToFinish=l=>missing(l).reduce((s,k)=>s+bestBuy(k).price,0);
 function renderIdeas(){
