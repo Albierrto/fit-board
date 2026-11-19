@@ -198,7 +198,9 @@ footer p{margin:0 0 8px; max-width:70ch}
     <pattern id="x-bernard" width="12" height="14" patternUnits="userSpaceOnUse"><ellipse cx="6" cy="3.5" rx="4.4" ry="2.6" fill="#2f63b0"/><ellipse cx="0" cy="10.5" rx="4.4" ry="2.6" fill="#a4473a"/><ellipse cx="12" cy="10.5" rx="4.4" ry="2.6" fill="#a4473a"/><path d="M0,7 h12" stroke="#c07a45" stroke-width=".8" stroke-dasharray="1.5 1.2"/></pattern>
     <pattern id="x-argpolo" width="40" height="36" patternUnits="userSpaceOnUse"><path d="M10,2 L18,18 L10,34 L2,18 Z" fill="#7a2531"/><path d="M30,2 L38,18 L30,34 L22,18 Z" fill="#2c5a52"/><path d="M30,-16 L38,0 L30,16 L22,0 Z M30,20 L38,36 L30,52 L22,36 Z" fill="#6b6b6e"/><path d="M0,0 L40,36 M40,0 L0,36" stroke="#b0414c" stroke-width=".5"/></pattern>
     <pattern id="x-crazygeo" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0,0 L10,0 L0,10 Z" fill="#e8ddc8"/><path d="M10,0 L20,0 L20,10 Z" fill="#5a4330"/><path d="M0,10 L10,20 L0,20 Z" fill="#3b2c20"/><path d="M10,10 L20,10 L10,20 Z" fill="#cbb89a"/><path d="M10,0 L10,10 L0,10 Z" fill="#9a8466"/></pattern>
-    <pattern id="x-banded"width="12" height="30" patternUnits="userSpaceOnUse"><rect y="4" width="12" height="6" fill="#e6dcc6"/><rect y="16" width="12" height="4" fill="#b39470"/><path d="M0,24 l3,3 l3,-3 l3,3 l3,-3" fill="none" stroke="#e6dcc6" stroke-width="1"/><path d="M2,7 h2 M8,7 h2" stroke="#2a2622" stroke-width="1.2"/></pattern>
+    <pattern id="x-tealarg" width="22" height="30" patternUnits="userSpaceOnUse"><path d="M11,0 L22,15 L11,30 L0,15 Z" fill="#9aa3a3"/><path d="M11,6 L17,15 L11,24 L5,15 Z" fill="#6f7a7a"/><path d="M0,0 L22,30 M22,0 L0,30" stroke="#c9cfcd" stroke-width=".5"/></pattern>
+    <pattern id="x-hmjacq" width="16" height="140" patternUnits="userSpaceOnUse"><rect y="46" width="16" height="22" fill="#e6dcc8"/><path d="M0,52 l4,5 l4,-5 l4,5 l4,-5" fill="none" stroke="#3d2a20" stroke-width="1.6"/><path d="M0,62 l4,-4 l4,4 l4,-4 l4,4" fill="none" stroke="#5b86b8" stroke-width="1.4"/><path d="M0,44 h16 M0,70 h16" stroke="#e6dcc8" stroke-width="1"/><circle cx="8" cy="36" r="1" fill="#e6dcc8"/></pattern>
+    <pattern id="x-banded" width="12" height="30" patternUnits="userSpaceOnUse"><rect y="4" width="12" height="6" fill="#e6dcc6"/><rect y="16" width="12" height="4" fill="#b39470"/><path d="M0,24 l3,3 l3,-3 l3,3 l3,-3" fill="none" stroke="#e6dcc6" stroke-width="1"/><path d="M2,7 h2 M8,7 h2" stroke="#2a2622" stroke-width="1.2"/></pattern>
     <pattern id="x-damask" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M8,2 C11,5 11,8 8,11 C5,8 5,5 8,2 Z" fill="#3c8c8a"/><circle cx="8" cy="13" r="1.6" fill="#a1394a"/><path d="M0,8 C2,6 3,6 4,8 M12,8 C13,6 14,6 16,8" fill="none" stroke="#6b4c9a" stroke-width="1.2"/><circle cx="0" cy="0" r="1.6" fill="#d9a33a"/><circle cx="16" cy="0" r="1.6" fill="#d9a33a"/><circle cx="0" cy="16" r="1.6" fill="#d9a33a"/><circle cx="16" cy="16" r="1.6" fill="#d9a33a"/></pattern>
     <pattern id="x-flowers" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="7" cy="7" r="3.6" fill="#e2b92e"/><circle cx="7" cy="7" r="1.4" fill="#8a4a1c"/><path d="M14,14 q4,-6 8,0 q-4,6 -8,0 Z" fill="#4f8a4c"/><circle cx="19" cy="4" r="1.6" fill="#d8573a"/><path d="M2,20 q3,-3 6,0" fill="none" stroke="#7fb3c8" stroke-width="1.2"/></pattern>
     <pattern id="x-ripstop" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M0,0 H6 M0,0 V6" stroke="rgba(0,0,0,.14)" stroke-width=".6"/><path d="M1,3 l1.5,-.6 M3.6,5 l1.4,.5" stroke="rgba(255,255,255,.1)" stroke-width=".6"/></pattern>
@@ -497,6 +499,13 @@ function drawLayer(p){
       +P('M128,13 L109,24 L121,64 L140,36 Z',c,{sheen:true});
     return both(half);
   }
+  if(t==='vest'){
+    const band=d.rib||shade(c,dark(c)?.1:-.12);
+    const half=P('M130,17 L101,25 Q94,46 99,74 L99,180 L150,180 L150,64 Z',c,{tex:d.tex})
+      +P('M99,169 L150,169 L150,180 L99,180 Z',band,{tex:'rib',sw:1})
+      +L('M130,17 L150,64',band,4.5)+L('M101,25 Q94,46 99,74',band,3.5);
+    return both(half);
+  }
   if(t==='duffle'){
     const len=270;
     const hood=P('M112,24 Q150,2 188,24 L176,32 Q150,20 124,32 Z',shade(c,-.18),{tex:d.tex});
@@ -541,7 +550,7 @@ function drawLayer(p){
 
 /* ---------- full outfit + single pieces ---------- */
 function outfitSVG(o,label){
-  const g=[drawShoes(PR[o.shoes]),drawPants(PR[o.bottom]),drawTop(PR[o.top],!!o.layer),o.layer?drawLayer(PR[o.layer]):''].join('');
+  const g=[drawShoes(PR[o.shoes]),drawPants(PR[o.bottom]),drawTop(PR[o.top],!!o.layer&&PR[o.layer].draw.t!=='vest'),o.layer?drawLayer(PR[o.layer]):''].join('');
   return `<svg viewBox="44 4 212 400" role="img" aria-label="${label||''}">${g}</svg>`;
 }
 function pieceSVG(p){
@@ -632,6 +641,11 @@ const PR={
   argylePolo:{cat:'top',used:true,name:'Vintage Florence Tricot argyle polo sweater, made in Italy, XL',brand:'Florence Tricot (vintage)',store:'Poshmark',price:21.49,fit:'relaxed',url:'https://poshmark.com/listing/Vintage-Florence-Tricot-Cardigan-Argyle-Sweater-Acrylic-Wool-Mens-Size-XL-Italy-6aed066ae15c914d7c39bd13',checked:'Nov 19',draw:{t:'polo',c:'#1c1b1d',tex:'x-argpolo',rib:'#1c1b1d'}},
   crazyGeo:{cat:'top',used:true,name:'Vintage Crazy Horse geometric knit sweater, browns and cream, XL',brand:'Crazy Horse (vintage)',store:'Poshmark',price:15.49,fit:'relaxed',url:'https://poshmark.com/listing/Vintage-Crazy-Horse-Mens-Geometric-Print-Wool-Blend-Knit-Sweater-Size-XL-677c6379be296ba61ce0c744',checked:'Nov 19',draw:{t:'crew',c:'#8a7458',tex:'x-crazygeo',rib:'#8a7458'}},
 
+  gapCords:{cat:'bottom',name:'Corduroy relaxed straight pants, stone',brand:'Gap',store:'Gap',price:39.97,fit:'relaxed straight',size:'36 waist',url:'https://www.gap.com/browse/product.do?pid=855068012',checked:'Nov 19',draw:{fit:'straight',c:'#ddd4c0',tex:'cord'}},
+  hmJacquard:{cat:'top',name:'Relaxed jacquard knit sweater, dark brown and cream',brand:'H&M',store:'H&M',price:49.99,fit:'relaxed',url:'https://www2.hm.com/en_us/productpage.1361342001.html',checked:'Nov 19',draw:{t:'crew',c:'#4b3328',tex:'x-hmjacq',rib:'#432d23'}},
+  redCord:{cat:'layer',used:true,name:'Westchester Classics quilted corduroy shirt jacket, red, XL',brand:'Westchester Classics (vintage)',store:'Poshmark',price:26.49,fit:'boxy, quilted lining',url:'https://poshmark.com/listing/Westchester-Classics-Corduroy-Jacket-XL-Red-Quilted-Lined-Chore-Barn-Coat-69e647c9955383f4be23fcbe',checked:'Nov 19',draw:{t:'overshirt',c:'#b3222c',tex:'cord'}},
+  tealVest:{cat:'layer',used:true,name:'Vintage teal argyle sweater vest, XL, about 24 in. pit to pit',brand:'Vintage',store:'Poshmark',price:14.49,fit:'regular',url:'https://poshmark.com/listing/Vintage-green-checkered-sweater-vest-size-XL-6aec1ce01b613ad1bd059b7b',checked:'Nov 19',draw:{t:'vest',c:'#3e6a66',tex:'x-tealarg',rib:'#365c58'}},
+
   myWhite:{cat:'shoes',mine:true,name:'Your white sneakers',brand:'Already yours',price:0,draw:{c:'#f5f3ee',sole:'#fbfaf7'}},
   myUggs:{cat:'shoes',mine:true,name:'Your brown Uggs',brand:'Already yours',price:0,draw:{s:'boot',c:'#9a6a3f',sole:'#d8c6a6'}},
   loaferB:{cat:'shoes',name:'Pier chunky loafers, matte black',brand:'SEQWL',store:'ASOS',price:49.00,fit:'faux leather',url:'https://www.asos.com/us/seqwl/seqwl-pier-chunky-loafers-in-matte-black/prd/209976656',checked:'Nov 19',draw:{s:'loafer',c:'#161617',sole:'#222223'}},
@@ -665,6 +679,10 @@ const CLOSET_LOOKS=[
   {name:'Black Jacket + Sky Blue',layer:'myColumbia',top:'onBrownShirt',bottom:'uqWoolLight',shoes:'myWhite',tags:['closet','going-out','cold'],why:'Your black Columbia jacket worn open over the brown and light blue combo. Black on the outside sharpens the softer colors underneath.'}
 ];
 const NEW_LOOKS=[
+  {name:'Red Cord Jacket',added:'2026-11-19',layer:'redCord',top:'onBrownShirt',bottom:'uqWoolDark',shoes:'myWhite',tags:['cool','deal','going-out','cold'],why:'A bright red corduroy shirt jacket with a quilted lining, worn open over your brown shirt with dark blue wool pants. The red is the one loud thing, and brown and navy calm it right down. About $26.'},
+  {name:'Argyle Vest + Honey',added:'2026-11-19',layer:'tealVest',top:'onLSHoney',bottom:'uqWoolDark',shoes:'myWhite',tags:['zany','deal','date','everyday'],why:'A sweater vest over a long sleeve is the cheap way to look like you thought about it. Teal argyle over your honey long sleeve, dark blue wool pants. Teal and honey are a great odd pair. $14.'},
+  {name:'Stone Cords + Dusty Blue',added:'2026-11-19',layer:'myColumbia',top:'onLSBlue',bottom:'gapCords',shoes:'myWhite',tags:['deal','everyday','cool'],why:'Light stone corduroy pants are the not-jeans answer for every day. Your dusty blue long sleeve and black jacket open on top. Pale pants with a darker jacket looks clean and easy.'},
+  {name:'Chalet Browns',added:'2026-11-19',top:'hmJacquard',bottom:'gapCords',shoes:'myUggs',tags:['cool','chill','cold','date'],why:'Dark brown jacquard sweater with a cream and blue band, stone cords and your Uggs. Dark top, light bottom, all in one warm family. Two pieces for about $90, less with the Gap checkout discount.'},
   {name:'Ski Lodge Fair Isle',added:'2026-11-19',top:'jwaFairIsle',bottom:'uqWoolLight',shoes:'myWhite',tags:['cool','deal','date','cold'],why:'A JW Anderson Fair Isle sweater for $30. Oatmeal with a red band, over your light blue wool pants. Old ski lodge sweater, clean modern pants, and the two soft colors keep it easy.'},
   {name:'Rust V-Neck Over Blue',added:'2026-11-19',top:'jwaRust',bottom:'uqWoolDark',shoes:'myWhite',tags:['cool','deal','everyday','date'],why:'Rust lambswool V-neck pulled over your dusty blue long sleeve so a little blue shows at the neck, with your dark blue wool pants. Rust and blue sit opposite each other on the color wheel, which is why it pops without being loud.'},
   {name:'Brown Duffle, Honey + Sky',added:'2026-11-19',layer:'uqDuffle',top:'onLSHoney',bottom:'uqWoolLight',shoes:'myWhite',tags:['smart','cold','date'],why:'A dark brown duffle coat was all over Pitti this year, worn over regular clothes instead of suits. Here it goes open over your honey long sleeve and light blue wool pants. Brown, honey and light blue is a warm, grown up mix.'},

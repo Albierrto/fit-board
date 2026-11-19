@@ -61,3 +61,30 @@ Bort's reaction: he liked this batch a lot ("project Hail Mary vibes"). He wants
 - Scandia geometric cardigan, XL, $36.57: https://www.ebay.com/itm/820340720083
 - Uniqlo x JW Anderson rugger shirt, off white, $39.90 (XL in stock)
 - L.L.Bean ragg wool and Fair Isle sweaters: nice but $70 to $120.
+
+## 2026-11-19, second run (afternoon)
+
+**Re-check:** every ASOS, Uniqlo, Old Navy and Poshmark piece is still in stock in his size. eBay began returning 403 errors partway through. These 14 listings were confirmed live this afternoon: 128146351084, 137390400114, 137934345315, 147548109486, 147618750506, 168855449527, 178333968137, 206675943318, 267797242921, 287429303272, 366777109011, 366811469010, 880112302058, 940097923504. These 3 couldn't be re-checked this afternoon and were last confirmed live this morning, so they stay: 206674784075, 257825756286, 358704311544. Nothing was removed.
+
+**Fixed:** the `x-banded` pattern def had a broken attribute (`id="x-banded"width=`), so the 3D-knit sweater drawing had no pattern. It now renders.
+
+**Added: 4 looks, 4 pieces.** All in stock in his size on Nov 19.
+
+- Westchester Classics quilted red corduroy shirt jacket, XL, Poshmark, $26.49 landed: https://poshmark.com/listing/Westchester-Classics-Corduroy-Jacket-XL-Red-Quilted-Lined-Chore-Barn-Coat-69e647c9955383f4be23fcbe
+- Vintage teal argyle sweater vest, XL, about 24 in. pit to pit, Poshmark, $14.49 landed: https://poshmark.com/listing/Vintage-green-checkered-sweater-vest-size-XL-6aec1ce01b613ad1bd059b7b
+- Gap corduroy relaxed straight pants, stone, 36W (30, 32 and 34 lengths in stock), $39.97 final sale with an extra 50% off at checkout: https://www.gap.com/browse/product.do?pid=855068012
+- H&M relaxed jacquard knit sweater, dark brown and cream, XL, $49.99: https://www2.hm.com/en_us/productpage.1361342001.html
+
+**Passed on:**
+
+- H&M striped jacquard half-zip (1371664001): XL sold out.
+- H&M letterman embroidered cardigan: too costume-y.
+- Arrow Workwear tan cord shirt jacket (Poshmark): about 28 in. pit to pit, too big.
+- Sears beige chore jacket (Poshmark): 23 in. pit to pit.
+- J.Crew Factory Fair Isle sweaters: $94.50.
+
+**Watching:**
+
+- Alexander Julian striped button vest, XL, Poshmark, $8 plus shipping (older listing).
+- H&M burgundy argyle relaxed sweater (1373654001), $49.99.
+- Gap new corduroy relaxed straight pants, 5 colors, $53 (1184870002).

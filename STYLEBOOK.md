@@ -69,3 +69,13 @@ Sources read: END. Fall Knitwear Report 2026, FashionUnited on Pitti Uomo (Jan 2
 - **Texture against texture** (Highsnobiety, END.): fuzzy cardigan over a smooth tee, ribbed under fuzzy. The souffle and mohair cardigans both use it.
 - **One deliberate clash** (END.: a red stripe under a lemon cardigan). Not on the board yet. Try a mustard or yellow cardigan over his blue long sleeve next time.
 - **Fit note:** vintage XL from the 60s and 70s often measures 21 to 23 in. pit to pit, too small. 80s and 90s XL is usually right. Ask for measurements before trusting an older tag.
+
+### 2026-11-19 (second run)
+
+Sources read: MR PORTER's Derek Guy style guide (only partly readable) and Jake Woolf's fall list (paywalled, so nothing usable). Next run, try Put This On, Permanent Style and a Popeye or Beams Plus lookbook.
+
+- **Sweater vest instead of a jacket** (Derek Guy). A knit vest over a shirt or long sleeve looks deliberate for very little money. Made the board: teal argyle vest over his honey long sleeve.
+- **Workwear jacket with cords** (Derek Guy: chore coat, chambray, rumpled cords). Made the board in part: stone cords, and a red cord shirt jacket.
+- **Light pants under a dark top** is a strong, easy proportion for him. Stone or ecru cords with a dark brown knit or a black jacket.
+- **Denim shirt with pleated chinos** (Derek Guy). Not on the board yet. The Uniqlo x JW Anderson denim shirt ($29.90) would fit next time.
+- **Tip:** eBay starts returning 403 errors after many fetches in a row. Space requests about 2 seconds apart, and run the re-check before searching.
