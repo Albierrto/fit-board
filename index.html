@@ -1,0 +1,866 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fit Board</title>
+<meta name="description" content="Outfits from my own closet, what to buy next, and outfit ideas.">
+<meta name="theme-color" content="#f2ede4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14120f" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Fit Board">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#f2ede4; --surface:#fbf8f2; --ink:#1f1b16; --muted:#5f574c; --line:#d9cfbf;
+  --accent:#9c3f19; --accent-ink:#ffffff; --accent-soft:#f3e2d6;
+  --ok:#2b6439; --ok-soft:#e1efe3; --need:#8a4a12; --need-soft:#f6e7d2;
+  --board:#e6ddce; --board-edge:#d6cbb8; --focus:#1f5fd6;
+  --nav-h:64px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#14120f; --surface:#1d1a15; --ink:#f0e9dd; --muted:#b4aa9b; --line:#3a332a;
+    --accent:#ef8a58; --accent-ink:#1a0f08; --accent-soft:#3a2418;
+    --ok:#86cf98; --ok-soft:#1d3323; --need:#f0b46a; --need-soft:#3a2a16;
+    --board:#d8cebc; --board-edge:#c6baa5; --focus:#8fb4ff;
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0; background:var(--bg); color:var(--ink); font:16px/1.55 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom, 0px) + 24px)}
+img,svg{max-width:100%}
+a{color:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--focus); outline-offset:2px; border-radius:6px}
+main:focus{outline:none}
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+.skip{position:absolute; left:12px; top:-60px; background:var(--ink); color:var(--bg); padding:10px 14px; border-radius:8px; z-index:50; text-decoration:none}
+.skip:focus{top:calc(env(safe-area-inset-top, 0px) + 10px)}
+.wrap{max-width:1100px; margin:0 auto; padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px))}
+
+/* header */
+header.top{padding-top:calc(env(safe-area-inset-top, 0px) + 18px); padding-bottom:6px}
+.brand{font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin:0}
+h1{font-family:"Instrument Serif", Georgia, serif; font-weight:400; font-size:clamp(36px, 9vw, 54px); line-height:1.02; margin:2px 0 6px}
+.lede{margin:0 0 6px; color:var(--muted); max-width:60ch}
+h2{font-family:"Instrument Serif", Georgia, serif; font-weight:400; font-size:30px; line-height:1.1; margin:28px 0 6px}
+.sub{margin:0 0 14px; color:var(--muted); max-width:62ch}
+
+/* tabs: bottom bar on phones, top bar on big screens */
+nav.tabs{position:fixed; left:0; right:0; bottom:0; z-index:20; background:var(--surface); border-top:1px solid var(--line); padding-bottom:env(safe-area-inset-bottom, 0px); padding-left:env(safe-area-inset-left, 0px); padding-right:env(safe-area-inset-right, 0px)}
+nav.tabs ul{list-style:none; margin:0 auto; padding:0; display:grid; grid-template-columns:repeat(4, 1fr); max-width:640px}
+nav.tabs a{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; height:var(--nav-h); text-decoration:none; color:var(--muted); font-size:12.5px; font-weight:600}
+nav.tabs a svg{width:24px; height:24px}
+nav.tabs a[aria-current="page"]{color:var(--accent)}
+nav.tabs a[aria-current="page"] svg{stroke-width:2.4}
+@media (min-width: 900px){
+  body{padding-bottom:40px}
+  nav.tabs{position:sticky; top:0; bottom:auto; border-top:0; border-bottom:1px solid var(--line); padding:0}
+  nav.tabs ul{max-width:1100px; display:flex; gap:6px; padding:0 16px}
+  nav.tabs a{flex-direction:row; height:56px; padding:0 14px; font-size:15px; gap:8px; border-bottom:3px solid transparent}
+  nav.tabs a[aria-current="page"]{border-bottom-color:var(--accent)}
+}
+
+/* buttons and chips */
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:48px; padding:12px 18px; border-radius:12px; border:2px solid var(--ink); background:var(--ink); color:var(--bg); font:600 16px/1.2 Inter, system-ui, sans-serif; text-decoration:none; cursor:pointer}
+.btn.primary{background:var(--accent); border-color:var(--accent); color:var(--accent-ink); width:100%; font-size:18px; min-height:56px}
+.btn.ghost{background:transparent; color:var(--ink)}
+.btn.shop{width:100%; justify-content:space-between; background:var(--surface); color:var(--ink); border:2px solid var(--line); font-weight:600; font-size:15px; text-align:left}
+.btn.shop:hover{border-color:var(--accent)}
+.btn.shop .price{white-space:nowrap; color:var(--accent)}
+.btn.shop .at{display:block; font-weight:500; font-size:13px; color:var(--muted); margin-top:2px}
+.seg{display:flex; gap:8px; overflow-x:auto; padding:2px 2px 8px; margin:0 -2px; scrollbar-width:none}
+.seg::-webkit-scrollbar{display:none}
+.seg button{flex:0 0 auto; min-height:44px; padding:0 16px; border-radius:999px; border:2px solid var(--line); background:var(--surface); color:var(--ink); font:600 15px Inter, system-ui, sans-serif; cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink); border-color:var(--ink); color:var(--bg)}
+
+/* outfit cards */
+.grid{display:grid; gap:14px; grid-template-columns:1fr}
+@media (min-width: 640px){ .grid{grid-template-columns:repeat(2, minmax(0,1fr))} }
+@media (min-width: 1000px){ .grid{grid-template-columns:repeat(3, minmax(0,1fr))} }
+.card{display:grid; grid-template-columns:120px minmax(0,1fr); background:var(--surface); border:1px solid var(--line); border-radius:16px; overflow:hidden}
+.art{background:radial-gradient(120% 90% at 50% 35%, var(--board) 0%, var(--board-edge) 100%); display:flex; align-items:center; justify-content:center; padding:10px 6px}
+.art svg{width:100%; height:auto; max-height:230px; filter:drop-shadow(0 2px 3px rgba(40,25,10,.22))}
+.cb{padding:14px 14px 16px; display:flex; flex-direction:column; gap:8px; min-width:0}
+.cb h3{margin:0; font-family:"Instrument Serif", Georgia, serif; font-weight:400; font-size:24px; line-height:1.1}
+.why{margin:0; font-size:15px; color:var(--muted)}
+.status{display:inline-flex; align-items:center; gap:6px; align-self:flex-start; font-size:13px; font-weight:600; padding:4px 10px; border-radius:999px}
+.status.ok{background:var(--ok-soft); color:var(--ok)}
+.status.need{background:var(--need-soft); color:var(--need)}
+.pcs{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:4px; font-size:14.5px}
+.pcs li{display:flex; gap:8px; align-items:baseline}
+.pcs .mark{flex:0 0 auto; width:18px; font-weight:700; text-align:center}
+.pcs .own .mark{color:var(--ok)}
+.pcs .need .mark{color:var(--need)}
+.pcs .need{font-weight:600}
+.buys{display:flex; flex-direction:column; gap:8px; margin-top:4px}
+.ref{margin:0; font-size:14px; color:var(--muted)}
+.ref a{color:var(--accent)}
+.card.big{grid-template-columns:1fr; border-width:2px; border-color:var(--accent)}
+.card.big .art{padding:18px}
+.card.big .art svg{max-height:380px; width:auto}
+.card.big .cb h3{font-size:32px}
+@media (min-width: 640px){
+  .card{grid-template-columns:1fr}
+  .card .art svg{width:auto; height:260px; max-height:none}
+  .card.big{grid-template-columns:minmax(0,320px) minmax(0,1fr)}
+  .card.big .art svg{height:380px}
+}
+
+/* pick panel */
+.pick{margin:8px 0 6px}
+.pick-out{margin-top:14px}
+.count{font-weight:600}
+.empty{padding:22px; text-align:center; color:var(--muted); background:var(--surface); border:1px dashed var(--line); border-radius:14px}
+
+/* buy list */
+.buy{display:grid; grid-template-columns:96px minmax(0,1fr); gap:0; background:var(--surface); border:1px solid var(--line); border-radius:16px; overflow:hidden}
+.buy .art svg{max-height:120px}
+.buy .cb h3{font-size:22px}
+.rank{font-size:13px; font-weight:700; color:var(--accent); letter-spacing:.06em; text-transform:uppercase}
+.unlock{margin:0; font-size:15px}
+.note{margin:0; font-size:14px; color:var(--muted)}
+details{border-top:1px solid var(--line); padding-top:8px}
+summary{cursor:pointer; min-height:44px; display:flex; align-items:center; font-weight:600; color:var(--accent)}
+.thumbs{display:grid; grid-template-columns:repeat(auto-fill, minmax(96px,1fr)); gap:10px; margin-top:6px}
+.thumb{background:var(--board); border-radius:12px; padding:8px 6px 6px; text-align:center; font-size:13px; color:#2a241d; line-height:1.25}
+.thumb svg{height:130px; width:auto; display:block; margin:0 auto 4px}
+
+/* closet */
+.closet{display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:10px}
+.item{background:var(--surface); border:1px solid var(--line); border-radius:14px; overflow:hidden; display:flex; flex-direction:column}
+.item .art{height:120px; padding:8px}
+.item .art svg{height:100%; width:auto; max-height:none}
+.item p{margin:0; padding:10px 12px 12px; font-size:14px; font-weight:600; line-height:1.3}
+.toggle-list{list-style:none; margin:0; padding:0; border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--surface)}
+.toggle-list li{border-bottom:1px solid var(--line)}
+.toggle-list li:last-child{border-bottom:0}
+.toggle-list button{width:100%; min-height:56px; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 14px; background:transparent; border:0; color:var(--ink); font:500 15px Inter, system-ui, sans-serif; text-align:left; cursor:pointer}
+.toggle-list .tick{flex:0 0 auto; font-size:13px; font-weight:700; padding:6px 10px; border-radius:999px; border:2px solid var(--line); color:var(--muted)}
+.toggle-list button[aria-pressed="true"] .tick{background:var(--ok); border-color:var(--ok); color:var(--surface)}
+.grp{font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin:18px 0 8px}
+
+/* tips + links */
+.tips{list-style:none; margin:8px 0 0; padding:0; display:grid; gap:10px}
+.tips li{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:12px 14px}
+.tips b{display:block; margin-bottom:2px}
+.links{display:grid; gap:10px; grid-template-columns:repeat(auto-fill, minmax(220px,1fr))}
+.links a{display:block; background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:14px; text-decoration:none; min-height:44px}
+.links a b{color:var(--accent)}
+.links a span{display:block; font-size:14px; color:var(--muted); margin-top:2px}
+footer{margin-top:36px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:13.5px}
+footer p{margin:0 0 8px; max-width:70ch}
+@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <pattern id="cord-l" width="4" height="10" patternUnits="userSpaceOnUse"><line x1="2" y1="0" x2="2" y2="10" stroke="rgba(0,0,0,.17)" stroke-width="1.5"/></pattern>
+    <pattern id="cord-d" width="4" height="10" patternUnits="userSpaceOnUse"><line x1="2" y1="0" x2="2" y2="10" stroke="rgba(255,255,255,.11)" stroke-width="1.5"/></pattern>
+    <pattern id="rib-l" width="3" height="10" patternUnits="userSpaceOnUse"><line x1="1.5" y1="0" x2="1.5" y2="10" stroke="rgba(0,0,0,.11)" stroke-width="1"/></pattern>
+    <pattern id="rib-d" width="3" height="10" patternUnits="userSpaceOnUse"><line x1="1.5" y1="0" x2="1.5" y2="10" stroke="rgba(255,255,255,.08)" stroke-width="1"/></pattern>
+    <pattern id="plaid-l" width="26" height="26" patternUnits="userSpaceOnUse"><rect width="26" height="9" fill="rgba(0,0,0,.28)"/><rect width="9" height="26" fill="rgba(0,0,0,.28)"/><rect y="15" width="26" height="1.8" fill="rgba(255,240,220,.38)"/><rect x="15" width="1.8" height="26" fill="rgba(255,240,220,.38)"/><rect y="21" width="26" height="1" fill="rgba(160,40,30,.35)"/><rect x="21" width="1" height="26" fill="rgba(160,40,30,.35)"/></pattern>
+    <pattern id="plaid-d" width="26" height="26" patternUnits="userSpaceOnUse"><rect width="26" height="9" fill="rgba(0,0,0,.28)"/><rect width="9" height="26" fill="rgba(0,0,0,.28)"/><rect y="15" width="26" height="1.8" fill="rgba(255,240,220,.38)"/><rect x="15" width="1.8" height="26" fill="rgba(255,240,220,.38)"/><rect y="21" width="26" height="1" fill="rgba(200,60,40,.4)"/><rect x="21" width="1" height="26" fill="rgba(200,60,40,.4)"/></pattern>
+    <pattern id="check-l" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="3" fill="rgba(0,0,0,.12)"/><rect width="3" height="8" fill="rgba(0,0,0,.12)"/></pattern>
+    <pattern id="check-d" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="3" fill="rgba(255,255,255,.09)"/><rect width="3" height="8" fill="rgba(255,255,255,.09)"/><rect y="6" width="8" height=".8" fill="rgba(140,170,220,.25)"/></pattern>
+    <pattern id="herring-l" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M0,0 L4,4 L0,8 M4,0 L8,4 L4,8" fill="none" stroke="rgba(0,0,0,.18)" stroke-width="1"/></pattern>
+    <pattern id="herring-d" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M0,0 L4,4 L0,8 M4,0 L8,4 L4,8" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="1"/></pattern>
+    <pattern id="twill-l" width="4" height="4" patternUnits="userSpaceOnUse"><path d="M0,4 L4,0" stroke="rgba(255,255,255,.12)" stroke-width="1"/></pattern>
+    <pattern id="twill-d" width="4" height="4" patternUnits="userSpaceOnUse"><path d="M0,4 L4,0" stroke="rgba(255,255,255,.08)" stroke-width="1"/></pattern>
+    <pattern id="x-leopard" width="30" height="26" patternUnits="userSpaceOnUse"><g fill="#5e3a20"><ellipse cx="6" cy="6" rx="3" ry="2.2"/><ellipse cx="20" cy="4" rx="2.6" ry="2"/><ellipse cx="13" cy="15" rx="3" ry="2.3"/><ellipse cx="26" cy="18" rx="2.6" ry="2.1"/><ellipse cx="4" cy="21" rx="2.5" ry="2"/></g><g fill="none" stroke="#22140b" stroke-width="1.3" stroke-linecap="round"><path d="M2.6,5.2 Q4,2.6 7,3.2 M9.2,6.4 Q8.8,9 6,9"/><path d="M17.2,3.4 Q18.8,1.4 21.6,2.2 M23,4.6 Q22,7 19.6,6.6"/><path d="M9.8,14 Q11.6,11.6 15,12.4 M16.4,15.8 Q15,18.6 12.4,18.2"/><path d="M23.2,17 Q24.8,15 27.6,16 M28.8,19 Q27.4,21.4 25,21"/><path d="M1.4,20 Q2.8,17.8 5.4,18.6 M7,21.6 Q5.8,23.8 3.4,23.4"/></g></pattern>
+    <pattern id="x-fur" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M1,2 l1.4,1.2 M4,.6 l1,1.6 M2.6,4.4 l1.2,1.1 M5,3.6 l.8,1.3" stroke="rgba(255,255,255,.22)" stroke-width=".8" stroke-linecap="round"/><path d="M.4,4.6 l1,1 M3.4,2.4 l1.1,.9" stroke="rgba(0,0,0,.28)" stroke-width=".8" stroke-linecap="round"/></pattern>
+    <pattern id="x-fuzz" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M.8,1.6 l1.2,.9 M3.4,.6 l.8,1.2 M2.2,3.6 l1,.9" stroke="rgba(255,225,215,.24)" stroke-width=".7" stroke-linecap="round"/><path d="M4,3.4 l.8,.9" stroke="rgba(0,0,0,.2)" stroke-width=".7"/></pattern>
+    <pattern id="x-tapestry" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M12,3 L17,12 L12,21 L7,12 Z" fill="#a8532e"/><path d="M12,6.5 L14.8,12 L12,17.5 L9.2,12 Z" fill="#2c4a37"/><circle cx="12" cy="12" r="1.8" fill="#dcc890"/><g fill="#c79a3a"><circle cx="0" cy="0" r="3.2"/><circle cx="24" cy="0" r="3.2"/><circle cx="0" cy="24" r="3.2"/><circle cx="24" cy="24" r="3.2"/></g><path d="M0,12 h4 M20,12 h4 M12,0 v2 M12,22 v2 M4,4 l2.4,2.4 M20,4 l-2.4,2.4 M4,20 l2.4,-2.4 M20,20 l-2.4,-2.4" stroke="#e5d8b8" stroke-width="1.1" stroke-linecap="round"/></pattern>
+    <pattern id="x-argyle" width="20" height="28" patternUnits="userSpaceOnUse"><path d="M10,0 L20,14 L10,28 L0,14 Z" fill="rgba(200,150,95,.35)"/><path d="M0,0 L20,28 M20,0 L0,28" stroke="rgba(240,225,195,.6)" stroke-width=".8" stroke-dasharray="2 2"/></pattern>
+    <pattern id="x-hounds" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#ebe9e4"/><g fill="#171718"><rect width="6" height="6"/><path d="M6,0 h1.5 L6,1.5 Z M9,0 h1.5 L6,4.5 V3 Z M12,0 v1.5 L7.5,6 H6 Z"/><path d="M0,6 h1.5 L0,7.5 Z M3,6 h1.5 L0,10.5 V9 Z M6,6 v1.5 L1.5,12 H0 Z"/></g></pattern>
+    <pattern id="x-redcheck" width="18" height="18" patternUnits="userSpaceOnUse"><rect width="18" height="7" fill="rgba(40,0,0,.38)"/><rect width="7" height="18" fill="rgba(40,0,0,.38)"/><rect y="11" width="18" height="1" fill="rgba(0,0,0,.45)"/><rect x="11" width="1" height="18" fill="rgba(0,0,0,.45)"/></pattern>
+    <pattern id="x-orangecheck" width="22" height="22" patternUnits="userSpaceOnUse"><rect width="22" height="8" fill="rgba(55,22,8,.38)"/><rect width="8" height="22" fill="rgba(55,22,8,.38)"/><rect y="14" width="22" height="1.4" fill="rgba(250,235,210,.55)"/><rect x="14" width="1.4" height="22" fill="rgba(250,235,210,.55)"/></pattern>
+    <pattern id="x-graycheck" width="20" height="20" patternUnits="userSpaceOnUse"><rect width="20" height="7" fill="rgba(0,0,0,.22)"/><rect width="7" height="20" fill="rgba(0,0,0,.22)"/><rect y="13" width="20" height="1" fill="rgba(255,255,255,.45)"/><rect x="13" width="1" height="20" fill="rgba(255,255,255,.45)"/><rect y="17" width="20" height=".8" fill="rgba(150,70,40,.5)"/></pattern>
+    <pattern id="x-bbcheck" width="16" height="16" patternUnits="userSpaceOnUse"><rect width="16" height="8" fill="rgba(60,95,150,.55)"/><rect width="8" height="16" fill="rgba(60,95,150,.55)"/></pattern>
+    <pattern id="x-bstripe" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="5" fill="#3d62ad"/></pattern>
+    <pattern id="x-navystripe" width="6" height="6" patternUnits="userSpaceOnUse"><rect width="1.7" height="6" fill="#26385f"/></pattern>
+    <pattern id="x-pin" width="7" height="7" patternUnits="userSpaceOnUse"><rect x="3" width=".7" height="7" fill="rgba(255,255,255,.3)"/></pattern>
+    <pattern id="x-ripstop" width="6" height="6" patternUnits="userSpaceOnUse"><path d="M0,0 H6 M0,0 V6" stroke="rgba(0,0,0,.14)" stroke-width=".6"/><path d="M1,3 l1.5,-.6 M3.6,5 l1.4,.5" stroke="rgba(255,255,255,.1)" stroke-width=".6"/></pattern>
+    <pattern id="x-pleat" width="3" height="10" patternUnits="userSpaceOnUse"><rect x="1.6" width=".8" height="10" fill="rgba(0,0,0,.25)"/><rect x=".3" width=".6" height="10" fill="rgba(255,255,255,.14)"/></pattern>
+    <pattern id="x-marnistripe" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="4" fill="#a8352a"/><rect y="7.5" width="14" height="1.6" fill="#e6d6b0"/></pattern>
+    <pattern id="x-ybplaid" width="20" height="20" patternUnits="userSpaceOnUse"><rect width="20" height="6" fill="rgba(0,0,0,.55)"/><rect width="6" height="20" fill="rgba(0,0,0,.55)"/><rect y="12" width="20" height="1" fill="rgba(0,0,0,.4)"/><rect x="12" width="1" height="20" fill="rgba(0,0,0,.4)"/></pattern>
+    <pattern id="x-batik" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M0,10 q5,-4 10,0 t10,0" fill="none" stroke="#d8c49a" stroke-width="1.2"/><circle cx="5" cy="4" r="1.8" fill="#e3d2a6"/><circle cx="15" cy="16" r="1.8" fill="#e3d2a6"/><circle cx="15" cy="4" r="2.4" fill="none" stroke="#2c3a5a" stroke-width="1.2"/><circle cx="5" cy="16" r="2.4" fill="none" stroke="#2c3a5a" stroke-width="1.2"/></pattern>
+    <pattern id="x-abstract" width="26" height="26" patternUnits="userSpaceOnUse"><path d="M3,20 L9,8 L14,20 Z" fill="#e2b23a"/><circle cx="19" cy="7" r="3.2" fill="#d9573a"/><rect x="16" y="15" width="7" height="7" fill="#1b2f52"/><path d="M1,4 q3,-3 6,0 t6,0" fill="none" stroke="#f2ead6" stroke-width="1.2"/></pattern>
+    <linearGradient id="sheen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".4" stop-color="#fff" stop-opacity="0"/><stop offset=".72" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  </defs>
+</svg>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="wrap">
+    <p class="brand">Fit Board</p>
+    <h1 id="viewTitle">What to wear</h1>
+    <p class="lede" id="viewLede"></p>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Sections">
+  <ul>
+    <li><a href="#wear" data-tab="wear"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6a2 2 0 1 1 2-2"/><path d="M12 6v1.5L3 14h18l-9-6.5"/><path d="M4 14v2h16v-2"/></svg><span>Wear</span></a></li>
+    <li><a href="#buy" data-tab="buy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span>Buy next</span></a></li>
+    <li><a href="#ideas" data-tab="ideas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.6L18 9l-4.2 1.4L12 15l-1.8-4.6L6 9l4.2-1.4z"/><path d="M18 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/></svg><span>Ideas</span></a></li>
+    <li><a href="#closet" data-tab="closet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M12 3v18"/><path d="M10 11v2M14 11v2"/></svg><span>My closet</span></a></li>
+  </ul>
+</nav>
+
+<main id="main" class="wrap" tabindex="-1">
+
+  <!-- WEAR -->
+  <section data-view="wear" aria-labelledby="viewTitle">
+    <p class="count" id="wearCount"></p>
+    <div class="seg" role="group" aria-label="Occasion" id="occ"></div>
+    <div class="pick">
+      <button class="btn primary" type="button" id="pickBtn">Pick an outfit for me</button>
+      <div class="pick-out" id="pickOut" aria-live="polite"></div>
+    </div>
+    <h2 id="wearListTitle">Everything you can wear</h2>
+    <div class="grid" id="wearGrid"></div>
+
+    <h2>How your clothes should fit</h2>
+    <ul class="tips">
+      <li><b>Size for your widest point.</b> If a tee pulls anywhere, go up a size. Clothes should skim, not cling.</li>
+      <li><b>Heavier fabric is better.</b> Heavy cotton, cord, wool and canvas drape. Thin stuff shows everything.</li>
+      <li><b>Wear layers open.</b> An open jacket, cardigan or overshirt makes a long line down the middle.</li>
+      <li><b>Straight or loose pants.</b> Get them hemmed ($10 to $20) so they just touch your shoes.</li>
+      <li><b>One color family reads taller.</b> All blues, all browns, all black. No hard break at the waist.</li>
+      <li><b>One loud thing per outfit.</b> A bright color or a wild print, never two.</li>
+    </ul>
+  </section>
+
+  <!-- BUY -->
+  <section data-view="buy" aria-labelledby="viewTitle" hidden>
+    <p class="sub">Ranked by how many new outfits each piece unlocks with what you already own. The cheapest good version is shown first.</p>
+    <div class="grid" id="buyList"></div>
+  </section>
+
+  <!-- IDEAS -->
+  <section data-view="ideas" aria-labelledby="viewTitle" hidden>
+    <div class="seg" role="group" aria-label="Idea type" id="ideaSeg"></div>
+    <p class="sub" id="ideaSub"></p>
+    <div class="grid" id="ideaGrid"></div>
+    <div id="huntBox" hidden>
+      <h2>Hunting for designer stuff</h2>
+      <p class="sub">The designer pieces are one-off used listings that can sell any day. These eBay searches (cheapest first) find the next one. Buy from sellers with good feedback and clear tag photos, because Needles and Issey Miyake get faked.</p>
+      <div class="links" id="huntLinks"></div>
+    </div>
+  </section>
+
+  <!-- CLOSET -->
+  <section data-view="closet" aria-labelledby="viewTitle" hidden>
+    <h2 id="ownTitle">What you own</h2>
+    <div class="closet" id="ownGrid"></div>
+    <h2>Own something else?</h2>
+    <p class="sub">Tap anything you own or just bought. Your outfits update right away. This is saved on this device only.</p>
+    <div id="toggleBox"></div>
+  </section>
+
+  <footer>
+    <p>Prices and links checked Nov 18, 2026 at Old Navy, Target, Uniqlo, H&amp;M, ASOS, Carhartt, Walmart and eBay. Sale prices change fast.</p>
+    <p>The outfits are drawings in each piece's real color. Tap a shop button to see the real product photos.</p>
+  </footer>
+</main>
+
+<script>
+/* ---------- color helpers ---------- */
+function rgb(h){h=h.replace('#','');return [0,2,4].map(i=>parseInt(h.substr(i,2),16));}
+function hex(a){return '#'+a.map(v=>Math.max(0,Math.min(255,Math.round(v))).toString(16).padStart(2,'0')).join('');}
+function shade(h,a){const c=rgb(h);return hex(c.map(v=>a<0?v*(1+a):v+(255-v)*a));}
+function lum(h){const [r,g,b]=rgb(h).map(v=>v/255);return .2126*r+.7152*g+.0722*b;}
+const dark=h=>lum(h)<.3;
+const ln=h=>dark(h)?'rgba(255,255,255,.22)':'rgba(0,0,0,.22)';
+const edge=h=>dark(h)?'rgba(0,0,0,.6)':shade(h,-.32);
+const tone=(t,c)=>t?(t.startsWith('x-')?t:`${t}-${dark(c)?'d':'l'}`):null;
+
+/* ---------- svg primitives ---------- */
+const MIR=s=>`<g transform="translate(300 0) scale(-1 1)">${s}</g>`;
+const both=s=>s+MIR(s);
+function P(d,fill,o={}){
+  let s=`<path d="${d}" fill="${fill}" stroke="${o.stroke||edge(fill)}" stroke-width="${o.sw||1.2}" stroke-linejoin="round"/>`;
+  if(o.tex) s+=`<path d="${d}" fill="url(#${tone(o.tex,fill)})"/>`;
+  if(o.sheen) s+=`<path d="${d}" fill="url(#sheen)"/>`;
+  return s;
+}
+const L=(d,c,w=1.2,x='')=>`<path d="${d}" fill="none" stroke="${c}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" ${x}/>`;
+const dotBtn=(x,y,c,r=2.3)=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${dark(c)?shade(c,.35):shade(c,-.3)}"/>`;
+
+/* ---------- shoes ---------- */
+function drawShoes(p){
+  const d=p.draw,c=d.c,sole=d.sole||'#b98a5c',s=d.s||'sneaker';
+  let half;
+  if(s==='boot'){ /* short sheepskin boot: only the foot shows under loose pants */
+    half=P('M148,344 L148,391 L97,391 Q84,391 86,381 Q88,369 104,365 L119,361 L121,344 Z',c)
+      +L('M121,350 Q124,372 119,390',ln(c))
+      +P('M150,389 L150,396 Q150,399 146,399 L92,399 Q84,399 85,394 L86,389 Z',sole,{sw:1});
+  } else if(s==='loafer'){
+    half=P('M148,362 L148,387 L95,387 Q86,387 88,380 Q92,372 108,370 L126,366 Z',c,{sheen:true})
+      +L('M103,377 Q115,370 130,369',ln(c),1.4)
+      +P('M150,385 L150,396 Q150,399 146,399 L92,399 Q83,399 84,393 L86,385 Z',sole,{sw:1})
+      +L('M93,397 L145,397',ln(sole),1,'stroke-dasharray="3 3"');
+  } else {
+    half=P('M148,358 L148,388 L94,388 Q85,388 87,380 Q91,371 107,368 L124,360 Z',c)
+      +L('M101,388 Q101,377 114,371',ln(c))
+      +L('M140,366 L140,386',ln(c))
+      +P('M150,385 L150,395 Q150,399 146,399 L91,399 Q83,399 84,393 L86,385 Z',sole,{sw:1});
+  }
+  return both(half);
+}
+
+/* ---------- pants ---------- */
+const LEGS={
+  straight:'M150,160 L105,160 L101,212 L106,374 L146,374 L149,242 L150,242 Z',
+  loose:'M150,160 L104,160 L99,212 L102,374 L147,374 L149,244 L150,244 Z',
+  wide:'M150,160 L104,160 L98,212 L95,374 L148,374 L149,246 L150,246 Z',
+  track:'M150,160 L105,160 L100,214 L111,364 L143,364 L149,240 L150,240 Z',
+  barrel:'M150,160 L104,160 L100,212 Q89,292 109,374 L143,374 Q151,300 149,246 L150,246 Z'
+};
+const STRIPE={
+  wide:'M104,161 L109.5,161 L103.6,212 L100.8,374 L95.4,374 L98.2,212 Z',
+  loose:'M104,161 L109.5,161 L104.6,212 L107.6,374 L102.2,374 L99.2,212 Z'
+};
+function drawPants(p){
+  const d=p.draw,c=d.c;
+  let h=P(LEGS[d.fit],c,{tex:d.tex,sheen:d.sheen});
+  if(d.stripe) h+=P(STRIPE[d.fit],d.stripe,{sw:.6});
+  if(d.crease) h+=L(d.fit==='wide'?'M123,200 L121,370':'M125,200 L124,370',ln(c));
+  if(d.jeans){
+    h+=L(d.fit==='straight'?'M104,212 L108,368':'M102,212 L105,368','#c8893f',1,'stroke-dasharray="3 2.5" opacity=".8"');
+    h+=L(d.fit==='straight'?'M107,366 L146,366':'M103,366 L147,366',ln(c));
+  }
+  if(d.fit==='track') h+=P('M111,363 L143,363 L143,374 L111,374 Z',shade(c,-.12),{tex:'rib'});
+  if(d.cargo) h+=P('M98,252 L119,252 L119,286 L99,286 Z',c,{tex:d.tex})+L('M98,259 L119,259',ln(c));
+  if(d.tie) h+=L('M121,374 l-4,8 M125,374 l4,8',shade(c,-.25),1.8);
+  return both(h);
+}
+
+/* ---------- tops (worn as the inner piece) ---------- */
+function drawTop(p,under){
+  /* under = a layer goes on top, so draw the body only (no sleeves peeking out) */
+  const d=p.draw,c=d.c,t=d.t;
+  const rib=shade(c,dark(c)?.12:-.1);
+  if(t==='tee'){
+    const half=P(under?'M150,30 Q137,30 130,17 L100,25 L101,179 L150,179 Z':'M150,30 Q137,30 130,17 L100,25 L68,60 L86,84 L100,71 L101,179 L150,179 Z',c)
+      +L('M130,17 Q137,30 150,30',rib,3.5)+(under?'':L('M73,56 L91,80',ln(c)));
+    return both(half);
+  }
+  if(t==='ls'||t==='henley'){
+    const half=P(under?'M150,30 Q137,30 130,17 L100,25 L99,175 Q120,184 150,184 Z':'M150,30 Q137,30 130,17 L100,25 Q80,33 72,66 L60,170 L81,172 L96,94 L99,175 Q120,184 150,184 Z',c)
+      +L('M130,17 Q137,30 150,30',rib,3.5)+(under?'':L('M61,162 L81,164',ln(c)));
+    let s=both(half);
+    if(t==='henley') s+=P('M145,28 L155,28 L155,74 L145,74 Z',c)+dotBtn(150,39,c)+dotBtn(150,52,c)+dotBtn(150,65,c);
+    return s;
+  }
+  if(t==='camp'){
+    const half=P(under?'M150,34 L131,18 L100,25 L101,179 L150,179 Z':'M150,34 L131,18 L100,25 L68,60 L86,84 L100,71 L101,179 L150,179 Z',c,{tex:d.tex})
+      +(under?'':L('M73,56 L91,80',ln(c)))
+      +P('M150,34 L131,15 L123,21 L137,52 Z',c,{tex:d.tex});
+    let s=both(half)+L('M150,36 L150,178',ln(c));
+    [62,92,122,152].forEach(y=>s+=dotBtn(150,y,c,2));
+    return s;
+  }
+  if(t==='crew'){
+    const rb=d.rib||rib;
+    const half=P(under?'M150,30 Q137,30 130,17 L100,25 L99,179 L150,179 Z':'M150,30 Q137,30 130,17 L100,25 Q80,33 72,66 L60,170 L81,172 L96,94 L99,179 L150,179 Z',c,{tex:d.tex})
+      +P('M99,168 L150,168 L150,179 L99,179 Z',rb,{tex:'rib',sw:1})
+      +(under?'':P('M61,160 L81,162 L81,172 L60,170 Z',rb,{tex:'rib',sw:1}))
+      +L('M130,17 Q137,30 150,30',rb,4.5);
+    return both(half);
+  }
+  if(t==='knithen'){
+    const half=P(under?'M150,30 Q137,30 130,17 L100,25 L99,179 L150,179 Z':'M150,30 Q137,30 130,17 L100,25 Q80,33 72,66 L60,170 L81,172 L96,94 L99,179 L150,179 Z',c,{tex:'rib'})
+      +P('M99,168 L150,168 L150,179 L99,179 Z',rib,{tex:'rib',sw:1})
+      +(under?'':P('M61,160 L81,162 L81,172 L60,170 Z',rib,{tex:'rib',sw:1}))
+      +L('M130,17 Q137,30 150,30',rib,4);
+    return both(half)+P('M145,28 L155,28 L155,70 L145,70 Z',c)+dotBtn(150,39,c)+dotBtn(150,51,c)+dotBtn(150,63,c);
+  }
+  if(t==='shirt'||t==='overshirt'||t==='cordzip'){
+    const half=P(under?'M150,32 L130,17 L100,25 L99,172 Q118,186 150,184 Z':'M150,32 L130,17 L100,25 Q80,33 72,66 L60,170 L81,172 L96,94 L99,172 Q118,186 150,184 Z',c,{tex:d.tex})
+      +(under?'':L('M61,162 L81,164',ln(c)))
+      +P('M150,31 L131,13 L121,19 L139,47 Z',c,{tex:d.tex});
+    let s=both(half)+L('M150,34 L150,182',ln(c));
+    [52,78,104,130,156].forEach(y=>s+=dotBtn(150,y,c,2));
+    s+=P('M110,66 L131,66 L131,88 Q120.5,92 110,88 Z',c,{tex:d.tex});
+    return s;
+  }
+  return '';
+}
+
+/* ---------- layers (worn open) ---------- */
+function openHalf(len,w=0){return `M128,15 L96,23 Q73,33 65,68 L53,175 L78,178 L92,96 L${93-w},${len} L136,${len} L139,34 Z`;}
+function ex(y,len){return 139-3*(y-34)/(len-34);}
+function shirtCollar(c,tex,col){return P('M128,13 Q119,16 116,22 L125,52 L140,34 Z',col||c,{tex:col?'cord':tex});}
+function drawLayer(p){
+  const d=p.draw,c=d.c,t=d.t,tex=d.tex;
+  if(t==='shirt'){ // flannel or oxford worn open
+    const len=186;
+    let s=both(P(openHalf(len),c,{tex})+L('M54,166 L78,169',ln(c))+shirtCollar(c,tex));
+    s+=P('M108,64 L129,64 L129,86 Q118.5,90 108,86 Z',c,{tex});
+    [62,90,118,146,172].forEach(y=>s+=dotBtn(ex(y,len)-4,y,c,2));
+    return s;
+  }
+  if(t==='overshirt'||t==='cordzip'){
+    const len=188;
+    let half=P(openHalf(len),c,{tex})+L('M54,166 L78,169',ln(c))+shirtCollar(c,tex)
+      +P('M103,64 L129,64 L129,92 L103,92 Z',c,{tex})+P('M102,61 L130,61 L130,72 L102,72 Z',c,{tex})+dotBtn(116,67,c,1.8);
+    if(t==='cordzip') half+=L(`M${ex(40,len)-1},40 L${ex(len,len)-1},${len-2}`,'rgba(30,20,10,.45)',1.4,'stroke-dasharray="1.6 1.6"');
+    let s=both(half);
+    if(t==='overshirt') [86,114,142,170].forEach(y=>s+=dotBtn(ex(y,len)-4,y,c,2.1));
+    return s;
+  }
+  if(t==='cardigan'){
+    const len=190;
+    const body=`M128,15 L96,23 Q73,33 65,68 L53,175 L78,178 L92,96 L93,${len} L136,${len} L139,72 Z`;
+    const band=shade(c,dark(c)?.1:-.12);
+    let half=P(body,c,{tex:d.tex||'rib'})
+      +P(`M93,${len-13} L136.2,${len-13} L136,${len} L93,${len} Z`,band,{tex:'rib',sw:1})
+      +P('M54,164 L79,167 L78,178 L53,175 Z',band,{tex:'rib',sw:1})
+      +L(`M128,15 L139,72 L136,${len}`,band,6);
+    let s=both(half);
+    [92,118,144,170].forEach(y=>s+=dotBtn(137.6,y,c,2.4));
+    return s;
+  }
+  if(t==='bomber'){
+    const len=184, rib=d.rib||shade(c,dark(c)?.08:-.12);
+    let half=P(openHalf(len),c,{tex:d.tex})
+      +P(`M93,${len-12} L136.3,${len-12} L136,${len} L93,${len} Z`,rib,{tex:'rib',sw:1})
+      +P('M55,163 L79,166 L78,178 L53,175 Z',rib,{tex:'rib',sw:1})
+      +L(`M${ex(36,len)-1.5},36 L${ex(len-12,len)-1.5},${len-12}`,'rgba(255,255,255,.3)',1.2,'stroke-dasharray="1.6 1.6"')
+      +L('M102,124 L112,150',rib,3.5)+L('M96,32 Q100,50 102,58',ln(c));
+    return both(half)+L('M139,38 L128,16 Q150,8 172,16 L161,38',rib,6);
+  }
+  if(t==='harr'){
+    const len=184, rib=shade(c,dark(c)?.08:-.12);
+    let half=P(openHalf(len),c,{tex:d.tex})
+      +P(`M93,${len-12} L136.3,${len-12} L136,${len} L93,${len} Z`,rib,{tex:'rib',sw:1})
+      +P('M55,163 L79,166 L78,178 L53,175 Z',rib,{tex:'rib',sw:1})
+      +L(`M${ex(36,len)-1.5},36 L${ex(len-12,len)-1.5},${len-12}`,'rgba(255,255,255,.35)',1.2,'stroke-dasharray="1.6 1.6"')
+      +L('M100,122 L106,152',ln(c),2)
+      +shirtCollar(c,d.tex);
+    return both(half);
+  }
+  if(t==='bedford'){
+    const len=204;
+    const half=P(openHalf(len,2),c,{tex:d.tex})+L('M54,166 L78,169',ln(c))
+      +P('M129,13 L114,26 L120,38 L111,44 L134,104 L140,40 Z',c,{tex:d.tex})
+      +P('M98,150 L127,150 L127,186 L98,186 Z',c,{tex:d.tex})
+      +P('M108,70 L128,70 L128,90 L108,90 Z',c,{tex:d.tex});
+    let s=both(half);
+    [118,150].forEach(y=>s+=dotBtn(ex(y,len)-5,y,c,2.4));
+    return s;
+  }
+  if(t==='furcoat'){
+    const len=252;
+    const hood=P('M110,22 Q150,-6 190,22 L178,34 Q150,16 122,34 Z',shade(c,-.15),{tex:d.tex});
+    const half=P(openHalf(len,5),c,{tex:d.tex})+L('M54,166 L78,169',ln(c))+L('M100,190 L108,214',ln(c),2);
+    return hood+both(half);
+  }
+  if(t==='leather'){
+    const len=182;
+    let half=P(openHalf(len),c,{sheen:true})
+      +L(`M${ex(40,len)-1.5},40 L${ex(len,len)-1.5},${len-2}`,'rgba(255,255,255,.35)',1.2,'stroke-dasharray="1.6 1.6"')
+      +L('M103,96 L125,84','rgba(255,255,255,.28)',1.2)+L(`M93,${len-11} L136,${len-11}`,'rgba(255,255,255,.18)')
+      +L('M55,160 L79,163','rgba(255,255,255,.18)')
+      +P('M128,13 L109,24 L121,64 L140,36 Z',c,{sheen:true});
+    return both(half);
+  }
+  if(t==='coat'){
+    const len=306;
+    let half=P(openHalf(len,6),c,{tex:d.tex})
+      +L('M54,166 L78,169',ln(c))
+      +P('M129,13 L114,26 L120,40 L110,46 L132,120 L140,40 Z',c,{tex:d.tex})
+      +P('M95,224 L126,222 L126,231 L95,233 Z',c,{tex:d.tex})
+      +L('M107,98 L124,96',ln(c),2);
+    let s=both(half);
+    [150,196].forEach(y=>s+=dotBtn(ex(y,len)-6,y,c,2.8));
+    return s;
+  }
+  if(t==='worker'||t==='barn'){
+    const len=t==='barn'?190:184;
+    let half=P(openHalf(len),c,{tex:d.tex})+L('M54,166 L78,169',ln(c))+shirtCollar(c,d.tex,d.collar);
+    if(t==='barn') half+=P('M99,132 L127,132 L127,170 L99,170 Z',c)+P('M98,127 L128,127 L128,139 L98,139 Z',c);
+    else half+=P('M99,126 L127,126 L127,164 L99,164 Z',c,{tex:d.tex});
+    let s=both(half)+P('M106,62 L128,62 L128,84 L106,84 Z',c,{tex:d.tex});
+    [70,100,130,160].forEach(y=>s+=dotBtn(ex(y,len)-4,y,c,2.3));
+    return s;
+  }
+  if(t==='dzip'){
+    const len=180;
+    let half=P(openHalf(len),c,{tex:d.tex})+L('M54,166 L78,169',ln(c))
+      +P('M103,62 L129,62 L129,88 L103,88 Z',c,{tex:d.tex})+P('M102,59 L130,59 L130,70 L102,70 Z',c,{tex:d.tex})
+      +L(`M${ex(36,len)-1.5},36 L${ex(len,len)-1.5},${len-2}`,'rgba(255,255,255,.3)',1.2,'stroke-dasharray="1.6 1.6"')
+      +L(`M93,${len-10} L136,${len-10}`,ln(c));
+    return both(half)+L('M139,38 L128,16 Q150,8 172,16 L161,38',c,7)+L('M139,38 L128,16 Q150,8 172,16 L161,38',ln(c),1);
+  }
+  return '';
+}
+
+/* ---------- full outfit + single pieces ---------- */
+function outfitSVG(o,label){
+  const g=[drawShoes(PR[o.shoes]),drawPants(PR[o.bottom]),drawTop(PR[o.top],!!o.layer),o.layer?drawLayer(PR[o.layer]):''].join('');
+  return `<svg viewBox="44 4 212 400" role="img" aria-label="${label||''}">${g}</svg>`;
+}
+function pieceSVG(p){
+  let g,vb;
+  if(p.cat==='shoes'){g=drawShoes(p);vb=p.draw.s==='boot'?'78 340 144 64':'78 352 144 52';}
+  else if(p.cat==='bottom'){g=drawPants(p);vb='86 156 128 222';}
+  else if(p.cat==='top'){g=drawTop(p);vb='48 6 204 184';}
+  else {g=drawLayer(p);vb=p.draw.t==='coat'?'40 6 220 306':'48 6 204 190';}
+  return `<svg viewBox="${vb}" role="img" aria-label="${p.name}">${g}</svg>`;
+}
+
+/* ---------- catalog (verified Nov 18, 2026) ---------- */
+const PR={
+  teeW:{cat:'top',name:'Heavyweight boxy tee, white',brand:'COLLUSION',store:'ASOS',price:19.99,fit:'boxy',url:'https://www.asos.com/us/collusion/collusion-heavyweight-boxy-t-shirt-in-white/prd/211028121',draw:{t:'tee',c:'#f2efe7'}},
+  teeB:{cat:'top',name:'Heavyweight boxy tee, black',brand:'COLLUSION',store:'ASOS',price:19.99,fit:'boxy',url:'https://www.asos.com/us/collusion/collusion-heavyweight-boxy-t-shirt-in-black/prd/210576489',draw:{t:'tee',c:'#1d1d1f'}},
+  lsGreen:{cat:'top',name:'Oversized long sleeve skate tee, dark green',brand:'COLLUSION',store:'ASOS',price:22.99,fit:'oversized',url:'https://www.asos.com/us/collusion/collusion-oversized-heavyweight-long-sleeve-skate-t-shirt-in-dark-green/prd/211031766',draw:{t:'ls',c:'#2f4a36'}},
+  henCream:{cat:'top',name:'Heavyweight long sleeve henley, cream',brand:'ASOS DESIGN',store:'ASOS',price:37.99,fit:'relaxed',url:'https://www.asos.com/us/asos-design/asos-design-heavyweight-relaxed-long-sleeve-henley-t-shirt-with-curved-hem-in-cream/prd/211992585',draw:{t:'henley',c:'#ebe1cb'}},
+  henBlack:{cat:'top',name:'Long sleeve henley, black',brand:'Jack & Jones',store:'ASOS',price:39.95,fit:'regular',url:'https://www.asos.com/us/jack-jones/jack-jones-long-sleeve-henley-top-in-black/prd/211017734',draw:{t:'henley',c:'#1f1f21'}},
+  knitHenEcru:{cat:'top',name:'Relaxed knit henley, ecru',brand:'ASOS DESIGN',store:'ASOS',price:44.99,fit:'relaxed',url:'https://www.asos.com/us/asos-design/asos-design-relaxed-knit-henley-in-ecru/prd/211383788',draw:{t:'knithen',c:'#e4d9c1'}},
+  merinoHenBlack:{cat:'top',name:'Merino wool knit henley, black',brand:'ASOS DESIGN',store:'ASOS',price:59.99,fit:'regular',url:'https://www.asos.com/us/asos-design/asos-design-knitted-merino-wool-henley-in-black/prd/211408539',draw:{t:'knithen',c:'#202022'}},
+  oxfordB:{cat:'top',name:'Cotton oxford shirt, black',brand:'Threadbare',store:'ASOS',price:34.00,fit:'regular',url:'https://www.asos.com/us/threadbare/threadbare-100-cotton-oxford-shirt-in-black/prd/211556991',draw:{t:'shirt',c:'#202024'},layerOk:true},
+  flannelBrown:{cat:'top',name:'Plaid flannel shirt, brown',brand:'Jack & Jones',store:'ASOS',price:49.95,fit:'regular',url:'https://www.asos.com/us/jack-jones/jack-jones-flannel-plaid-shirt-in-brown/prd/210399866',draw:{t:'shirt',c:'#6e4b33',tex:'plaid'},layerOk:true},
+  flannelNavy:{cat:'top',name:'Micro check flannel shirt, navy',brand:'Jack & Jones',store:'ASOS',price:49.95,fit:'regular',url:'https://www.asos.com/us/jack-jones/jack-jones-micro-check-flannel-shirt-in-navy/prd/210910030',draw:{t:'shirt',c:'#27324a',tex:'check'},layerOk:true},
+
+  cordTan:{cat:'layer',name:'Double pocket cord overshirt, tan',brand:'Jack & Jones',store:'ASOS',price:64.95,fit:'regular',url:'https://www.asos.com/us/jack-jones/jack-jones-double-pocket-cord-overshirt-in-tan-brown/prd/210399769',draw:{t:'overshirt',c:'#a97c4e',tex:'cord'}},
+  cordOlive:{cat:'layer',name:'Double pocket cord overshirt, dark olive',brand:'Jack & Jones',store:'ASOS',price:64.95,fit:'regular',url:'https://www.asos.com/us/jack-jones/jack-jones-double-pocket-cord-overshirt-in-dark-olive-green/prd/210399798',draw:{t:'overshirt',c:'#4f5236',tex:'cord'}},
+  cordZipBrown:{cat:'layer',name:'Cord zip overshirt, brown',brand:'Jack & Jones',store:'ASOS',price:64.95,fit:'regular',url:'https://www.asos.com/us/jack-jones/jack-jones-cord-zip-overshirt-in-brown/prd/211223282',draw:{t:'cordzip',c:'#6a4630',tex:'cord'}},
+  twillGreen:{cat:'layer',name:'Twill overshirt, dark green',brand:'Jack & Jones',store:'ASOS',price:49.95,fit:'regular',url:'https://www.asos.com/us/jack-jones/jack-jones-twill-overshirt-in-dark-green/prd/210399815',draw:{t:'overshirt',c:'#34452f'}},
+  twillBeige:{cat:'layer',name:'Relaxed fit twill overshirt, beige',brand:'H&M',store:'H&M',price:39.99,fit:'relaxed',url:'https://www2.hm.com/en_us/productpage.1297572003.html',draw:{t:'overshirt',c:'#cbb995'}},
+  cardiChoc:{cat:'layer',name:'Button down cardigan, chocolate',brand:'Jack & Jones',store:'ASOS',price:64.95,fit:'regular',url:'https://www.asos.com/us/jack-jones/jack-jones-button-down-cardigan-in-chocolate-brown/prd/211018498',draw:{t:'cardigan',c:'#4b3224'}},
+
+  leatherB:{cat:'outer',name:'Faux leather jacket, black',brand:'ONLY & SONS',store:'ASOS',price:81.00,fit:'regular',url:'https://www.asos.com/us/only-sons/only-sons-faux-leather-jacket-in-black/prd/211850836',draw:{t:'leather',c:'#1a1a1c'}},
+  bomberB:{cat:'outer',name:'Wool look bomber, black',brand:'Jack & Jones',store:'ASOS',price:89.95,fit:'regular',url:'https://www.asos.com/us/jack-jones/jack-jones-wool-look-bomber-jacket-in-black/prd/210399484',draw:{t:'bomber',c:'#242426'}},
+  bomberBrown:{cat:'outer',name:'Tailored bomber, dark brown',brand:'Mango',store:'ASOS',price:119.99,fit:'tailored',url:'https://www.asos.com/us/mango/mango-tailored-bomber-jacket-in-dark-brown/prd/211776831',draw:{t:'bomber',c:'#4a3326'}},
+  bomberHmB:{cat:'outer',name:'Regular fit bomber, black',brand:'H&M',store:'H&M',price:34.99,fit:'regular',url:'https://www2.hm.com/en_us/productpage.1225195001.html',draw:{t:'bomber',c:'#202022'}},
+  bomberHmBeige:{cat:'outer',name:'Regular fit bomber, light beige',brand:'H&M',store:'H&M',price:34.99,fit:'regular',url:'https://www2.hm.com/en_us/productpage.1225195005.html',draw:{t:'bomber',c:'#d3c4a4'}},
+  coatBeige:{cat:'outer',name:'Longline overcoat, beige',brand:'JJ Rebel',store:'ASOS',price:59.95,fit:'longline',url:'https://www.asos.com/us/jj-rebel/jj-rebel-longline-overcoat-in-beige/prd/211225924',draw:{t:'coat',c:'#c6ae88'}},
+  workerTaupe:{cat:'outer',name:'Wolf short worker jacket, taupe',brand:'Jack & Jones',store:'ASOS',price:59.95,fit:'boxy',url:'https://www.asos.com/us/jack-jones/jack-jones-wolf-short-worker-jacket-with-button-and-zip-fastening-in-taupe/prd/210904457',draw:{t:'worker',c:'#8e8172'}},
+  workerB:{cat:'outer',name:'Worker jacket, black',brand:'Jack & Jones',store:'ASOS',price:64.95,fit:'regular',url:'https://www.asos.com/us/jack-jones/jack-jones-worker-jacket-in-black/prd/210399626',draw:{t:'worker',c:'#1f1f21'}},
+  barnBeige:{cat:'outer',name:'Harrington barn jacket with cord collar, beige',brand:'Jack & Jones',store:'ASOS',price:59.95,fit:'regular',url:'https://www.asos.com/us/jack-jones/jack-jones-harrington-barn-jacket-with-cord-collar-in-beige/prd/210904745',draw:{t:'barn',c:'#c8b088',collar:'#5a3e2b'}},
+  dzipBrown:{cat:'outer',name:'Double zip short jacket, chocolate',brand:'Jack & Jones',store:'ASOS',price:84.95,fit:'short',url:'https://www.asos.com/us/jack-jones/jack-jones-double-zip-short-jacket-in-brown/prd/211017449',draw:{t:'dzip',c:'#4a3123'}},
+
+  tailBrown:{cat:'bottom',name:'Straight tailored pants, dark brown',brand:'Jack & Jones',store:'ASOS',price:54.95,fit:'straight',url:'https://www.asos.com/us/jack-jones/jack-jones-straight-tailored-pants-in-dark-brown/prd/211018580',draw:{fit:'straight',c:'#4a3427',crease:true}},
+  cordsBeige:{cat:'bottom',name:'Drawstring cords, beige',brand:'Jack & Jones',store:'ASOS',price:59.95,fit:'relaxed',url:'https://www.asos.com/us/jack-jones/jack-jones-drawstring-corduroy-pants-in-beige/prd/211018571',draw:{fit:'loose',c:'#cbb38c',tex:'cord'}},
+  herringGray:{cat:'bottom',name:'Wide leg herringbone pants, gray',brand:'Jack & Jones',store:'ASOS',price:64.95,fit:'wide leg',url:'https://www.asos.com/us/jack-jones/jack-jones-wide-leg-tailored-herringbone-pants-in-gray/prd/211223579',draw:{fit:'wide',c:'#7c7975',tex:'herring',crease:true}},
+  aimOlive:{cat:'bottom',mine:true,name:'Your olive ripstop pants (All in Motion)',brand:'Already yours',price:0,fit:'drawstring',draw:{fit:'loose',c:'#6f7d3c',tex:'x-ripstop'}},
+  uqWoolLight:{cat:'bottom',mine:true,name:'Your light blue wool pants (Uniqlo)',brand:'Already yours',price:0,fit:'oversized',draw:{fit:'wide',c:'#a9bdd3',crease:true}},
+  uqWoolDark:{cat:'bottom',mine:true,name:'Your dark blue wool pants (Uniqlo)',brand:'Already yours',price:0,fit:'oversized',draw:{fit:'wide',c:'#26324d',crease:true}},
+  myBlueJeans:{cat:'bottom',mine:true,jeans:true,name:'Your blue jeans (Levi\'s or AE)',brand:'Already yours',price:0,draw:{fit:'straight',c:'#3d5a85',tex:'twill',jeans:true}},
+  myBlackJeans:{cat:'bottom',mine:true,jeans:true,name:'Your black jeans',brand:'Already yours',price:0,draw:{fit:'straight',c:'#232326',tex:'twill',jeans:true}},
+
+  marniPlaid:{cat:'top',used:true,name:'Marni x Uniqlo plaid short sleeve shirt, yellow/black, XL',brand:'Marni x Uniqlo',store:'eBay',price:42.34,fit:'oversized',url:'https://www.ebay.com/itm/267797242921',draw:{t:'camp',c:'#d9b23a',tex:'x-ybplaid'}},
+  vintageRayon:{cat:'top',used:true,name:'Vintage 90s abstract print rayon shirt, blue, XL',brand:'Saturdays (vintage)',store:'eBay',price:51.97,fit:'long sleeve',url:'https://www.ebay.com/itm/147548109486',draw:{t:'shirt',c:'#2e5d9a',tex:'x-abstract'},layerOk:true},
+  checkSweater:{cat:'top',name:'Oversized crew sweater, blue & brown check',brand:'COLLUSION',store:'ASOS',price:59.99,fit:'oversized',url:'https://www.asos.com/us/collusion/collusion-unisex-oversized-crew-neck-sweater-in-blue-brown-check/prd/210778214',draw:{t:'crew',c:'#6a4932',tex:'x-bbcheck',rib:'#5a3d29'}},
+  marniCardi:{cat:'layer',used:true,name:'Marni x Uniqlo oversized striped cardigan, brown/red, L',brand:'Marni x Uniqlo',store:'eBay',price:41.44,fit:'oversized',url:'https://www.ebay.com/itm/257825756286',draw:{t:'cardigan',c:'#5a3a28',tex:'x-marnistripe'}},
+  argyleCardi:{cat:'layer',name:'Argyle knit cardigan, brown',brand:'Brave Soul',store:'ASOS',price:49.00,fit:'regular',url:'https://www.asos.com/us/brave-soul/brave-soul-knitted-cardigan-in-brown-argyle-print/prd/211143334',draw:{t:'cardigan',c:'#4a3022',tex:'x-argyle'}},
+  egLoiter:{cat:'outer',used:true,name:'Engineered Garments loiter jacket, brown batik print, L',brand:'Engineered Garments',store:'eBay',price:195.15,fit:'boxy',url:'https://www.ebay.com/itm/137390400114',draw:{t:'worker',c:'#6b4a2e',tex:'x-batik'}},
+  egBedford:{cat:'outer',used:true,name:'Engineered Garments Bedford jacket, tan corduroy, XL',brand:'Engineered Garments',store:'eBay',price:175.75,fit:'unstructured',url:'https://www.ebay.com/itm/940097923504',draw:{t:'bedford',c:'#b08a5a',tex:'cord'}},
+  houndsJacket:{cat:'outer',name:'Double zip short jacket, houndstooth',brand:'Jack & Jones',store:'ASOS',price:84.95,fit:'regular',url:'https://www.asos.com/us/jack-jones/jack-jones-double-zip-short-jacket-in-houndstooth/prd/211017355',draw:{t:'dzip',c:'#5e5e5e',tex:'x-hounds',dot:'#2a2a2a'}},
+  checkHarr:{cat:'outer',name:'Boxy harrington jacket, gray check',brand:'Liquor N Poker',store:'ASOS',price:78.00,fit:'boxy',url:'https://www.asos.com/us/liquor-n-poker/liquor-n-poker-boxy-harrington-jacket-in-gray-check/prd/211244558',draw:{t:'harr',c:'#8b8a86',tex:'x-graycheck'}},
+  plisseGreen:{cat:'bottom',used:true,name:'Homme Plissé Issey Miyake pleated tapered pants, green, size 3 (US 36)',brand:'Issey Miyake',store:'eBay',price:192.35,fit:'pleated, tapered',url:'https://www.ebay.com/itm/287429303272',draw:{fit:'loose',c:'#3f6a48',tex:'x-pleat'}},
+  needlesWide:{cat:'bottom',used:true,name:'Needles wide leg track pants, black with purple stripe, XL',brand:'Needles',store:'eBay',price:107.15,fit:'wide leg',url:'https://www.ebay.com/itm/147618750506',draw:{fit:'wide',c:'#1b1b1e',stripe:'#6b3fa0',sheen:true}},
+  marniCords:{cat:'bottom',used:true,name:'Marni x Uniqlo pleated wide leg cords, blue, XL',brand:'Marni x Uniqlo',store:'eBay',price:48.98,fit:'wide leg, pleated',url:'https://www.ebay.com/itm/206674784075',draw:{fit:'wide',c:'#2f5d9e',tex:'cord'}},
+  pinBarrel:{cat:'bottom',name:'Tailored barrel pants, charcoal pinstripe',brand:'ASOS DESIGN',store:'ASOS',price:69.99,fit:'barrel leg, pleated',url:'https://www.asos.com/us/asos-design/asos-design-tailored-barrel-pinstripe-pants-in-charcoal/prd/211674696',draw:{fit:'barrel',c:'#3a3b3e',tex:'x-pin'}},
+
+  onBrownShirt:{cat:'top',mine:true,name:'Your oversized brown shirt (Old Navy)',brand:'Already yours',price:0,draw:{t:'tee',c:'#5a3b28'}},
+  onBrownSweater:{cat:'top',mine:true,name:'Your oversized sweater (Old Navy)',brand:'Already yours',price:0,draw:{t:'crew',c:'#6b4a32',tex:'rib'}},
+  onLSHoney:{cat:'top',mine:true,name:'Your honey oversized long sleeve (Old Navy)',brand:'Old Navy',store:'Old Navy',price:24.49,was:34.99,fit:'oversized',url:'https://oldnavy.gap.com/browse/product.do?pid=1181897022',draw:{t:'ls',c:'#c9973a'}},
+  onLSBlue:{cat:'top',mine:true,name:'Your blue oversized long sleeve (Old Navy)',brand:'Old Navy',store:'Old Navy',price:24.49,was:34.99,fit:'oversized',url:'https://oldnavy.gap.com/browse/product.do?pid=1181897042',draw:{t:'ls',c:'#6f87a6'}},
+  onLSCream:{cat:'top',name:'Oversized long sleeve tee, cream',brand:'Old Navy',store:'Old Navy',price:24.49,was:34.99,fit:'oversized',url:'https://oldnavy.gap.com/browse/product.do?pid=1181897012',draw:{t:'ls',c:'#ece4d2'}},
+  onTeeEmber:{cat:'top',name:'Oversized heavyweight tee, Emberglow red',brand:'Old Navy',store:'Old Navy',price:21.59,was:26.99,fit:'oversized, low stock',url:'https://oldnavy.gap.com/browse/product.do?pid=895896012',draw:{t:'tee',c:'#a8432f'}},
+  onWorkTan:{cat:'bottom',mine:true,name:'Your tan baggy workwear pants (Old Navy)',brand:'Old Navy',store:'Old Navy',price:22.49,was:44.99,fit:'baggy canvas',url:'https://oldnavy.gap.com/browse/product.do?pid=905456002',draw:{fit:'loose',c:'#9b7a55'}},
+  myBlackPants:{cat:'bottom',mine:true,name:'Your black ripstop pants (All in Motion)',brand:'Already yours',price:0,fit:'drawstring',draw:{fit:'loose',c:'#1d1d20',tex:'x-ripstop'}},
+  onWorkCream:{cat:'bottom',name:'Baggy workwear pants, Windchime off-white',brand:'Old Navy',store:'Old Navy',price:22.49,was:44.99,fit:'baggy canvas',url:'https://oldnavy.gap.com/browse/product.do?pid=905456022',draw:{fit:'loose',c:'#e6e0d2'}},
+  onChinoGray:{cat:'bottom',name:'Baggy Rotation chinos, Cinder Smoke gray',brand:'Old Navy',store:'Old Navy',price:34.99,was:49.99,fit:'baggy, stretch',url:'https://oldnavy.gap.com/browse/product.do?pid=873608032',draw:{fit:'loose',c:'#6b6a67'}},
+
+  myWhite:{cat:'shoes',mine:true,name:'Your white sneakers',brand:'Already yours',price:0,draw:{c:'#f5f3ee',sole:'#fbfaf7'}},
+  myUggs:{cat:'shoes',mine:true,name:'Your brown Uggs',brand:'Already yours',price:0,draw:{s:'boot',c:'#9a6a3f',sole:'#d8c6a6'}},
+  loaferB:{cat:'shoes',name:'Pier chunky loafers, matte black',brand:'SEQWL',store:'ASOS',price:49.00,fit:'faux leather',url:'https://www.asos.com/us/seqwl/seqwl-pier-chunky-loafers-in-matte-black/prd/209976656',draw:{s:'loafer',c:'#161617',sole:'#222223'}},
+  sambaBlack:{cat:'shoes',name:'Samba OG, black/gum',brand:'adidas Originals',store:'ASOS',price:110.00,url:'https://www.asos.com/us/adidas-originals/adidas-originals-samba-og-sneakers-in-black-and-brown/prd/210988738',draw:{c:'#1b1b1c'}}
+};
+Object.entries(PR).forEach(([k,v])=>v.id=k);
+
+/* ---------- cheaper swaps from other stores (checked Nov 18, 2026) ---------- */
+const SW={
+  tgtPleat:{name:'Goodfellow pleated trousers (relaxed leg)',store:'Target',price:35,url:'https://www.target.com/p/-/A-92877753',note:'XS to 5XL. Reviews say they run a bit slim, so size up.'},
+  tgtPleatGray:{name:'Goodfellow pleated trousers, steel gray',store:'Target',price:12.25,was:35,url:'https://www.target.com/p/-/-/A-92441541',note:'Sale price. Plain gray, not herringbone.'},
+  onWork:{name:'Old Navy baggy workwear pants, tan',store:'Old Navy',price:22.49,was:44.99,url:'https://oldnavy.gap.com/browse/product.do?pid=905456002',note:'Two-day deal. Canvas, not cord. Also in black and off-white, sizes up to 4XL.'},
+  hanes:{name:'Hanes Beefy-T heavyweight tee',store:'Walmart',price:8.10,url:'https://www.walmart.com/ip/Hanes-Beefy-T-T-Shirt-Unisex/583961549',note:'100% cotton, classic cut. Size up one for the boxy look.'},
+  carhartt:{name:'Carhartt K87 heavyweight pocket tee',store:'Carhartt',price:19.99,url:'https://www.carhartt.com/p/K87',note:'Same money, sturdier, loose cut, 20 colors. $19.99 to $24.99 by color.'},
+  tgtCardi:{name:'Goodfellow collared cardigan',store:'Target',price:26.25,was:35,url:'https://target.com/p/men-s-johnny-collared-cardigan-goodfellow-co/-/A-92682596',note:'Sale price. Check the color options on the page.'},
+  tgtCord:{name:'Goodfellow corduroy button-down (wear it open)',store:'Target',price:30,url:'https://www.target.com/p/-/A-90787194',note:'100% cotton midweight cord. Comes in gold, green and blue.'},
+  tgtLoafer:{name:'Goodfellow Bennett leather loafers, cognac',store:'Target',price:22.50,was:45,url:'https://www.target.com/p/product/-/A-92541890',note:'Clearance. Brown, so it fits the brown looks, not the all-black ones.'}
+};
+const ALT={tailBrown:'tgtPleat',herringGray:'tgtPleatGray',cordsBeige:'onWork',teeW:'hanes',teeB:'carhartt',cardiChoc:'tgtCardi',cordTan:'tgtCord',cordOlive:'tgtCord',cordZipBrown:'tgtCord',loaferB:'tgtLoafer'};
+const REF={
+  matty:{who:'Matty Matheson',url:'https://harryrosen.com/en/editorial/the-good-taste-of-matty-matheson'},
+  bronson:{who:'Action Bronson',url:'https://www.complex.com/style/a/mike-destefano/how-to-wear-carhartt-according-to-your-favorite-rappers'},
+  isaacTee:{who:'Oscar Isaac',url:'https://www.insidehook.com/style-guides/black-tee-sexiest-shirt'},
+  mescal:{who:'Paul Mescal',url:'https://www.whowhatwear.com/paul-mescal-outfit-formula'},
+  isaacPascal:{who:'Oscar Isaac & Pedro Pascal',url:'https://www.tatlerasia.com/style/fashion/oscar-isaac-summer-looks-pedro-pascal-father-figure-fashion'},
+  bigguy:{who:'The Modest Man big guy guide',url:'https://www.themodestman.com/big-guy-style/'}
+};
+
+/* ---------- looks ---------- */
+const CLOSET_LOOKS=[
+  {name:'Brown + Sky Blue',top:'onBrownShirt',bottom:'uqWoolLight',shoes:'myWhite',tags:['closet','everyday','date'],why:'Brown and light blue is one of the best color pairings there is. Oversized brown shirt, your light blue Uniqlo wool pants, white sneakers.'},
+  {name:'Sweater + Navy Wool',top:'onBrownSweater',bottom:'uqWoolDark',shoes:'myUggs',tags:['closet','date','cold'],why:'Your Old Navy sweater over the dark blue wool pants, with Uggs. Warm, soft, and dressier than it has any right to be.'},
+  {name:'Honey + Navy',top:'onLSHoney',bottom:'uqWoolDark',shoes:'myWhite',tags:['closet','everyday','date'],why:'Honey and navy pop off each other. Wool pants make a long sleeve tee look intentional.'},
+  {name:'All Blue',top:'onLSBlue',bottom:'uqWoolDark',shoes:'myWhite',tags:['closet','everyday'],why:'Dusty blue top, dark blue pants. One color family in two shades reads tall and clean.'},
+  {name:'Sweater + Light Blue',top:'onBrownSweater',bottom:'uqWoolLight',shoes:'myUggs',tags:['closet','date','cold'],why:'The brown and light blue combo again, cozier. Light wool pants with a sweater looks expensive.'},
+  {name:'Earthy Ripstop',top:'onBrownShirt',bottom:'aimOlive',shoes:'myUggs',tags:['closet','chill'],why:'Brown, olive, brown Uggs. Full earth tones, comfy, zero effort.'},
+  {name:'Honey + Olive',top:'onLSHoney',bottom:'aimOlive',shoes:'myWhite',tags:['closet','chill','everyday'],why:'Honey yellow and olive green are a classic pair. Easy weekend fit.'},
+  {name:'Sweater + Black Jeans',top:'onBrownSweater',bottom:'myBlackJeans',shoes:'myWhite',tags:['closet','everyday'],why:'Your black jeans finally get a job. The brown sweater keeps it warm instead of all dark.'},
+  {name:'Bomber + Sky Blue',layer:'bomberHmB',top:'onBrownShirt',bottom:'uqWoolLight',shoes:'myWhite',tags:['closet','going-out','cold'],why:'Add the $35 H&M bomber, worn open, to the brown and light blue combo and it becomes a going-out fit.'}
+];
+const NEW_LOOKS=[
+  {name:'Honey + Tan',top:'onLSHoney',bottom:'onWorkTan',shoes:'myUggs',tags:['deal','chill','everyday'],why:'All warm tones: honey, tan, brown Uggs. Tonal like this reads put-together even though it is just a tee and pants.'},
+  {name:'Blue + Black',top:'onLSBlue',bottom:'myBlackPants',shoes:'myWhite',tags:['deal','everyday'],why:'Dusty blue up top, black below, white sneakers. The simplest fit you own, and dark pants with a lighter top is an easy win.'},
+  {name:'Bomber Over Honey',layer:'bomberHmB',top:'onLSHoney',bottom:'myBlackPants',shoes:'myWhite',tags:['deal','going-out','cold'],why:'One $35 bomber turns the honey long sleeve into a going-out fit. Wear it open so the honey shows down the middle.'},
+  {name:'Cardigan + Blue',layer:'cardiChoc',top:'onLSBlue',bottom:'onWorkTan',shoes:'myUggs',tags:['deal','date','cold'],why:'Brown cardigan open over dusty blue with your tan pants and Uggs. Get the $26 Target cardigan and this is a full date-night fit.'},
+  {name:'Cord Shirt + Honey',layer:'cordOlive',top:'onLSHoney',bottom:'myBlackPants',shoes:'myUggs',tags:['deal','everyday','cold'],why:'Olive cord worn open over honey with black pants. Olive and honey look great together. The $30 Target cord shirt works as the layer.'},
+  {name:'Cream Workwear',layer:'cardiChoc',top:'teeB',bottom:'onWorkCream',shoes:'myUggs',tags:['deal','everyday','cold'],why:'Off-white baggy canvas pants are the not-boring move here. Brown cardigan, black tee and Uggs keep it warm and grounded.'},
+  {name:'Honey + Black Canvas',top:'onLSHoney',bottom:'myBlackPants',shoes:'myWhite',tags:['deal','everyday','chill'],why:'Amber yellow oversized long sleeve over black baggy canvas. Under $50 for the whole thing and it actually looks like a choice.'},
+  {name:'Navy Check, Tan Canvas',layer:'flannelNavy',top:'teeW',bottom:'onWorkTan',shoes:'myWhite',tags:['deal','everyday','chill'],why:'Workwear pants in tan under a navy check flannel. Easy, warm colors, and the pants were half off.'},
+  {name:'Ember Red Tee',layer:'workerB',top:'onTeeEmber',bottom:'onChinoGray',shoes:'myWhite',tags:['deal','everyday','going-out'],why:'A deep red heavyweight tee under a black worker jacket with gray baggy chinos. One color, everything else quiet.'},
+  {name:'Dusty Blue + Tan',top:'onLSBlue',bottom:'onWorkTan',shoes:'myUggs',tags:['deal','chill','everyday'],why:'Dusty blue and tan always work together. Oversized long sleeve, baggy canvas, Uggs.'},
+  {name:'Cream on Gray',layer:'bomberHmB',top:'onLSCream',bottom:'onChinoGray',shoes:'myWhite',tags:['deal','everyday','date'],why:'Cream long sleeve, gray baggy chinos, black bomber left open. Clean and cheap.'},
+  {name:'Plissé + Leather',layer:'leatherB',top:'teeB',bottom:'plisseGreen',shoes:'loaferB',tags:['zany','going-out','date'],why:'Issey Miyake pleated pants are peak designer weird, and they are easy to wear because the pleats drape and give instead of clinging. Green pleats, everything else black.'},
+  {name:'Needles + Cardigan',layer:'cardiChoc',top:'teeW',bottom:'needlesWide',shoes:'loaferB',tags:['zany','everyday','date'],why:'Shiny track pants with a cardigan and loafers is the classic Needles move: sporty on the bottom, grown up on top. The wide leg is the right cut for you.'},
+  {name:'Marni Stripes',layer:'marniCardi',top:'teeW',bottom:'myBlackPants',shoes:'myWhite',tags:['zany','everyday','date'],why:'A real Marni stripe cardigan for about $40. Oversized and worn open, with plain black pants so the stripes are the whole story.'},
+  {name:'Blue Cord Wide Legs',layer:'workerB',top:'teeW',bottom:'marniCords',shoes:'myWhite',tags:['zany','everyday'],why:'Bright blue pleated wide-leg cords are the not-traditional part. Black jacket and white tee keep it clean.'},
+  {name:'Batik Loiter',layer:'egLoiter',top:'teeB',bottom:'myBlackPants',shoes:'loaferB',tags:['zany','going-out','cold'],why:'Engineered Garments is the king of weird but wearable, and a batik print jacket is them at their best. The boxy cut hangs off you instead of hugging.'},
+  {name:'Bedford + Loud Plaid',layer:'egBedford',top:'marniPlaid',bottom:'myBlackPants',shoes:'loaferB',tags:['zany','date','smart'],why:'Unstructured cord blazer over a loud yellow and black Marni plaid shirt. Professor energy, but weird in the best way.'},
+  {name:'Abstract Rayon',layer:'bomberHmB',top:'vintageRayon',bottom:'myBlackPants',shoes:'myWhite',tags:['zany','going-out','date'],why:'A 90s abstract print rayon shirt under a plain black bomber. Rayon drapes, so it flatters more than stiff cotton.'},
+  {name:'Houndstooth Jacket',layer:'houndsJacket',top:'teeB',bottom:'myBlackPants',shoes:'loaferB',tags:['cool','going-out','smart'],why:'Black and white houndstooth reads sharp from across the room. Short jacket over long black pants makes your legs look longer.'},
+  {name:'Grandpa Argyle',layer:'argyleCardi',top:'teeW',bottom:'cordsBeige',shoes:'myUggs',tags:['cool','everyday','chill'],why:'Argyle cardigan is grandpa core, the good kind. Open over a white tee with cords, peak cozy.'},
+  {name:'Check Harrington',layer:'checkHarr',top:'teeW',bottom:'myBlackPants',shoes:'myWhite',tags:['cool','everyday'],why:'A boxy gray check harrington is a cool-guy classic, and the boxy cut gives you room through the middle.'},
+  {name:'Pinstripe Barrels',layer:'bomberHmB',top:'teeW',bottom:'pinBarrel',shoes:'myWhite',tags:['cool','going-out','date'],why:'Barrel leg pinstripes are the cool pant right now. They curve out at the knee, which balances out your top half. Plain bomber and white tee keep it simple.'},
+  {name:'Check Sweater Sunday',top:'checkSweater',bottom:'tailBrown',shoes:'myUggs',tags:['cool','chill'],why:'Blue and brown check, oversized with dropped shoulders. Brown pants and Uggs make it a full cozy fit.'}
+];
+const LOOKS_BASE=[
+  {name:'The Matty',layer:'flannelBrown',top:'teeW',bottom:'myBlueJeans',shoes:'myWhite',tags:['everyday','chill'],why:'Open flannel draws a long line down the middle and the boxy white tee skims instead of clinging. White sneakers tie back to the tee.',ref:'matty'},
+  {name:'Bronson Off Duty',top:'teeB',bottom:'cordsBeige',shoes:'myUggs',tags:['everyday','chill'],why:'Heavy black tee up top, lighter textured pants below. Dark on top is the easiest slimming trick there is. Uggs keep it cozy.',ref:'bronson'},
+  {name:'All Black Everything',top:'oxfordB',bottom:'myBlackPants',shoes:'loaferB',tags:['going-out','date','smart'],why:'One color head to toe reads taller. Oxford untucked, top button open. A chunky loafer so the shoe does not look tiny under loose pants.',ref:'isaacTee'},
+  {name:'Leather Night',layer:'leatherB',top:'henBlack',bottom:'myBlackPants',shoes:'loaferB',tags:['going-out','date','cold'],why:'Keep the jacket open. Black on black plus the jacket shoulders gives you structure without squeezing.'},
+  {name:'Tan Cord Uniform',layer:'cordTan',top:'henCream',bottom:'tailBrown',shoes:'myUggs',tags:['date','everyday','cold'],why:'Earth tones look great with warm skin and a beard. Brown Uggs keep the whole thing in one warm color family.'},
+  {name:'Long Coat Season',layer:'coatBeige',top:'henBlack',bottom:'uqWoolDark',shoes:'loaferB',tags:['cold','smart','date'],why:'A longline coat worn open is the most slimming thing you can own. It turns you into one tall column.'},
+  {name:'Cardigan Club',layer:'cardiChoc',top:'teeW',bottom:'tailBrown',shoes:'myWhite',tags:['date','everyday'],why:'A chunky open cardigan adds shoulders and covers the midsection. White tee and white sneakers bookend the browns.',ref:'mescal'},
+  {name:'Bomber, Unzipped',layer:'bomberHmB',top:'henCream',bottom:'herringGray',shoes:'myWhite',tags:['going-out','date','cold'],why:'Unzipped is the whole move. Zipped, the rib hem bunches at the waist. Open, it frames you.',up:'bomberB'},
+  {name:'Olive Cord',layer:'cordOlive',top:'teeW',bottom:'myBlackPants',shoes:'myWhite',tags:['everyday','date'],why:'Olive and black is underrated. Pleats give room in the seat and thigh without looking baggy.'},
+  {name:'Taupe Workwear',layer:'workerTaupe',top:'teeB',bottom:'cordsBeige',shoes:'myUggs',tags:['everyday','cold','chill'],why:'Short boxy jacket ends at the hip, so your legs look longer. Neutral on neutral, nothing loud.'},
+  {name:'Barn Jacket Saturday',layer:'barnBeige',top:'flannelNavy',bottom:'tailBrown',shoes:'myUggs',tags:['everyday','cold'],why:'Navy, beige, brown. Old money colors without the old money price. Button the flannel, leave the jacket open.'},
+  {name:'Navy Check',layer:'flannelNavy',top:'teeW',bottom:'cordsBeige',shoes:'myWhite',tags:['everyday','chill'],why:'A tiny check is easier to wear than big plaid. Reads as texture, not pattern.'},
+  {name:'Dark Green Twill',layer:'twillGreen',top:'teeB',bottom:'myBlackPants',shoes:'myWhite',tags:['everyday','going-out'],why:'Deep green reads almost black at night but has way more personality. White sneakers keep it from going too dark.'},
+  {name:'Sand Tonal',layer:'twillBeige',top:'teeW',bottom:'cordsBeige',shoes:'myUggs',tags:['everyday','chill'],why:'Light colors work if it all stays in one family. No hard line at the waist, and the Uggs ground it.'},
+  {name:'Beige Bomber Date',layer:'bomberHmBeige',top:'merinoHenBlack',bottom:'myBlackPants',shoes:'loaferB',tags:['date','going-out','cold'],why:'Light bomber over a black knit and black pants. The contrast sits up by your face, and everything below stays dark and long.',up:'bomberBrown'},
+  {name:'Black Worker',layer:'workerB',top:'teeW',bottom:'herringGray',shoes:'myWhite',tags:['everyday','going-out'],why:'Black jacket, gray wide pants. A wide leg balances out the jacket.'},
+  {name:'Chocolate Double Zip',layer:'dzipBrown',top:'teeB',bottom:'myBlackPants',shoes:'loaferB',tags:['going-out','cold'],why:'Short jacket plus long pleated pants equals longer legs. Leave it open.'},
+  {name:'Brown on Cream',layer:'cordZipBrown',top:'knitHenEcru',bottom:'tailBrown',shoes:'myUggs',tags:['date','everyday','cold'],why:'Tonal browns with a cream break at the chest pull the eye up to your face and beard.'},
+  {name:'Sunday Green',top:'lsGreen',bottom:'cordsBeige',shoes:'myUggs',tags:['chill','everyday'],why:'Oversized heavy long sleeve. Push the sleeves up a little so it does not swallow you.'},
+  {name:'Knit + Herringbone',top:'merinoHenBlack',bottom:'herringGray',shoes:'loaferB',tags:['smart','date'],why:'Merino drapes instead of clinging. Simple, grown, looks like you tried exactly enough.'},
+  {name:'Coat Over Ripstop',layer:'coatBeige',top:'teeB',bottom:'aimOlive',shoes:'myWhite',tags:['cold','chill'],why:'High-low: dressy coat, sporty pants. Fashion people do this constantly and it always looks intentional.'},
+  {name:'Cardigan + Oxford',layer:'cardiChoc',top:'oxfordB',bottom:'herringGray',shoes:'loaferB',tags:['smart','date'],why:'Professor energy in a good way. Let the shirt collar sit out over the cardigan.'},
+  {name:'Ripstop + Heavy Tee',top:'teeW',bottom:'aimOlive',shoes:'myUggs',tags:['chill'],why:'Your olive ripstop pants, a heavy white tee and Uggs. The comfy fit that still looks like a choice.'},
+  {name:'Black Worker + Denim',layer:'workerB',top:'henCream',bottom:'myBlueJeans',shoes:'myWhite',tags:['everyday'],why:'Your Levi\'s or AE jeans with a cream henley under a black worker jacket. The henley keeps the contrast soft instead of harsh.'},
+  {name:'Leather + Denim',layer:'leatherB',top:'teeW',bottom:'myBlueJeans',shoes:'myWhite',tags:['going-out','everyday','cold'],why:'Classic for a reason. White tee and white sneakers break up all the dark so it does not look heavy.'},
+  {name:'Green Under Leather',layer:'leatherB',top:'lsGreen',bottom:'myBlackPants',shoes:'loaferB',tags:['going-out','cold'],why:'A dark color under black leather looks deliberate. Better than defaulting to a white tee every time.'},
+  {name:'Black Tee, Brown Pants',top:'teeB',bottom:'tailBrown',shoes:'myWhite',tags:['everyday','date'],why:'The simplest fit on the board. Black and brown together looks rich, and the heavy boxy tee does all the work.',ref:'isaacPascal'}
+];
+const LOOKS=[...CLOSET_LOOKS,...NEW_LOOKS].map(l=>Object.assign(l,{isNew:true})).concat(LOOKS_BASE);
+LOOKS.forEach((l,i)=>{l.no=i+1;l.pieces=[l.layer,l.top,l.bottom,l.shoes].filter(Boolean);l.total=l.pieces.reduce((s,k)=>s+PR[k].price,0);l.jeans=PR[l.bottom].jeans;});
+const HUNT=[
+  {name:'Marni x Uniqlo',what:'Loud stripes, plaids and wide pleated pants from the Marni collab',range:'$30 to $50',url:'https://www.ebay.com/sch/i.html?_nkw=marni+uniqlo+men&LH_BIN=1&_sop=15'},
+  {name:'Vintage 90s abstract rayon shirts',what:'Wild all-over prints that drape well',range:'$18 to $50',url:'https://www.ebay.com/sch/i.html?_nkw=vintage+90s+abstract+print+rayon+shirt+mens+XL&LH_BIN=1'},
+  {name:'Needles track pants',what:'Shiny track pants with side stripes. Go for the wide (HD) or regular cut, not narrow',range:'$75 to $110',url:'https://www.ebay.com/sch/i.html?_nkw=needles+track+pants&LH_BIN=1&_sop=15'},
+  {name:'Engineered Garments',what:'Boxy jackets and shirts in odd fabrics and prints',range:'$130 to $250',url:'https://www.ebay.com/sch/i.html?_nkw=engineered+garments+jacket+OR+shirt+men&LH_BIN=1&_sop=15'},
+  {name:'Homme Plissé Issey Miyake',what:'Pleated pants in bright colors that drape instead of cling',range:'$160 to $260 landed',url:'https://www.ebay.com/sch/i.html?_nkw=homme+plisse+issey+miyake+pants+men&LH_BIN=1&_sop=15'}
+];
+
+/* ================= Fit Board UI ================= */
+const $=s=>document.querySelector(s);
+const money=n=>'$'+(Math.round(n*100)/100).toFixed(2).replace(/\.00$/,'');
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+
+/* ---- what you own: built-in closet + anything tapped on this device ---- */
+let extra=new Set();
+try{const raw=localStorage.getItem('fitboard-owned');if(raw)extra=new Set(JSON.parse(raw));}catch(e){}
+function saveExtra(){try{localStorage.setItem('fitboard-owned',JSON.stringify([...extra]));}catch(e){}}
+const owns=k=>!!(PR[k]&&PR[k].mine)||extra.has(k);
+const missing=l=>l.pieces.filter(k=>!owns(k));
+const wearable=()=>LOOKS.filter(l=>missing(l).length===0);
+
+function shortName(k){
+  const p=PR[k];
+  if(p.mine) return cap(p.name.replace(/^Your /,'').replace(/\s*\(.*\)\s*$/,''));
+  const base=p.name.split(',')[0];
+  return `${p.brand} ${base.charAt(0).toLowerCase()+base.slice(1)}`;
+}
+function bestBuy(k){
+  const p=PR[k], a=ALT[k]?SW[ALT[k]]:null;
+  if(a&&a.price<p.price) return {label:cap(a.name.split(' (')[0]),store:a.store,price:a.price,url:a.url,note:a.note,instead:`${shortName(k)} (${money(p.price)})`};
+  return {label:shortName(k),store:p.used?'eBay':(p.store||p.brand),price:p.price,url:p.url,used:p.used};
+}
+const art=(l,label)=>outfitSVG(l,label||('Outfit: '+l.pieces.map(shortName).join(', ')));
+
+/* ---- outfit card ---- */
+function card(l,big){
+  const miss=missing(l);
+  const pcs=l.pieces.map(k=>owns(k)
+    ?`<li class="own"><span class="mark" aria-hidden="true">✓</span><span><span class="sr">You own: </span>${shortName(k)}</span></li>`
+    :`<li class="need"><span class="mark" aria-hidden="true">+</span><span><span class="sr">Need: </span>${bestBuy(k).label}</span></li>`).join('');
+  let status,buys='';
+  if(!miss.length){status=`<span class="status ok">✓ You own all of it</span>`;}
+  else{
+    const bb=miss.map(bestBuy), total=bb.reduce((s,b)=>s+b.price,0);
+    status=`<span class="status need">Need ${miss.length} ${miss.length===1?'piece':'pieces'} · ${money(total)}</span>`;
+    buys=`<div class="buys">${bb.map(b=>`<a class="btn shop" href="${b.url}" target="_blank" rel="noopener"><span>${b.label}<small class="at">at ${b.store}${b.used?', used':''}</small></span><span class="price">${money(b.price)}</span></a>`).join('')}</div>`;
+  }
+  const ref=l.ref?`<p class="ref">Inspired by <a href="${REF[l.ref].url}" target="_blank" rel="noopener">${REF[l.ref].who}</a></p>`:'';
+  return `<article class="card${big?' big':''}">
+    <div class="art">${art(l)}</div>
+    <div class="cb">
+      <h3>${l.name}</h3>
+      ${status}
+      <p class="why">${l.why}</p>
+      <ul class="pcs" aria-label="Pieces">${pcs}</ul>
+      ${buys}${ref}
+    </div>
+  </article>`;
+}
+
+/* ================= WEAR ================= */
+const OCC=[['any','Any'],['everyday','Everyday'],['date','Date night'],['going-out','Going out'],['cozy','Cozy']];
+let occ='any', lastPick=null;
+const occMatch=(l,o)=>o==='any'||(o==='cozy'?(l.tags.includes('cold')||l.tags.includes('chill')):l.tags.includes(o));
+function renderOcc(){
+  $('#occ').innerHTML=OCC.map(([k,v])=>`<button type="button" data-o="${k}" aria-pressed="${k===occ}">${v}</button>`).join('');
+}
+$('#occ').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;occ=b.dataset.o;renderOcc();renderWear();$('#pickOut').innerHTML='';});
+function renderWear(){
+  const all=wearable(), list=all.filter(l=>occMatch(l,occ));
+  $('#wearCount').textContent=`You can make ${all.length} outfits from what you own.`;
+  $('#wearListTitle').textContent=occ==='any'?'Everything you can wear':`${OCC.find(o=>o[0]===occ)[1]} outfits you can wear`;
+  $('#wearGrid').innerHTML=list.length?list.map(l=>card(l)).join(''):`<div class="empty">Nothing for this one yet with what you own. Check the Buy next tab.</div>`;
+  $('#pickBtn').disabled=!list.length;
+}
+$('#pickBtn').addEventListener('click',()=>{
+  const list=wearable().filter(l=>occMatch(l,occ));
+  if(!list.length)return;
+  let pool=list.filter(l=>l!==lastPick); if(!pool.length)pool=list;
+  const l=pool[Math.floor(Math.random()*pool.length)]; lastPick=l;
+  $('#pickOut').innerHTML=`<p class="sr">Picked: ${l.name}</p>`+card(l,true);
+  $('#pickBtn').textContent='Pick another one';
+});
+
+/* ================= BUY NEXT ================= */
+function renderBuy(){
+  const cand={};
+  LOOKS.forEach(l=>{const m=missing(l);if(!m.length||m.length>2)return;
+    m.forEach(k=>{if(PR[k].used)return;const c=cand[k]||(cand[k]={k,now:[],closer:[]});(m.length===1?c.now:c.closer).push(l);});});
+  const list=Object.values(cand).sort((a,b)=>b.now.length-a.now.length||b.closer.length-a.closer.length||bestBuy(a.k).price-bestBuy(b.k).price).slice(0,10);
+  $('#buyList').innerHTML=list.map((c,i)=>{
+    const b=bestBuy(c.k),p=PR[c.k];
+    const unlock=c.now.length
+      ?`<b>Unlocks ${c.now.length} new ${c.now.length===1?'outfit':'outfits'}</b> with what you own${c.closer.length?`, and gets you closer on ${c.closer.length} more`:''}.`
+      :`Gets you one piece away from <b>${c.closer.length} ${c.closer.length===1?'outfit':'outfits'}</b>.`;
+    const looks=[...c.now,...c.closer];
+    return `<article class="buy">
+      <div class="art">${pieceSVG(p)}</div>
+      <div class="cb">
+        <span class="rank">#${i+1} to buy</span>
+        <h3>${b.label}</h3>
+        <p class="unlock">${unlock}</p>
+        <a class="btn shop" href="${b.url}" target="_blank" rel="noopener"><span>Shop at ${b.store}</span><span class="price">${money(b.price)}</span></a>
+        ${b.instead?`<p class="note">Cheaper stand-in for the ${b.instead}. ${b.note||''}</p>`:''}
+        <details><summary>See the ${looks.length} ${looks.length===1?'outfit':'outfits'}</summary>
+          <div class="thumbs">${looks.map(l=>`<div class="thumb">${art(l)}${l.name}</div>`).join('')}</div>
+        </details>
+      </div>
+    </article>`;
+  }).join('')||`<div class="empty">Nothing to suggest right now.</div>`;
+}
+
+/* ================= IDEAS ================= */
+const IDEAS=[
+  ['deal','Old Navy deals','Built around Old Navy sale pieces. Prices from Nov 18.'],
+  ['zany','Zany','Weird designer-ish pieces and loud prints, mostly found used on eBay.'],
+  ['cool','Cool','Statement pieces that still look easy: houndstooth, argyle, pinstripes.'],
+  ['classic','Classics','The core outfits: overshirts, cardigans, bombers, coats.']
+];
+let idea='deal';
+const ideaMatch=(l,k)=>k==='classic'?!['deal','zany','cool','closet'].some(t=>l.tags.includes(t)):l.tags.includes(k);
+function renderIdeaSeg(){$('#ideaSeg').innerHTML=IDEAS.map(([k,v])=>`<button type="button" data-i="${k}" aria-pressed="${k===idea}">${v}</button>`).join('');}
+$('#ideaSeg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;idea=b.dataset.i;renderIdeaSeg();renderIdeas();});
+const costToFinish=l=>missing(l).reduce((s,k)=>s+bestBuy(k).price,0);
+function renderIdeas(){
+  const info=IDEAS.find(x=>x[0]===idea);
+  const list=LOOKS.filter(l=>ideaMatch(l,idea)&&missing(l).length).sort((a,b)=>missing(a).length-missing(b).length||costToFinish(a)-costToFinish(b));
+  $('#ideaSub').textContent=info[2]+' Cheapest to finish first.';
+  $('#ideaGrid').innerHTML=list.length?list.map(l=>card(l)).join(''):`<div class="empty">You can already wear everything here. Check the Wear tab.</div>`;
+  $('#huntBox').hidden=idea!=='zany';
+}
+$('#huntLinks').innerHTML=HUNT.map(h=>`<a href="${h.url}" target="_blank" rel="noopener"><b>${h.name}</b><span>${h.what}. Usually ${h.range}.</span></a>`).join('');
+
+/* ================= CLOSET ================= */
+const CATS=[['top','Tops'],['layer','Overshirts and cardigans'],['outer','Jackets and coats'],['bottom','Pants'],['shoes','Shoes']];
+function renderCloset(){
+  const mine=Object.values(PR).filter(p=>owns(p.id));
+  $('#ownTitle').textContent=`What you own (${mine.length})`;
+  $('#ownGrid').innerHTML=mine.map(p=>`<div class="item"><div class="art">${pieceSVG(p)}</div><p>${shortName(p.id)}</p></div>`).join('');
+  $('#toggleBox').innerHTML=CATS.map(([c,label])=>{
+    const items=Object.values(PR).filter(p=>p.cat===c&&!p.mine);
+    if(!items.length)return '';
+    return `<p class="grp">${label}</p><ul class="toggle-list">${items.map(p=>`<li><button type="button" data-k="${p.id}" aria-pressed="${extra.has(p.id)}"><span>${shortName(p.id)}</span><span class="tick">${extra.has(p.id)?'✓ I own it':'I own it'}</span></button></li>`).join('')}</ul>`;
+  }).join('');
+}
+$('#toggleBox').addEventListener('click',e=>{const b=e.target.closest('button[data-k]');if(!b)return;const k=b.dataset.k;
+  extra.has(k)?extra.delete(k):extra.add(k);saveExtra();
+  b.setAttribute('aria-pressed',extra.has(k));b.querySelector('.tick').textContent=extra.has(k)?'✓ I own it':'I own it';
+  const mine=Object.values(PR).filter(p=>owns(p.id));
+  $('#ownTitle').textContent=`What you own (${mine.length})`;
+  $('#ownGrid').innerHTML=mine.map(p=>`<div class="item"><div class="art">${pieceSVG(p)}</div><p>${shortName(p.id)}</p></div>`).join('');
+  dirty=true;});
+let dirty=false;
+
+/* ================= ROUTING ================= */
+const VIEWS={
+  wear:['What to wear','Outfits you can put on today with what you already own.'],
+  buy:['What to buy next','The few pieces that add the most new outfits.'],
+  ideas:['Outfit ideas','Looks to work toward. Each one shows exactly what you would need.'],
+  closet:['My closet','Everything the board knows you own.']
+};
+function show(){
+  let v=(location.hash||'#wear').slice(1); if(!VIEWS[v]) v='wear';
+  document.querySelectorAll('[data-view]').forEach(s=>s.hidden=s.dataset.view!==v);
+  document.querySelectorAll('nav.tabs a').forEach(a=>{if(a.dataset.tab===v)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
+  $('#viewTitle').textContent=VIEWS[v][0]; $('#viewLede').textContent=VIEWS[v][1];
+  document.title=`${VIEWS[v][0]} · Fit Board`;
+  if(v==='wear'){renderOcc();renderWear(); if(dirty){$('#pickOut').innerHTML='';}}
+  if(v==='buy') renderBuy();
+  if(v==='ideas'){renderIdeaSeg();renderIdeas();}
+  if(v==='closet') renderCloset();
+  if(v!=='closet') dirty=false;
+  window.scrollTo(0,0);
+}
+window.addEventListener('hashchange',()=>{show(); const m=$('#main'); if(m) m.focus({preventScroll:true});});
+show();
+
+</script>
+</body>
+</html>

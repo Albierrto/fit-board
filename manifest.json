@@ -1,0 +1,14 @@
+{
+  "name": "Fit Board",
+  "short_name": "Fit Board",
+  "description": "Outfits from my closet, what to buy next, and outfit ideas.",
+  "start_url": "./#wear",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f2ede4",
+  "theme_color": "#9c3f19",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}
