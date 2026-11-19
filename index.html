@@ -89,6 +89,7 @@ nav.tabs a[aria-current="page"] svg{stroke-width:2.4}
 @media (min-width: 640px){ .grid{grid-template-columns:repeat(2, minmax(0,1fr))} }
 @media (min-width: 1000px){ .grid{grid-template-columns:repeat(3, minmax(0,1fr))} }
 .card{display:grid; grid-template-columns:120px minmax(0,1fr); background:var(--surface); border:1px solid var(--line); border-radius:16px; overflow:hidden}
+.card > .art{align-items:flex-start; padding-top:16px}
 .art{background:radial-gradient(120% 90% at 50% 35%, var(--board) 0%, var(--board-edge) 100%); display:flex; align-items:center; justify-content:center; padding:10px 6px}
 .art svg{width:100%; height:auto; max-height:230px; filter:drop-shadow(0 2px 3px rgba(40,25,10,.22))}
 .cb{padding:14px 14px 16px; display:flex; flex-direction:column; gap:8px; min-width:0}
@@ -105,6 +106,9 @@ nav.tabs a[aria-current="page"] svg{stroke-width:2.4}
 .pcs .need{font-weight:600}
 .buys{display:flex; flex-direction:column; gap:8px; margin-top:4px}
 .ref{margin:0; font-size:14px; color:var(--muted)}
+.fresh.latest{background:var(--accent); color:var(--accent-ink)}
+.newbar{display:flex; align-items:center; justify-content:space-between; gap:12px; margin:0 0 14px; padding:12px 14px; border-radius:14px; background:var(--accent-soft); color:var(--ink); font-weight:600; font-size:15px}
+.newbar button{flex:0 0 auto; min-height:44px; padding:0 16px; border-radius:999px; border:0; background:var(--accent); color:var(--accent-ink); font:700 15px Inter, system-ui, sans-serif; cursor:pointer}
 .fresh{align-self:flex-start; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); background:var(--accent-soft); padding:3px 8px; border-radius:999px}
 .ref a{color:var(--accent)}
 .card.big{grid-template-columns:1fr; border-width:2px; border-color:var(--accent)}
@@ -255,6 +259,7 @@ footer p{margin:0 0 8px; max-width:70ch}
 
   <!-- WEAR -->
   <section data-view="wear" aria-labelledby="viewTitle">
+    <div class="newbar" id="newBar" hidden></div>
     <p class="count" id="wearCount"></p>
     <div class="seg" role="group" aria-label="Show" id="src"></div>
     <div class="seg" role="group" aria-label="Occasion" id="occ"></div>
@@ -793,43 +798,43 @@ const CLOSET_LOOKS=[
   {name:'Black Jacket + Sky Blue',layer:'myColumbia',top:'onBrownShirt',bottom:'uqWoolLight',shoes:'myWhite',tags:['closet','going-out','cold'],why:'Your black Columbia jacket worn open over the brown and light blue combo. Black on the outside sharpens the softer colors underneath.'}
 ];
 const NEW_LOOKS=[
-  {name:'Marni Windbreaker',added:'2026-11-19',layer:'marniHooded',top:'myBoxyBlack',bottom:'myBlackPants',shoes:'myWhite',tags:['zany','everyday','going-out'],why:'A real Marni color-block windbreaker in mustard, olive, black and bright blue, worn open over your new black tee and black pants. All black underneath lets the colors pop. $37.'},
-  {name:'Patchwork Flannel + Khaki',added:'2026-11-19',layer:'jcrewPatch',top:'myTeeCream',bottom:'myKhakis',shoes:'myUggs',tags:['zany','cool','cold','everyday'],why:'A 90s J.Crew shirt jacket made of red, green and navy tartan squares, open over your cream tee with khakis and Uggs. Loud, but in an old-school way.'},
-  {name:'Patchwork + Black Long Sleeve',added:'2026-11-19',layer:'jcrewPatch',top:'myLSBlack',bottom:'myGrayWorkPants',shoes:'myWhite',tags:['zany','going-out','cold'],why:'Same patchwork jacket over your new black long sleeve and gray work pants. Black and gray calm the plaid right down.'},
-  {name:'Thunderbird Cardigan',added:'2026-11-19',layer:'thunderCardi',top:'myOxfordBlue',bottom:'myKhakis',shoes:'myUggs',tags:['zany','cool','date','cold'],why:'A 70s shawl collar cardigan with thunderbirds across the chest, the Cowichan look stylists keep showing this fall. Your pale blue oxford picks up the blue birds, and khakis keep it easy.'},
-  {name:'Campus Cardigan + Cream',added:'2026-11-19',layer:'campusCardi',top:'myBoxyBlack',bottom:'myPantsCream',shoes:'myWhite',tags:['zany','deal','everyday'],why:'An 80s cardigan in blue, teal and purple blocks over your new black tee, with cream pants. Very Cosby, very fun, $37 with free shipping.'},
-  {name:'Zeppelin Triangles',added:'2026-11-19',layer:'zeppCardi',top:'myTeeCream',bottom:'uqWoolDark',shoes:'myWhite',tags:['zany','date','cold'],why:'A vintage cardigan covered in navy, blue and dusty pink triangles, over your cream tee with the dark navy pants. The navy ties it all together.'},
-  {name:'Chambray + Stone Cords',added:'2026-11-19',top:'uqDenim',bottom:'gapCords',shoes:'myWhite',tags:['cool','deal','everyday'],why:'A faded denim work shirt with light stone cords is straight out of the Derek Guy playbook. Blue and stone, soft and worn in. About $70 for both.'},
-  {name:'Blue-Green Buffalo',added:'2026-11-19',layer:'uqFlanGreen',top:'onBrownShirt',bottom:'uqWoolDark',shoes:'myUggs',tags:['cool','everyday','cold'],why:'A JW Anderson buffalo check flannel in cobalt and green, open over your brown shirt with dark blue wool pants. The big check is the loud part, so the rest stays dark.'},
-  {name:'Red Buffalo + Dusty Blue',added:'2026-11-19',layer:'uqFlanWine',top:'onLSBlue',bottom:'onWorkTan',shoes:'myWhite',tags:['everyday','chill','deal'],why:'Red and navy buffalo check open over your dusty blue long sleeve, with tan workwear pants. Classic lumberjack colors, cleaned up.'},
-  {name:'Green Stripe Oxford',added:'2026-11-19',top:'uqOxGreen',bottom:'onWorkTan',shoes:'myWhite',tags:['cool','everyday','date'],why:'An oversized green striped oxford, untucked, with your tan workwear pants. Green stripes and tan look fresh, and the big cut hangs nicely.'},
-  {name:'Cream Rugby + Navy Wool',added:'2026-11-19',top:'uqRugger',bottom:'uqWoolDark',shoes:'myWhite',tags:['cool','date','everyday'],why:'A cream rugby shirt with your dark blue wool pants. Sporty top, dressy pants, which is the high-low mix stylists love.'},
-  {name:'Brown Cords + Blue',added:'2026-11-19',top:'onLSBlue',bottom:'asosBrownCords',shoes:'myWhite',tags:['deal','everyday','chill'],why:'Baggy brown cords with your dusty blue long sleeve. Brown and blue again, but with texture on the bottom this time instead of jeans.'},
-  {name:'Stripe Vest Over Brown',added:'2026-11-19',layer:'asosStripeVest',top:'onBrownShirt',bottom:'uqWoolLight',shoes:'myWhite',tags:['zany','everyday','date'],why:'A chunky brown and sky blue striped sweater vest over your brown shirt, with light blue wool pants that pick up the stripe. Playful but the colors all agree.'},
-  {name:'Fireman Clasp Jacket',added:'2026-11-19',layer:'hmFireman',top:'onLSHoney',bottom:'myBlackPants',shoes:'myWhite',tags:['cool','going-out','cold'],why:'A deep green work jacket with metal fireman clasps, the kind of detail Engineered Garments charges hundreds for. Over your honey long sleeve with black pants.'},
-  {name:'Striped Cable Polo',added:'2026-11-19',top:'hmStripePolo',bottom:'onWorkTan',shoes:'myWhite',tags:['cool','everyday','date'],why:'A cable-knit polo in navy, brown and cream stripes with a cream collar. Your tan pants keep it relaxed. Very fall, very easy.'},
-  {name:'Cable Zip + Blue',added:'2026-11-19',layer:'hmCableZip',top:'onLSBlue',bottom:'onWorkTan',shoes:'myUggs',tags:['cool','chill','cold'],why:'A chunky dark brown cable zip cardigan, open over your dusty blue long sleeve with tan pants and Uggs. Thick cable knit looks expensive.'},
-  {name:'Amber Cord Shirt',added:'2026-11-19',top:'onCordShirt',bottom:'uqWoolDark',shoes:'myWhite',tags:['zany','deal','everyday'],why:'A loose amber corduroy shirt with little embroidered patches, for $20. Gold and navy is a great pair, and the cord gives it texture.'},
-  {name:'Rugby Stripes + Sky',added:'2026-11-19',top:'onRugby',bottom:'uqWoolLight',shoes:'myWhite',tags:['deal','everyday','date'],why:'A brown and blue striped rugby sweater with your light blue wool pants. The blue stripe matches the pants, so it looks planned. $27.'},
-  {name:'Red Cable + Navy',added:'2026-11-19',top:'onRedCable',bottom:'uqWoolDark',shoes:'myUggs',tags:['cool','deal','cold','date'],why:'A bright red cable-knit with your dark blue wool pants and Uggs. Red and navy is the most classic winter combo there is, and this is $30.'},
-  {name:'Towncraft Diamonds',added:'2026-11-19',top:'towncraft',bottom:'myBlackPants',shoes:'myUggs',tags:['zany','deal','chill','cold'],why:'A 90s Towncraft knit in brown with blue and red diamond bands. Black pants and Uggs let the sweater do the talking. Under $20.'},
-  {name:'Scandia Cardigan',added:'2026-11-19',layer:'scandiaCardi',top:'onBrownShirt',bottom:'myBlackPants',shoes:'myWhite',tags:['zany','going-out','cold'],why:'A dark 90s cardigan with purple, gold and red flecks of pattern, open over your brown shirt with black pants. Moody and a little weird.'},
-  {name:'EG Block Check',added:'2026-11-19',top:'egBlockCheck',bottom:'aimOlive',shoes:'myWhite',tags:['zany','cool','everyday'],why:'A real Engineered Garments work shirt in a big soft tan and green check, cut oversized like you like. Your olive ripstop pants keep it all one earthy family.'},
-  {name:'Navy Argyle Cardigan',added:'2026-11-19',layer:'searsArgyle',top:'onLSHoney',bottom:'onWorkTan',shoes:'myUggs',tags:['deal','date','cold'],why:'A navy cardigan with small red diamonds, made in Italy in the 70s, open over your honey long sleeve with tan pants. Grandpa in the best way, $28.'},
-  {name:'Ditfort Colorblock',added:'2026-11-19',layer:'ditfortCardi',top:'onBrownShirt',bottom:'uqWoolLight',shoes:'myWhite',tags:['zany','date','everyday'],why:'An 80s designer mohair cardigan in fuzzy blue with big tan panels, over your brown shirt and light blue wool pants. Blue, tan and brown all repeat each other.'},
-  {name:'Striped Mohair Cardigan',added:'2026-11-19',layer:'brStripeCardi',top:'onLSBlue',bottom:'myBlackPants',shoes:'myUggs',tags:['cool','cold','date'],why:'A heavy brown wool and mohair cardigan with burgundy, cream and charcoal stripes, over your dusty blue long sleeve with black pants. Cozy cabin energy.'},
-  {name:'Charcoal + Melon',added:'2026-11-19',top:'brMelon',bottom:'uqWoolLight',shoes:'myWhite',tags:['zany','date','everyday'],why:'A fuzzy charcoal 90s mohair sweater with melon stripes at the neck and cuffs, with your light blue wool pants. Gray and light blue is calm, and the melon is the pop.'},
-  {name:'Red Cord Jacket',added:'2026-11-19',layer:'redCord',top:'onBrownShirt',bottom:'uqWoolDark',shoes:'myWhite',tags:['cool','deal','going-out','cold'],why:'A bright red corduroy shirt jacket with a quilted lining, worn open over your brown shirt with dark blue wool pants. The red is the one loud thing, and brown and navy calm it right down. About $26.'},
-  {name:'Argyle Vest + Honey',added:'2026-11-19',layer:'tealVest',top:'onLSHoney',bottom:'uqWoolDark',shoes:'myWhite',tags:['zany','deal','date','everyday'],why:'A sweater vest over a long sleeve is the cheap way to look like you thought about it. Teal argyle over your honey long sleeve, dark blue wool pants. Teal and honey are a great odd pair. $14.'},
-  {name:'Stone Cords + Dusty Blue',added:'2026-11-19',layer:'myColumbia',top:'onLSBlue',bottom:'gapCords',shoes:'myWhite',tags:['deal','everyday','cool'],why:'Light stone corduroy pants are the not-jeans answer for every day. Your dusty blue long sleeve and black jacket open on top. Pale pants with a darker jacket looks clean and easy.'},
-  {name:'Chalet Browns',added:'2026-11-19',top:'hmJacquard',bottom:'gapCords',shoes:'myUggs',tags:['cool','chill','cold','date'],why:'Dark brown jacquard sweater with a cream and blue band, stone cords and your Uggs. Dark top, light bottom, all in one warm family. Two pieces for about $90, less with the Gap checkout discount.'},
-  {name:'Ski Lodge Fair Isle',added:'2026-11-19',top:'jwaFairIsle',bottom:'uqWoolLight',shoes:'myWhite',tags:['cool','deal','date','cold'],why:'A JW Anderson Fair Isle sweater for $30. Oatmeal with a red band, over your light blue wool pants. Old ski lodge sweater, clean modern pants, and the two soft colors keep it easy.'},
-  {name:'Rust V-Neck Over Blue',added:'2026-11-19',top:'jwaRust',bottom:'uqWoolDark',shoes:'myWhite',tags:['cool','deal','everyday','date'],why:'Rust lambswool V-neck pulled over your dusty blue long sleeve so a little blue shows at the neck, with your dark blue wool pants. Rust and blue sit opposite each other on the color wheel, which is why it pops without being loud.'},
-  {name:'Brown Duffle, Honey + Sky',added:'2026-11-19',layer:'uqDuffle',top:'onLSHoney',bottom:'uqWoolLight',shoes:'myWhite',tags:['smart','cold','date'],why:'A dark brown duffle coat was all over Pitti this year, worn over regular clothes instead of suits. Here it goes open over your honey long sleeve and light blue wool pants. Brown, honey and light blue is a warm, grown up mix.'},
-  {name:'Mint Fuzz + Brown',added:'2026-11-19',layer:'souffleMint',top:'onBrownShirt',bottom:'onWorkTan',shoes:'myUggs',tags:['zany','chill','everyday'],why:'A fuzzy pale green cardigan over your brown shirt with tan pants and Uggs. Seafoam with brown is a very 70s pairing, soft and a little odd in the best way.'},
-  {name:'Italian Mohair Cardigan',added:'2026-11-19',layer:'bernardCardi',top:'onLSBlue',bottom:'myBlackPants',shoes:'myWhite',tags:['zany','date','cold'],why:'A real 90s made-in-Italy wool and mohair cardigan in blue, rust and gray. Your dusty blue long sleeve pulls out the blue, and black pants keep it from getting busy. Peak cozy old-guy knit.'},
-  {name:'Argyle Polo Night',added:'2026-11-19',top:'argylePolo',bottom:'uqWoolLight',shoes:'loaferB',tags:['zany','going-out','date','smart'],why:'Knit polos are everywhere this fall. This one is a vintage Italian argyle in black, burgundy and teal for about $21. Black up top and light blue wool below is a sharp contrast, and chunky loafers finish it. About $70 with the loafers.'},
-  {name:'Geo Knit + Navy Wool',added:'2026-11-19',top:'crazyGeo',bottom:'uqWoolDark',shoes:'myUggs',tags:['zany','deal','chill','cold'],why:'A 90s geometric knit in browns and cream for $15. Your dark blue wool pants and Uggs keep it calm. Brown and navy is a quiet classic, so the pattern can do the talking.'},
+  {name:'Marni Windbreaker',added:'2026-11-19T17:40',layer:'marniHooded',top:'myBoxyBlack',bottom:'myBlackPants',shoes:'myWhite',tags:['zany','everyday','going-out'],why:'A real Marni color-block windbreaker in mustard, olive, black and bright blue, worn open over your new black tee and black pants. All black underneath lets the colors pop. $37.'},
+  {name:'Patchwork Flannel + Khaki',added:'2026-11-19T17:40',layer:'jcrewPatch',top:'myTeeCream',bottom:'myKhakis',shoes:'myUggs',tags:['zany','cool','cold','everyday'],why:'A 90s J.Crew shirt jacket made of red, green and navy tartan squares, open over your cream tee with khakis and Uggs. Loud, but in an old-school way.'},
+  {name:'Patchwork + Black Long Sleeve',added:'2026-11-19T17:40',layer:'jcrewPatch',top:'myLSBlack',bottom:'myGrayWorkPants',shoes:'myWhite',tags:['zany','going-out','cold'],why:'Same patchwork jacket over your new black long sleeve and gray work pants. Black and gray calm the plaid right down.'},
+  {name:'Thunderbird Cardigan',added:'2026-11-19T17:40',layer:'thunderCardi',top:'myOxfordBlue',bottom:'myKhakis',shoes:'myUggs',tags:['zany','cool','date','cold'],why:'A 70s shawl collar cardigan with thunderbirds across the chest, the Cowichan look stylists keep showing this fall. Your pale blue oxford picks up the blue birds, and khakis keep it easy.'},
+  {name:'Campus Cardigan + Cream',added:'2026-11-19T17:40',layer:'campusCardi',top:'myBoxyBlack',bottom:'myPantsCream',shoes:'myWhite',tags:['zany','deal','everyday'],why:'An 80s cardigan in blue, teal and purple blocks over your new black tee, with cream pants. Very Cosby, very fun, $37 with free shipping.'},
+  {name:'Zeppelin Triangles',added:'2026-11-19T17:40',layer:'zeppCardi',top:'myTeeCream',bottom:'uqWoolDark',shoes:'myWhite',tags:['zany','date','cold'],why:'A vintage cardigan covered in navy, blue and dusty pink triangles, over your cream tee with the dark navy pants. The navy ties it all together.'},
+  {name:'Chambray + Stone Cords',added:'2026-11-19T14:40',top:'uqDenim',bottom:'gapCords',shoes:'myWhite',tags:['cool','deal','everyday'],why:'A faded denim work shirt with light stone cords is straight out of the Derek Guy playbook. Blue and stone, soft and worn in. About $70 for both.'},
+  {name:'Blue-Green Buffalo',added:'2026-11-19T14:40',layer:'uqFlanGreen',top:'onBrownShirt',bottom:'uqWoolDark',shoes:'myUggs',tags:['cool','everyday','cold'],why:'A JW Anderson buffalo check flannel in cobalt and green, open over your brown shirt with dark blue wool pants. The big check is the loud part, so the rest stays dark.'},
+  {name:'Red Buffalo + Dusty Blue',added:'2026-11-19T14:40',layer:'uqFlanWine',top:'onLSBlue',bottom:'onWorkTan',shoes:'myWhite',tags:['everyday','chill','deal'],why:'Red and navy buffalo check open over your dusty blue long sleeve, with tan workwear pants. Classic lumberjack colors, cleaned up.'},
+  {name:'Green Stripe Oxford',added:'2026-11-19T14:40',top:'uqOxGreen',bottom:'onWorkTan',shoes:'myWhite',tags:['cool','everyday','date'],why:'An oversized green striped oxford, untucked, with your tan workwear pants. Green stripes and tan look fresh, and the big cut hangs nicely.'},
+  {name:'Cream Rugby + Navy Wool',added:'2026-11-19T14:40',top:'uqRugger',bottom:'uqWoolDark',shoes:'myWhite',tags:['cool','date','everyday'],why:'A cream rugby shirt with your dark blue wool pants. Sporty top, dressy pants, which is the high-low mix stylists love.'},
+  {name:'Brown Cords + Blue',added:'2026-11-19T14:40',top:'onLSBlue',bottom:'asosBrownCords',shoes:'myWhite',tags:['deal','everyday','chill'],why:'Baggy brown cords with your dusty blue long sleeve. Brown and blue again, but with texture on the bottom this time instead of jeans.'},
+  {name:'Stripe Vest Over Brown',added:'2026-11-19T14:40',layer:'asosStripeVest',top:'onBrownShirt',bottom:'uqWoolLight',shoes:'myWhite',tags:['zany','everyday','date'],why:'A chunky brown and sky blue striped sweater vest over your brown shirt, with light blue wool pants that pick up the stripe. Playful but the colors all agree.'},
+  {name:'Fireman Clasp Jacket',added:'2026-11-19T14:40',layer:'hmFireman',top:'onLSHoney',bottom:'myBlackPants',shoes:'myWhite',tags:['cool','going-out','cold'],why:'A deep green work jacket with metal fireman clasps, the kind of detail Engineered Garments charges hundreds for. Over your honey long sleeve with black pants.'},
+  {name:'Striped Cable Polo',added:'2026-11-19T14:40',top:'hmStripePolo',bottom:'onWorkTan',shoes:'myWhite',tags:['cool','everyday','date'],why:'A cable-knit polo in navy, brown and cream stripes with a cream collar. Your tan pants keep it relaxed. Very fall, very easy.'},
+  {name:'Cable Zip + Blue',added:'2026-11-19T14:40',layer:'hmCableZip',top:'onLSBlue',bottom:'onWorkTan',shoes:'myUggs',tags:['cool','chill','cold'],why:'A chunky dark brown cable zip cardigan, open over your dusty blue long sleeve with tan pants and Uggs. Thick cable knit looks expensive.'},
+  {name:'Amber Cord Shirt',added:'2026-11-19T14:40',top:'onCordShirt',bottom:'uqWoolDark',shoes:'myWhite',tags:['zany','deal','everyday'],why:'A loose amber corduroy shirt with little embroidered patches, for $20. Gold and navy is a great pair, and the cord gives it texture.'},
+  {name:'Rugby Stripes + Sky',added:'2026-11-19T14:40',top:'onRugby',bottom:'uqWoolLight',shoes:'myWhite',tags:['deal','everyday','date'],why:'A brown and blue striped rugby sweater with your light blue wool pants. The blue stripe matches the pants, so it looks planned. $27.'},
+  {name:'Red Cable + Navy',added:'2026-11-19T14:40',top:'onRedCable',bottom:'uqWoolDark',shoes:'myUggs',tags:['cool','deal','cold','date'],why:'A bright red cable-knit with your dark blue wool pants and Uggs. Red and navy is the most classic winter combo there is, and this is $30.'},
+  {name:'Towncraft Diamonds',added:'2026-11-19T14:40',top:'towncraft',bottom:'myBlackPants',shoes:'myUggs',tags:['zany','deal','chill','cold'],why:'A 90s Towncraft knit in brown with blue and red diamond bands. Black pants and Uggs let the sweater do the talking. Under $20.'},
+  {name:'Scandia Cardigan',added:'2026-11-19T14:40',layer:'scandiaCardi',top:'onBrownShirt',bottom:'myBlackPants',shoes:'myWhite',tags:['zany','going-out','cold'],why:'A dark 90s cardigan with purple, gold and red flecks of pattern, open over your brown shirt with black pants. Moody and a little weird.'},
+  {name:'EG Block Check',added:'2026-11-19T14:40',top:'egBlockCheck',bottom:'aimOlive',shoes:'myWhite',tags:['zany','cool','everyday'],why:'A real Engineered Garments work shirt in a big soft tan and green check, cut oversized like you like. Your olive ripstop pants keep it all one earthy family.'},
+  {name:'Navy Argyle Cardigan',added:'2026-11-19T14:40',layer:'searsArgyle',top:'onLSHoney',bottom:'onWorkTan',shoes:'myUggs',tags:['deal','date','cold'],why:'A navy cardigan with small red diamonds, made in Italy in the 70s, open over your honey long sleeve with tan pants. Grandpa in the best way, $28.'},
+  {name:'Ditfort Colorblock',added:'2026-11-19T14:40',layer:'ditfortCardi',top:'onBrownShirt',bottom:'uqWoolLight',shoes:'myWhite',tags:['zany','date','everyday'],why:'An 80s designer mohair cardigan in fuzzy blue with big tan panels, over your brown shirt and light blue wool pants. Blue, tan and brown all repeat each other.'},
+  {name:'Striped Mohair Cardigan',added:'2026-11-19T14:40',layer:'brStripeCardi',top:'onLSBlue',bottom:'myBlackPants',shoes:'myUggs',tags:['cool','cold','date'],why:'A heavy brown wool and mohair cardigan with burgundy, cream and charcoal stripes, over your dusty blue long sleeve with black pants. Cozy cabin energy.'},
+  {name:'Charcoal + Melon',added:'2026-11-19T14:40',top:'brMelon',bottom:'uqWoolLight',shoes:'myWhite',tags:['zany','date','everyday'],why:'A fuzzy charcoal 90s mohair sweater with melon stripes at the neck and cuffs, with your light blue wool pants. Gray and light blue is calm, and the melon is the pop.'},
+  {name:'Red Cord Jacket',added:'2026-11-19T13:50',layer:'redCord',top:'onBrownShirt',bottom:'uqWoolDark',shoes:'myWhite',tags:['cool','deal','going-out','cold'],why:'A bright red corduroy shirt jacket with a quilted lining, worn open over your brown shirt with dark blue wool pants. The red is the one loud thing, and brown and navy calm it right down. About $26.'},
+  {name:'Argyle Vest + Honey',added:'2026-11-19T13:50',layer:'tealVest',top:'onLSHoney',bottom:'uqWoolDark',shoes:'myWhite',tags:['zany','deal','date','everyday'],why:'A sweater vest over a long sleeve is the cheap way to look like you thought about it. Teal argyle over your honey long sleeve, dark blue wool pants. Teal and honey are a great odd pair. $14.'},
+  {name:'Stone Cords + Dusty Blue',added:'2026-11-19T13:50',layer:'myColumbia',top:'onLSBlue',bottom:'gapCords',shoes:'myWhite',tags:['deal','everyday','cool'],why:'Light stone corduroy pants are the not-jeans answer for every day. Your dusty blue long sleeve and black jacket open on top. Pale pants with a darker jacket looks clean and easy.'},
+  {name:'Chalet Browns',added:'2026-11-19T13:50',top:'hmJacquard',bottom:'gapCords',shoes:'myUggs',tags:['cool','chill','cold','date'],why:'Dark brown jacquard sweater with a cream and blue band, stone cords and your Uggs. Dark top, light bottom, all in one warm family. Two pieces for about $90, less with the Gap checkout discount.'},
+  {name:'Ski Lodge Fair Isle',added:'2026-11-19T06:00',top:'jwaFairIsle',bottom:'uqWoolLight',shoes:'myWhite',tags:['cool','deal','date','cold'],why:'A JW Anderson Fair Isle sweater for $30. Oatmeal with a red band, over your light blue wool pants. Old ski lodge sweater, clean modern pants, and the two soft colors keep it easy.'},
+  {name:'Rust V-Neck Over Blue',added:'2026-11-19T06:00',top:'jwaRust',bottom:'uqWoolDark',shoes:'myWhite',tags:['cool','deal','everyday','date'],why:'Rust lambswool V-neck pulled over your dusty blue long sleeve so a little blue shows at the neck, with your dark blue wool pants. Rust and blue sit opposite each other on the color wheel, which is why it pops without being loud.'},
+  {name:'Brown Duffle, Honey + Sky',added:'2026-11-19T06:00',layer:'uqDuffle',top:'onLSHoney',bottom:'uqWoolLight',shoes:'myWhite',tags:['smart','cold','date'],why:'A dark brown duffle coat was all over Pitti this year, worn over regular clothes instead of suits. Here it goes open over your honey long sleeve and light blue wool pants. Brown, honey and light blue is a warm, grown up mix.'},
+  {name:'Mint Fuzz + Brown',added:'2026-11-19T06:00',layer:'souffleMint',top:'onBrownShirt',bottom:'onWorkTan',shoes:'myUggs',tags:['zany','chill','everyday'],why:'A fuzzy pale green cardigan over your brown shirt with tan pants and Uggs. Seafoam with brown is a very 70s pairing, soft and a little odd in the best way.'},
+  {name:'Italian Mohair Cardigan',added:'2026-11-19T06:00',layer:'bernardCardi',top:'onLSBlue',bottom:'myBlackPants',shoes:'myWhite',tags:['zany','date','cold'],why:'A real 90s made-in-Italy wool and mohair cardigan in blue, rust and gray. Your dusty blue long sleeve pulls out the blue, and black pants keep it from getting busy. Peak cozy old-guy knit.'},
+  {name:'Argyle Polo Night',added:'2026-11-19T06:00',top:'argylePolo',bottom:'uqWoolLight',shoes:'loaferB',tags:['zany','going-out','date','smart'],why:'Knit polos are everywhere this fall. This one is a vintage Italian argyle in black, burgundy and teal for about $21. Black up top and light blue wool below is a sharp contrast, and chunky loafers finish it. About $70 with the loafers.'},
+  {name:'Geo Knit + Navy Wool',added:'2026-11-19T06:00',top:'crazyGeo',bottom:'uqWoolDark',shoes:'myUggs',tags:['zany','deal','chill','cold'],why:'A 90s geometric knit in browns and cream for $15. Your dark blue wool pants and Uggs keep it calm. Brown and navy is a quiet classic, so the pattern can do the talking.'},
   {name:'Marni Stripes + Navy Wool',added:'2026-11-19',layer:'marniStripe',top:'onBrownShirt',bottom:'uqWoolDark',shoes:'myWhite',tags:['zany','everyday','date'],why:'A real Marni stripe cardigan, worn open over your brown shirt with your dark blue wool pants. The stripes are loud, so everything else stays calm.'},
   {name:'Cobalt + Sky Blue',added:'2026-11-19',top:'marniCobalt',bottom:'uqWoolLight',shoes:'myWhite',tags:['zany','date','cold'],why:'Bright cobalt Marni knit with light blue trim, and your light blue wool pants pick up the trim. Two blues, one loud, one soft. Very designer.'},
   {name:'Marni Knit Hoodie',added:'2026-11-19',layer:'marniHoodie',top:'onLSBlue',bottom:'myBlackPants',shoes:'myWhite',tags:['zany','everyday','chill'],why:'A fuzzy camel knit zip hoodie from the Marni collab, open over your dusty blue long sleeve. Camel and blue always look good together.'},
@@ -891,6 +896,7 @@ const LOOKS_BASE=[
   {name:'Green Under Leather',layer:'leatherB',top:'lsGreen',bottom:'myBlackPants',shoes:'loaferB',tags:['going-out','cold'],why:'A dark color under black leather looks deliberate. Better than defaulting to a white tee every time.'},
   {name:'Black Tee, Brown Pants',top:'myBoxyBlack',bottom:'tailBrown',shoes:'myWhite',tags:['everyday','date'],why:'The simplest fit on the board. Black and brown together looks rich, and the heavy boxy tee does all the work.',ref:'isaacPascal'}
 ];
+NEW_LOOKS.forEach((l,i)=>l.seq=i);
 const LOOKS=[...CLOSET_LOOKS,...NEW_LOOKS].map(l=>Object.assign(l,{isNew:true})).concat(LOOKS_BASE);
 LOOKS.forEach((l,i)=>{l.no=i+1;l.pieces=[l.layer,l.top,l.bottom,l.shoes].filter(Boolean);l.total=l.pieces.reduce((s,k)=>s+PR[k].price,0);l.jeans=PR[l.bottom].jeans;});
 const HUNT=[
@@ -941,7 +947,14 @@ const art=(l,label)=>outfitSVG(l,label||('Outfit: '+l.pieces.map(shortName).join
 
 /* ---- outfit card ---- */
 /* looks carry added:'YYYY-MM-DD' when the hunt adds them; they count as fresh for 21 days */
-const isFresh=l=>{if(!l.added)return false;const t=Date.parse(l.added+'T12:00:00');return !isNaN(t)&&Date.now()-t<21*864e5;};
+const addedTime=l=>{if(!l.added)return NaN;return Date.parse(l.added.length>10?l.added:l.added+'T12:00:00');};
+const isFresh=l=>{const t=addedTime(l);return !isNaN(t)&&Date.now()-t<21*864e5;};
+/* the most recent hunt: every look sharing the newest added stamp */
+const LATEST=LOOKS.reduce((m,l)=>l.added&&l.added>m?l.added:m,'');
+const isLatest=l=>!!LATEST&&l.added===LATEST&&isFresh(l);
+/* newest first: by added stamp, then by position in NEW_LOOKS (the top of the list is newest) */
+const byNewest=(a,b)=>(b.added||'').localeCompare(a.added||'')||(a.seq??1e9)-(b.seq??1e9);
+const fmtDay=a=>{const t=Date.parse(a.length>10?a:a+'T12:00:00');return isNaN(t)?'':new Date(t).toLocaleDateString('en-US',{month:'short',day:'numeric'});};
 function card(l,big){
   const miss=missing(l);
   const pcs=l.pieces.map(k=>owns(k)
@@ -958,7 +971,7 @@ function card(l,big){
   return `<article class="card${big?' big':''}">
     <div class="art">${art(l)}</div>
     <div class="cb">
-      ${isFresh(l)?'<span class="fresh">New find</span>':''}<h3>${l.name}</h3>
+      ${isLatest(l)?'<span class="fresh latest">Just added</span>':isFresh(l)?`<span class="fresh">New find · ${fmtDay(l.added)}</span>`:''}<h3>${l.name}</h3>
       ${status}
       <p class="why">${l.why}</p>
       <ul class="pcs" aria-label="Pieces">${pcs}</ul>
@@ -975,7 +988,7 @@ try{const v=localStorage.getItem('fitboard-src');if(SRC.some(x=>x[0]===v))src=v;
 /* the pool the Wear tab shows: looks you can wear now, fresh ideas that need a piece, or every look */
 function pool(){
   if(src==='own') return wearable();
-  if(src==='new') return LOOKS.filter(l=>isFresh(l)&&missing(l).length).sort((a,b)=>(b.added||'').localeCompare(a.added||'')||missing(a).length-missing(b).length||costToFinish(a)-costToFinish(b));
+  if(src==='new') return LOOKS.filter(l=>isFresh(l)&&missing(l).length).sort(byNewest);
   return LOOKS.slice().sort((a,b)=>missing(a).length-missing(b).length||costToFinish(a)-costToFinish(b));
 }
 function renderSrc(){
@@ -987,14 +1000,22 @@ function renderOcc(){
   $('#occ').innerHTML=OCC.map(([k,v])=>`<button type="button" data-o="${k}" aria-pressed="${k===occ}">${v}</button>`).join('');
 }
 $('#occ').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;occ=b.dataset.o;renderOcc();renderWear();$('#pickOut').innerHTML='';});
+function renderNewBar(){
+  const n=LOOKS.filter(l=>isLatest(l)&&missing(l).length).length, bar=$('#newBar');
+  if(!n||src==='new'){bar.hidden=true;return;}
+  bar.hidden=false;
+  bar.innerHTML=`<span>${n} new ${n===1?'idea':'ideas'} added ${fmtDay(LATEST)}</span><button type="button" id="seeNew">See them</button>`;
+  $('#seeNew').onclick=()=>{src='new';occ='any';try{localStorage.setItem('fitboard-src',src);}catch(x){}renderSrc();renderOcc();renderWear();$('#pickOut').innerHTML='';};
+}
 function renderWear(){
+  renderNewBar();
   const all=pool(), list=all.filter(l=>occMatch(l,occ)), o=OCC.find(x=>x[0]===occ)[1];
   const own=wearable().length;
   $('#wearCount').textContent=src==='own'?`You can make ${own} outfits from what you own.`
-    :src==='new'?`${all.length} new ideas from the latest hunts. Each needs a piece or two.`
+    :src==='new'?`${all.length} new ideas, newest first. The ones marked Just added came in on ${fmtDay(LATEST)}.`
     :`${LOOKS.length} looks in all. ${own} you can wear today.`;
   $('#wearListTitle').textContent=src==='own'?(occ==='any'?'Everything you can wear':`${o} outfits you can wear`)
-    :src==='new'?(occ==='any'?'New ideas, newest first':`New ${o.toLowerCase()} ideas`)
+    :src==='new'?(occ==='any'?'New ideas, newest first':`New ${o.toLowerCase()} ideas, newest first`)
     :(occ==='any'?'Every look, closest to wearable first':`Every ${o.toLowerCase()} look`);
   $('#pickBtn').textContent=src==='own'?'Pick an outfit for me':'Pick an idea for me';
   $('#wearGrid').innerHTML=list.length?list.map(l=>card(l)).join(''):`<div class="empty">${src==='own'?'Nothing for this one yet with what you own. Try New ideas above.':'Nothing here for this one yet.'}</div>`;
@@ -1053,8 +1074,8 @@ $('#ideaSeg').addEventListener('click',e=>{const b=e.target.closest('button');if
 const costToFinish=l=>missing(l).reduce((s,k)=>s+bestBuy(k).price,0);
 function renderIdeas(){
   const info=IDEAS.find(x=>x[0]===idea);
-  const list=LOOKS.filter(l=>ideaMatch(l,idea)&&missing(l).length).sort((a,b)=>missing(a).length-missing(b).length||costToFinish(a)-costToFinish(b));
-  $('#ideaSub').textContent=info[2]+' Cheapest to finish first.';
+  const list=LOOKS.filter(l=>ideaMatch(l,idea)&&missing(l).length).sort(idea==='new'?byNewest:(a,b)=>missing(a).length-missing(b).length||costToFinish(a)-costToFinish(b));
+  $('#ideaSub').textContent=info[2]+(idea==='new'?' Newest first.':' Cheapest to finish first.');
   $('#ideaGrid').innerHTML=list.length?list.map(l=>card(l)).join(''):`<div class="empty">You can already wear everything here. Check the Wear tab.</div>`;
   $('#huntBox').hidden=idea!=='zany';
 }

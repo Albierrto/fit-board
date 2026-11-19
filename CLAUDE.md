@@ -26,7 +26,9 @@ The whole site is one file, `index.html`. Edit it directly. There is no build st
   - `LOOKS_BASE`: older classics.
   - Shape: `{name, added:'YYYY-MM-DD', layer?, top, bottom, shoes, tags:[...], why}`.
   - Tags: `zany`, `cool`, `deal`, `closet`, `everyday`, `date`, `going-out`, `smart`, `cold`, `chill`.
-  - A look with an `added` date in the last 21 days shows a "New find" chip and appears under Ideas, "New finds".
+  - `added` takes the run's UTC date and time, like `'2026-11-26T17:40'`. Give every look in one run the same stamp. A plain date also works, but then several runs on the same day can't be told apart.
+  - A look added in the last 21 days shows a "New find" chip. It appears under Wear, "New ideas", and under Ideas, "New finds". Both lists put the newest first: by `added`, then by position in `NEW_LOOKS`.
+  - Looks that share the newest stamp get a "Just added" chip. The Wear tab also shows a banner with a "See them" button that jumps straight to them.
 - **`const HUNT=[...]`**: saved secondhand searches shown under Ideas, Zany. Shape: `{name, what, range, url}`. Searches should be sorted cheapest first and filtered to his size where the site allows it.
 - **UI code** is below `/* ================= Fit Board UI`. You usually don't need to touch it.
 - **Wear tab filters:** a Show row (What I own, New ideas, Everything) and an occasion row (Any, Everyday, Date night, Going out, Cozy, Zany). New ideas lists the fresh looks (added in the last 21 days) that still need a piece. The Show choice is remembered per device.
