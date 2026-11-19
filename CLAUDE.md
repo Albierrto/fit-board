@@ -15,8 +15,8 @@ The whole site is one file, `index.html`. Edit it directly. There is no build st
   - `size:'36 waist'` sets the size note on the button. The default is XL.
   - `mine:true` marks pieces he owns. Never remove those.
 - **Draw options.**
-  - Tops (`draw.t`): `tee`, `ls`, `henley`, `knithen`, `crew`, `camp`, `shirt`. A top with `layerOk:true` can also go under a jacket.
-  - Layers (`draw.t`): `shirt`, `overshirt`, `cordzip`, `cardigan`, `bomber`, `harr`, `leather`, `coat`, `worker`, `barn`, `dzip`, `bedford`, `furcoat`.
+  - Tops (`draw.t`): `tee`, `ls`, `henley`, `knithen`, `crew`, `vneck`, `polo`, `qzip`, `hoodie`, `camp`, `shirt`. A top with `layerOk:true` can also go under a jacket. A `shirt` top can also be used as an open `layer` in a look.
+  - Layers (`draw.t`): `shirt`, `overshirt`, `cordzip`, `cardigan`, `vest` (sleeves of the top still show), `bomber`, `harr`, `leather`, `coat`, `duffle`, `worker`, `barn` (takes `collar`), `dzip`, `bedford`, `furcoat`.
   - Pants (`draw.fit`): `straight`, `loose`, `wide`, `track`, `barrel`. Pants options: `crease:true`, `cargo:true`, `tie:true`, `sheen:true`, and `stripe:'#hex'` (wide and loose fits only).
   - Shoes: `draw.s` set to `'boot'` or `'loafer'`, or left out for a sneaker. Shoes also take `sole`.
   - Common to all: `c` (main color), `tex` (texture or pattern id), `rib` (cuff and hem color), `dot` (button color).

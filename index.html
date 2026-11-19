@@ -212,6 +212,9 @@ footer p{margin:0 0 8px; max-width:70ch}
     <pattern id="x-egcheck" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="20" height="40" fill="rgba(140,160,90,.45)"/><rect width="40" height="20" fill="rgba(140,110,80,.35)"/><rect width="20" height="20" fill="rgba(230,205,160,.35)"/></pattern>
     <pattern id="x-searsarg" width="20" height="26" patternUnits="userSpaceOnUse"><path d="M0,0 L20,26 M20,0 L0,26" stroke="rgba(170,60,70,.6)" stroke-width=".5"/><path d="M10,9 L13,13 L10,17 L7,13 Z" fill="#b3424f"/></pattern>
     <pattern id="x-brstripe" width="12" height="44" patternUnits="userSpaceOnUse"><rect y="6" width="12" height="4" fill="#7a2f2a"/><rect y="12" width="12" height="3" fill="#ebe2cf"/><rect y="17" width="12" height="5" fill="#2a2726"/><rect y="24" width="12" height="3" fill="#a9a493"/></pattern>
+    <pattern id="x-waffle" width="4" height="4" patternUnits="userSpaceOnUse"><path d="M0,.5 H4 M.5,0 V4" stroke="rgba(0,0,0,.22)" stroke-width=".6"/><path d="M0,2.5 H4 M2.5,0 V4" stroke="rgba(255,255,255,.1)" stroke-width=".6"/></pattern>
+    <pattern id="x-creamplaid" width="22" height="22" patternUnits="userSpaceOnUse"><rect width="9" height="22" fill="rgba(175,150,115,.32)"/><rect width="22" height="9" fill="rgba(175,150,115,.28)"/><path d="M13,0 V22 M0,13 H22" stroke="rgba(255,255,255,.75)" stroke-width="1"/></pattern>
+    <pattern id="x-blackfloral" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="8" cy="8" r="5" fill="#ece7dc"/><circle cx="8" cy="8" r="2" fill="#c9bfae"/><circle cx="23" cy="20" r="4.5" fill="#cbbfa8"/><circle cx="23" cy="20" r="1.6" fill="#ece7dc"/><path d="M14,22 q3,-4 6,-1 M3,24 q4,-2 6,2" stroke="#b9a9c9" stroke-width="2" fill="none"/><circle cx="20" cy="5" r="1.6" fill="#f2efe8"/><circle cx="5" cy="17" r="1.4" fill="#f2efe8"/><circle cx="27" cy="9" r="1.3" fill="#b9a9c9"/></pattern>
     <pattern id="x-banded" width="12" height="30" patternUnits="userSpaceOnUse"><rect y="4" width="12" height="6" fill="#e6dcc6"/><rect y="16" width="12" height="4" fill="#b39470"/><path d="M0,24 l3,3 l3,-3 l3,3 l3,-3" fill="none" stroke="#e6dcc6" stroke-width="1"/><path d="M2,7 h2 M8,7 h2" stroke="#2a2622" stroke-width="1.2"/></pattern>
     <pattern id="x-damask" width="16" height="16" patternUnits="userSpaceOnUse"><path d="M8,2 C11,5 11,8 8,11 C5,8 5,5 8,2 Z" fill="#3c8c8a"/><circle cx="8" cy="13" r="1.6" fill="#a1394a"/><path d="M0,8 C2,6 3,6 4,8 M12,8 C13,6 14,6 16,8" fill="none" stroke="#6b4c9a" stroke-width="1.2"/><circle cx="0" cy="0" r="1.6" fill="#d9a33a"/><circle cx="16" cy="0" r="1.6" fill="#d9a33a"/><circle cx="0" cy="16" r="1.6" fill="#d9a33a"/><circle cx="16" cy="16" r="1.6" fill="#d9a33a"/></pattern>
     <pattern id="x-flowers" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="7" cy="7" r="3.6" fill="#e2b92e"/><circle cx="7" cy="7" r="1.4" fill="#8a4a1c"/><path d="M14,14 q4,-6 8,0 q-4,6 -8,0 Z" fill="#4f8a4c"/><circle cx="19" cy="4" r="1.6" fill="#d8573a"/><path d="M2,20 q3,-3 6,0" fill="none" stroke="#7fb3c8" stroke-width="1.2"/></pattern>
@@ -405,6 +408,18 @@ function drawTop(p,under){
       +(under?'':P('M61,160 L81,162 L81,172 L60,170 Z',rb,{tex:'rib',sw:1}))
       +L('M130,17 Q137,30 150,30',rb,4.5);
     return both(half);
+  }
+  if(t==='hoodie'||t==='qzip'){
+    const rb=d.rib||rib;
+    const half=P(under?'M150,30 Q137,30 130,17 L100,25 L99,179 L150,179 Z':'M150,30 Q137,30 130,17 L100,25 Q80,33 72,66 L60,170 L81,172 L96,94 L99,179 L150,179 Z',c,{tex:d.tex})
+      +P('M99,168 L150,168 L150,179 L99,179 Z',rb,{tex:'rib',sw:1})
+      +(under?'':P('M61,160 L81,162 L81,172 L60,170 Z',rb,{tex:'rib',sw:1}));
+    if(t==='hoodie'){
+      const hood=P('M116,24 Q150,2 184,24 L172,32 Q150,20 128,32 Z',shade(c,-.08));
+      return hood+both(half+L('M130,17 Q137,32 150,32',ln(c),2)+P('M110,122 L150,122 L150,160 L104,160 Z',c)+L('M110,122 L104,160',ln(c)))
+        +L('M145,32 L144,62 M155,32 L156,62',shade(c,-.2),1.4);
+    }
+    return both(half+P('M130,13 L150,20 L150,32 Q138,31 129,23 Z',c)+L('M130,13 L150,20',ln(c)))+L('M150,24 L150,72','#2a2a2a',1.4)+P('M147.5,70 L152.5,70 L152.5,76 L147.5,76 Z','#3a3a3a',{sw:.5});
   }
   if(t==='vneck'||t==='polo'){
     const rb=d.rib||rib;
@@ -680,6 +695,31 @@ const PR={
   brStripeCardi:{cat:'layer',used:true,name:'Banana Republic wool and mohair striped cardigan, brown, XL',brand:'Banana Republic (secondhand)',store:'Poshmark',price:55.49,fit:'heavy, relaxed',url:'https://poshmark.com/listing/Banana-Republic-Men-Wool-Mohair-Striped-Cardigan-Sweater-Brown-XL-heavy-Classic-6ae36d769fd4b9463cbe2da1',checked:'Nov 19',draw:{t:'cardigan',c:'#6e4c34',tex:'x-brstripe'}},
   brMelon:{cat:'top',used:true,name:'Vintage 90s Banana Republic mohair sweater, charcoal with melon stripes, XL',brand:'Banana Republic (vintage)',store:'Poshmark',price:46.49,fit:'regular',url:'https://poshmark.com/listing/Banana-Republic-Vintage-90s-Mohair-Gray-Melon-Stripe-Sweater-Size-XL-6afc700b352b3a74408cad9a',checked:'Nov 19',draw:{t:'crew',c:'#4a4a4d',tex:'x-fuzz',rib:'#ef6f5e'}},
 
+  myTeeBlack:{cat:'top',mine:true,name:'Your oversized black tee',brand:'Already yours',price:0,draw:{t:'tee',c:'#1d1d1f'}},
+  myTeeGray:{cat:'top',mine:true,name:'Your heather gray heavyweight tee',brand:'Already yours',price:0,draw:{t:'tee',c:'#9c9c9a'}},
+  myTeeCream:{cat:'top',mine:true,name:'Your cream tee',brand:'Already yours',price:0,draw:{t:'tee',c:'#efe8da'}},
+  myTeeWhite:{cat:'top',mine:true,name:'Your white tee with the small patch',brand:'Already yours',price:0,draw:{t:'tee',c:'#f7f6f2'}},
+  myRibMint:{cat:'top',mine:true,name:'Your mint ribbed knit tee',brand:'Already yours',price:0,draw:{t:'tee',c:'#c3e3df',tex:'rib'}},
+  myHenOlive:{cat:'top',mine:true,name:'Your olive long sleeve henley',brand:'Already yours',price:0,draw:{t:'henley',c:'#6c6b47'}},
+  myWaffleNavy:{cat:'top',mine:true,name:'Your navy waffle long sleeve',brand:'Already yours',price:0,draw:{t:'ls',c:'#212b45',tex:'x-waffle'}},
+  myWaffleGreen:{cat:'top',mine:true,name:'Your dark green waffle crew (American Eagle)',brand:'Already yours',price:0,draw:{t:'crew',c:'#3d5040',tex:'x-waffle'}},
+  myWaffleCharcoal:{cat:'top',mine:true,name:'Your charcoal waffle crew (American Eagle)',brand:'Already yours',price:0,draw:{t:'crew',c:'#3a3d46',tex:'x-waffle'}},
+  myLSSage:{cat:'top',mine:true,name:'Your sage long sleeve tee',brand:'Already yours',price:0,draw:{t:'ls',c:'#7f8e78'}},
+  myQZip:{cat:'top',mine:true,name:'Your burgundy quarter zip',brand:'Already yours',price:0,draw:{t:'qzip',c:'#6d2532'}},
+  myHoodie:{cat:'top',mine:true,name:'Your white Pokemon hoodie',brand:'Already yours',price:0,draw:{t:'hoodie',c:'#f0eee8'}},
+  myFlannelCream:{cat:'top',mine:true,name:'Your cream plaid flannel (FF.LA)',brand:'Already yours',price:0,draw:{t:'shirt',c:'#e9e0cf',tex:'x-creamplaid'},layerOk:true},
+  myOxfordBlue:{cat:'top',mine:true,name:'Your pale blue oxford shirt (FF.LA)',brand:'Already yours',price:0,draw:{t:'shirt',c:'#dde6f1'},layerOk:true},
+  myFloralShirt:{cat:'top',mine:true,name:'Your black floral shirt',brand:'Already yours',price:0,draw:{t:'camp',c:'#1b1b1e',tex:'x-blackfloral'}},
+  myDenimJacket:{cat:'outer',mine:true,name:'Your denim jacket (FF.LA)',brand:'Already yours',price:0,draw:{t:'overshirt',c:'#3f5f8c',tex:'twill'}},
+  myWorkJacket:{cat:'outer',mine:true,name:'Your tan canvas work jacket with the cream collar',brand:'Already yours',price:0,draw:{t:'barn',c:'#b88d4c',collar:'#e7dcc3'}},
+  myCoatTaupe:{cat:'outer',mine:true,name:'Your long taupe coat (FF.LA)',brand:'Already yours',price:0,draw:{t:'coat',c:'#8d8571'}},
+  myZipStone:{cat:'outer',mine:true,name:'Your stone zip jacket',brand:'Already yours',price:0,draw:{t:'bomber',c:'#cdc1aa'}},
+  myPantsCream:{cat:'bottom',mine:true,name:'Your cream drawstring pants',brand:'Already yours',price:0,fit:'drawstring',draw:{fit:'loose',c:'#ebe5d6'}},
+  myKhakis:{cat:'bottom',mine:true,name:'Your khaki chinos',brand:'Already yours',price:0,draw:{fit:'straight',c:'#bd9e70'}},
+  mySlateChinos:{cat:'bottom',mine:true,name:'Your slate blue chinos',brand:'Already yours',price:0,draw:{fit:'straight',c:'#617899'}},
+  myGrayWorkPants:{cat:'bottom',mine:true,name:'Your gray work pants',brand:'Already yours',price:0,draw:{fit:'loose',c:'#8e8f8d',tex:'twill'}},
+  myGrayJeans:{cat:'bottom',mine:true,jeans:true,name:'Your gray jeans (American Eagle)',brand:'Already yours',price:0,draw:{fit:'straight',c:'#9c9d99',tex:'twill',jeans:true}},
+
   myWhite:{cat:'shoes',mine:true,name:'Your white sneakers',brand:'Already yours',price:0,draw:{c:'#f5f3ee',sole:'#fbfaf7'}},
   myUggs:{cat:'shoes',mine:true,name:'Your brown Uggs',brand:'Already yours',price:0,draw:{s:'boot',c:'#9a6a3f',sole:'#d8c6a6'}},
   loaferB:{cat:'shoes',name:'Pier chunky loafers, matte black',brand:'SEQWL',store:'ASOS',price:49.00,fit:'faux leather',url:'https://www.asos.com/us/seqwl/seqwl-pier-chunky-loafers-in-matte-black/prd/209976656',checked:'Nov 19',draw:{s:'loafer',c:'#161617',sole:'#222223'}},
@@ -702,6 +742,31 @@ const REF={
 
 /* ---------- looks ---------- */
 const CLOSET_LOOKS=[
+  {name:'Tan Work Jacket + Slate',layer:'myWorkJacket',top:'myTeeCream',bottom:'mySlateChinos',shoes:'myWhite',tags:['closet','everyday','cool'],why:'Your tan work jacket is the best thing you own. Open over the cream tee with slate blue chinos. Tan and blue is a classic, and the cream collar ties to the tee.'},
+  {name:'Denim + Olive Henley',layer:'myDenimJacket',top:'myHenOlive',bottom:'myKhakis',shoes:'myUggs',tags:['closet','everyday','cold'],why:'Denim jacket over the olive henley with khakis and Uggs. Straight up Americana, and none of it is jeans.'},
+  {name:'Cream Flannel Over Brown',layer:'myFlannelCream',top:'onBrownShirt',bottom:'uqWoolDark',shoes:'myWhite',tags:['closet','date','everyday'],why:'The cream plaid flannel worn open over your brown shirt, with the dark navy pants. Soft light layer, dark base. Iron the flannel and this looks great.'},
+  {name:'Black Floral',top:'myFloralShirt',bottom:'myBlackPants',shoes:'myWhite',tags:['closet','zany','going-out','date'],why:'Your black floral shirt is the zany piece you already had. Black pants so the flowers are the only loud thing, and white sneakers to keep it light.'},
+  {name:'Floral Under Black, Cream Pants',layer:'myColumbia',top:'myFloralShirt',bottom:'myPantsCream',shoes:'myWhite',tags:['closet','zany','date'],why:'Floral shirt under your black jacket, with the cream drawstring pants. The cream picks up the pale flowers and makes the whole thing feel summery and odd in a good way.'},
+  {name:'Navy Waffle + Cream',top:'myWaffleNavy',bottom:'myPantsCream',shoes:'myWhite',tags:['closet','date','everyday'],why:'Navy waffle long sleeve with cream pants. Dark top, light bottom, crisp and easy. The waffle texture does a lot of work.'},
+  {name:'Green Waffle + Khaki',top:'myWaffleGreen',bottom:'myKhakis',shoes:'myUggs',tags:['closet','chill','cold'],why:'Forest green waffle crew, khaki chinos, Uggs. Green and khaki is an outdoorsy pair that always works.'},
+  {name:'Burgundy + Gray',top:'myQZip',bottom:'myGrayWorkPants',shoes:'myWhite',tags:['closet','everyday','cold'],why:'Burgundy quarter zip with the gray work pants. Burgundy and gray is a grown up combo, and the zip collar makes it look sharper than a sweatshirt.'},
+  {name:'Long Coat, Dark Layers',layer:'myCoatTaupe',top:'myWaffleCharcoal',bottom:'myBlackPants',shoes:'myWhite',tags:['closet','going-out','cold','smart'],why:'Your long taupe coat open over the charcoal waffle and black pants. Long coat over dark layers is the easiest way to look put together.'},
+  {name:'Light Coat, All Cream',layer:'myCoatTaupe',top:'myTeeCream',bottom:'myPantsCream',shoes:'myWhite',tags:['closet','smart','date'],why:'Taupe coat over cream tee and cream pants. One soft color family head to toe looks expensive.'},
+  {name:'Blue Oxford + Khakis',top:'myOxfordBlue',bottom:'myKhakis',shoes:'myWhite',tags:['closet','smart','everyday','date'],why:'Pale blue oxford, untucked, with khakis and white sneakers. The most classic fit there is, and you already own it.'},
+  {name:'Open Oxford + Navy',layer:'myOxfordBlue',top:'myTeeWhite',bottom:'uqWoolDark',shoes:'myWhite',tags:['closet','everyday','chill'],why:'Wear the oxford open like a light jacket over your white tee, with the navy pants. Relaxed, clean, a little preppy.'},
+  {name:'Mint Rib + Navy',top:'myRibMint',bottom:'uqWoolDark',shoes:'myWhite',tags:['closet','chill','date'],why:'The mint ribbed tee with dark navy pants. Mint and navy is fresh, and the rib texture keeps a plain tee from looking plain.'},
+  {name:'Stone Zip + Black',layer:'myZipStone',top:'myTeeBlack',bottom:'myBlackPants',shoes:'myWhite',tags:['closet','everyday','going-out'],why:'Light stone zip jacket open over all black. Light jacket over dark clothes pulls the eye up and looks clean.'},
+  {name:'Sage + Slate',top:'myLSSage',bottom:'mySlateChinos',shoes:'myWhite',tags:['closet','chill','everyday'],why:'Sage long sleeve with slate blue chinos. Two dusty colors that sit right next to each other. Calm and easy.'},
+  {name:'Grays + Black Jacket',layer:'myColumbia',top:'myTeeGray',bottom:'myGrayWorkPants',shoes:'myWhite',tags:['closet','everyday','going-out'],why:'Gray tee, gray work pants, your black jacket open. Tonal gray reads clean, and the black frames it.'},
+  {name:'Work Jacket + Hoodie',layer:'myWorkJacket',top:'myHoodie',bottom:'myGrayWorkPants',shoes:'myWhite',tags:['closet','chill','cold'],why:'Hood out over the tan work jacket with gray work pants. Classic workwear meets weekend.'},
+  {name:'Work Jacket + Navy',layer:'myWorkJacket',top:'myWaffleNavy',bottom:'uqWoolDark',shoes:'myUggs',tags:['closet','cold','date'],why:'Tan jacket over navy waffle and navy pants. Tan and navy is about as good as color pairs get.'},
+  {name:'Denim Jacket + Cream Pants',layer:'myDenimJacket',top:'myTeeBlack',bottom:'myPantsCream',shoes:'myWhite',tags:['closet','cool','date'],why:'Denim jacket and black tee over cream pants. Light pants with a denim jacket feels fresh, not like a jeans outfit.'},
+  {name:'Olive Henley + Navy',top:'myHenOlive',bottom:'uqWoolDark',shoes:'myUggs',tags:['closet','date','cold'],why:'Olive henley with the dark navy pants and Uggs. Simple, warm colors, looks like you thought about it.'},
+  {name:'Brown Sweater + Slate',top:'onBrownSweater',bottom:'mySlateChinos',shoes:'myUggs',tags:['closet','date','cold'],why:'Your brown sweater with slate blue chinos. Brown and blue again, the pairing that never misses.'},
+  {name:'Honey + Gray Work Pants',top:'onLSHoney',bottom:'myGrayWorkPants',shoes:'myWhite',tags:['closet','everyday'],why:'Honey long sleeve with gray work pants. Warm top, cool bottom, very easy.'},
+  {name:'Cream Flannel + Olive',layer:'myFlannelCream',top:'myTeeBlack',bottom:'aimOlive',shoes:'myWhite',tags:['closet','chill'],why:'Cream flannel open over a black tee with your olive ripstop pants. Light, dark, earthy.'},
+  {name:'Charcoal + Light Blue',top:'myWaffleCharcoal',bottom:'uqWoolLight',shoes:'myWhite',tags:['closet','chill','everyday'],why:'Charcoal waffle with the light blue pants. Dark top, pale bottom, and the gray and blue are cousins.'},
+  {name:'Green Waffle + Gray Jeans',top:'myWaffleGreen',bottom:'myGrayJeans',shoes:'myWhite',tags:['closet','everyday'],why:'Green waffle with gray jeans. Gray denim is easier to dress up than blue, and green on gray looks quiet and cool.'},
   {name:'Brown + Sky Blue',top:'onBrownShirt',bottom:'uqWoolLight',shoes:'myWhite',tags:['closet','everyday','date'],why:'Brown and light blue is one of the best color pairings there is. Oversized brown shirt, your light blue Uniqlo wool pants, white sneakers.'},
   {name:'Sweater + Navy Wool',top:'onBrownSweater',bottom:'uqWoolDark',shoes:'myUggs',tags:['closet','date','cold'],why:'Your Old Navy sweater over the dark blue wool pants, with Uggs. Warm, soft, and dressier than it has any right to be.'},
   {name:'Honey + Navy',top:'onLSHoney',bottom:'uqWoolDark',shoes:'myWhite',tags:['closet','everyday','date'],why:'Honey and navy pop off each other. Wool pants make a long sleeve tee look intentional.'},

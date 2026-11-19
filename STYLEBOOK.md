@@ -19,15 +19,28 @@ This is the board's working style knowledge. Each hunt reads it first and adds w
 
 ## His closet (build around it)
 
+Updated Nov 19 from photos he sent. The keys match the `mine:true` entries in index.html.
+
 - **Tops:**
-  - Oversized brown tee and brown sweater (Old Navy).
-  - Honey and dusty blue oversized long sleeves (Old Navy).
+  - Tees: oversized brown (Old Navy), oversized black, heather gray heavyweight, cream, white with a small chest patch, mint ribbed knit.
+  - Long sleeves: honey and dusty blue oversized (Old Navy), sage, olive henley, navy waffle.
+  - Waffle crews (American Eagle): dark green and charcoal.
+  - Sweaters: brown sweater (Old Navy), burgundy quarter zip.
+  - Shirts: cream plaid flannel (FF.LA), pale blue oxford (FF.LA), black floral print shirt.
+  - White hoodie with a small chest logo and a big back print. Keep it to chill looks.
 - **Pants:**
-  - Light blue and dark navy wide wool pants (Uniqlo).
+  - Light blue and dark navy wide drawstring pants (Uniqlo).
+  - Cream drawstring pants.
   - Olive and black ripstop drawstring pants (All in Motion).
   - Tan baggy workwear pants (Old Navy).
-  - Blue jeans and black jeans. Use these sparingly.
-- **Jacket:** a black Columbia zip jacket, regular fit.
+  - Khaki chinos, slate blue chinos, gray work pants.
+  - Jeans: blue, black and gray (American Eagle). Use these sparingly.
+- **Jackets:**
+  - Black Columbia zip jacket, regular fit.
+  - Tan canvas work jacket with a cream corduroy collar. His strongest piece.
+  - Denim jacket (FF.LA).
+  - Long taupe coat (FF.LA).
+  - Light stone zip jacket.
 - **Shoes:** white sneakers and brown Uggs.
 
 ## Principles the board uses
@@ -79,3 +92,9 @@ Sources read: MR PORTER's Derek Guy style guide (only partly readable) and Jake 
 - **Light pants under a dark top** is a strong, easy proportion for him. Stone or ecru cords with a dark brown knit or a black jacket.
 - **Denim shirt with pleated chinos** (Derek Guy). Not on the board yet. The Uniqlo x JW Anderson denim shirt ($29.90) would fit next time.
 - **Tip:** eBay starts returning 403 errors after many fetches in a row. Space requests about 2 seconds apart, and run the re-check before searching.
+
+### 2026-11-19 (closet photos)
+
+- His closet is much deeper than the board knew: a tan work jacket, denim jacket, long coat, oxford, flannel, waffle knits, chinos and cream pants. The board now has 25 more looks built only from what he owns.
+- New ideas should use these as the "own" half. Good partners for new pieces: tan work jacket, cream pants, slate and khaki chinos, navy waffle.
+- The black floral shirt covers the loud-shirt slot, so loud-print buys should be knits or jackets instead.
