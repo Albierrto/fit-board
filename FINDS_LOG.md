@@ -88,3 +88,39 @@ Bort's reaction: he liked this batch a lot ("project Hail Mary vibes"). He wants
 - Alexander Julian striped button vest, XL, Poshmark, $8 plus shipping (older listing).
 - H&M burgundy argyle relaxed sweater (1373654001), $49.99.
 - Gap new corduroy relaxed straight pants, 5 colors, $53 (1184870002).
+
+## 2026-11-19, third run (Bort asked for 20 new things)
+
+**Re-check:** eBay was reachable again. Listings 206674784075, 257825756286 and 358704311544 are live Buy It Now. Every other piece was checked earlier today.
+
+**Added: 20 looks, 20 pieces.** Every piece was in stock in his size on Nov 19. Secondhand prices are landed.
+
+- Uniqlo x JW Anderson denim work shirt, light blue, $29.90: https://www.uniqlo.com/us/en/products/E486612-000/00?colorDisplayCode=65
+- Uniqlo x JW Anderson flannel, blue and green buffalo check, $39.90: https://www.uniqlo.com/us/en/products/E488795-000/00?colorDisplayCode=58
+- Uniqlo x JW Anderson flannel, red and navy buffalo check, $39.90: https://www.uniqlo.com/us/en/products/E488795-000/00?colorDisplayCode=18
+- Uniqlo x JW Anderson oversized striped oxford, green, $49.90: https://www.uniqlo.com/us/en/products/E488797-000/00?colorDisplayCode=54
+- Uniqlo x JW Anderson rugby shirt, off white, $39.90: https://www.uniqlo.com/us/en/products/E488751-000/00?colorDisplayCode=01
+- ASOS DESIGN baggy cords, brown, W36 (L30, L32 and L34 in stock), $54.99: https://www.asos.com/us/asos-design/asos-design-baggy-corduroy-pants-in-brown/prd/210572894
+- ASOS DESIGN oversized striped sweater vest, brown and blue, $47.99: https://www.asos.com/us/asos-design/asos-design-oversized-knitted-crew-neck-sweater-vest-in-brown-and-blue-stripe/prd/211701713
+- H&M workwear jacket with clasp fastenings, dark green, $79.99: https://www2.hm.com/en_us/productpage.1360614001.html
+- H&M striped cable-knit polo, $44.99: https://www2.hm.com/en_us/productpage.1364469001.html
+- H&M cable-knit zip cardigan, dark brown, $59.99: https://www2.hm.com/en_us/productpage.1356471001.html
+- Old Navy loose corduroy shirt, Baltic Amber, $19.99: https://oldnavy.gap.com/browse/product.do?pid=907498002
+- Old Navy rugby polo sweater, blue and brown stripe, $27.49: https://oldnavy.gap.com/browse/product.do?pid=903463022
+- Old Navy cable-knit crew sweater, Scotty Red, $29.99: https://oldnavy.gap.com/browse/product.do?pid=1182697002
+- Vintage Towncraft diamond knit, XL, eBay, $19.49: https://www.ebay.com/itm/267842949638
+- Vintage Scandia geometric cardigan, XL, eBay, $36.57: https://www.ebay.com/itm/820340720083
+- Engineered Garments block check work shirt, XL, eBay, $86.90: https://www.ebay.com/itm/407290914262
+- Vintage Sears argyle cardigan knitted in Italy, XL, about 27 in. pit to pit, eBay, $27.74: https://www.ebay.com/itm/407096583562
+- Vintage 80s Bill Ditfort wool and mohair cardigan, XL, about 27 in. pit to pit, Poshmark, about $42.49 (shipping not shown on the listing, so assumed $6.49): https://poshmark.com/listing/Bill-Ditfort-Design-Sweater-Mens-XL-Blue-Tan-Cardigan-Wool-Mohair-Vintage-80s-668f037b5c465e1307b0f639
+- Banana Republic wool and mohair striped cardigan, XL, Poshmark, $55.49: https://poshmark.com/listing/Banana-Republic-Men-Wool-Mohair-Striped-Cardigan-Sweater-Brown-XL-heavy-Classic-6ae36d769fd4b9463cbe2da1
+- Vintage 90s Banana Republic mohair sweater, charcoal with melon stripes, XL, Poshmark, $46.49: https://poshmark.com/listing/Banana-Republic-Vintage-90s-Mohair-Gray-Melon-Stripe-Sweater-Size-XL-6afc700b352b3a74408cad9a
+
+**Passed on:**
+
+- Pendleton blackwatch (eBay 188746383287): pilling or moth damage, and the tag may read XXL.
+- Runa Maki Ecuador knit (eBay 366679598675): stain at the hem.
+- Uniqlo boxy check shirts: cropped.
+- Brave Soul knits on ASOS: XL is only a 42 to 44 in. chest.
+- Gap shaker sweater in bamboo green: couldn't confirm the photo for that color.
+- Coppi Maglia chevron cardigan (Poshmark): 23 in. pit to pit.
