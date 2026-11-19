@@ -124,3 +124,24 @@ Bort's reaction: he liked this batch a lot ("project Hail Mary vibes"). He wants
 - Brave Soul knits on ASOS: XL is only a 42 to 44 in. chest.
 - Gap shaker sweater in bamboo green: couldn't confirm the photo for that color.
 - Coppi Maglia chevron cardigan (Poshmark): 23 in. pit to pit.
+
+## 2026-11-19, fourth run (after Bort's Walmart order)
+
+**His closet:** added the two No Boundaries pieces he bought at Walmart, a black boxy tee and a black oversized long sleeve, both XL. The ten looks that used the ASOS COLLUSION black tee now use his own black tee, and that ASOS tee was removed from the catalog.
+
+**Added: 5 zany pieces, 6 new looks, plus 3 closet looks for the new tees.** All eBay Buy It Now, tagged XL, live on Nov 19. Prices are landed.
+
+- Marni x Uniqlo color-block hooded windbreaker, men's XL, $37.41: https://www.ebay.com/itm/198796308387
+- Vintage J.Crew patchwork tartan flannel shirt jacket, XL, $46.99: https://www.ebay.com/itm/327143497770
+- Vintage 70s thunderbird shawl collar cardigan, XL, $64.82: https://www.ebay.com/itm/168857465935
+- Vintage 80s Campus abstract cardigan, XL, $36.99 with free shipping: https://www.ebay.com/itm/389372001580
+- Vintage Zeppelin geometric wool-blend cardigan, XL, about 25 in. pit to pit, $44.98: https://www.ebay.com/itm/298362441685
+
+**Passed on:**
+
+- Kenzo Homme arctic snowflake sweater (eBay 267810492603): $160, and it has surface holes.
+- Engbers 3D knit cardigan (eBay 336873852312) and VTG 1946 Aztec fleece shirt jacket (eBay 800557937471): both 23 in. pit to pit.
+- Kenzo golf polo (eBay 257447562439): 23 in. pit to pit.
+- Fashion Formulas Aztec fleece cardigan (eBay 188866759847): a women's brand, with a mended hole.
+- Autumn leaf quilted hoodie (eBay 860087569606): too costume-y.
+- Urban Outfitters cardigans: mostly $90 to $230.
