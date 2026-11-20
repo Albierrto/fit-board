@@ -733,6 +733,7 @@ const PR={
   myFloralShirt:{cat:'top',mine:true,name:'Your black floral shirt',brand:'Already yours',price:0,draw:{t:'camp',c:'#1b1b1e',tex:'x-blackfloral'}},
   myDenimJacket:{cat:'outer',mine:true,name:'Your denim jacket (FF.LA)',brand:'Already yours',price:0,draw:{t:'overshirt',c:'#3f5f8c',tex:'twill'}},
   myWorkJacket:{cat:'outer',mine:true,name:'Your tan canvas work jacket with the cream collar',brand:'Already yours',price:0,draw:{t:'barn',c:'#b88d4c',collar:'#e7dcc3'}},
+  myCoatBlack:{cat:'outer',mine:true,name:'Your black overcoat',brand:'Already yours',price:0,draw:{t:'coat',c:'#1c1c1e'}},
   myJacketTaupe:{cat:'outer',mine:true,name:'Your taupe nylon jacket (FF.LA)',brand:'Already yours',price:0,draw:{t:'harr',c:'#8d8571'}},
   myZipStone:{cat:'outer',mine:true,name:'Your stone zip jacket',brand:'Already yours',price:0,draw:{t:'bomber',c:'#cdc1aa'}},
   myPantsCream:{cat:'bottom',mine:true,name:'Your cream wool pants',brand:'Already yours',price:0,fit:'baggy wool, drawstring',draw:{fit:'wide',c:'#ebe5d6',crease:true}},
@@ -807,6 +808,15 @@ const REF={
 
 /* ---------- looks ---------- */
 const CLOSET_LOOKS=[
+  {name:'Black Coat + Cream Wool',layer:'myCoatBlack',top:'myTeeCream',bottom:'myPantsCream',shoes:'myWhite',tags:['closet','smart','date','cold'],why:'Black overcoat open over your cream tee and cream wool pants. Dark coat, light everything else. It looks expensive and takes zero effort.'},
+  {name:'Black Coat + Light Blue',layer:'myCoatBlack',top:'myWaffleNavy',bottom:'uqWoolLight',shoes:'myWhite',tags:['closet','date','cold'],why:'Black overcoat over the navy waffle with your light blue wool pants. Dark on top, light below, and the blues keep it soft.'},
+  {name:'Black Coat Over Floral',layer:'myCoatBlack',top:'myFloralShirt',bottom:'myBlackPants',shoes:'myWhite',tags:['closet','zany','going-out'],why:'Black overcoat over your black floral shirt and black pants. The flowers peek out down the middle. Best going-out fit you own.'},
+  {name:'Coat + Hoodie',layer:'myCoatBlack',top:'myHoodie',bottom:'myGrayWorkPants',shoes:'myWhite',tags:['closet','chill','cold'],why:'Hood out over the black overcoat with gray work pants. Dressy coat over a hoodie is a classic high-low move.'},
+  {name:'Coat + Burgundy Zip',layer:'myCoatBlack',top:'myQZip',bottom:'uqWoolDark',shoes:'myWhite',tags:['closet','smart','cold'],why:'Black overcoat over your burgundy quarter zip and navy wool pants. Burgundy at the collar is the one bit of color.'},
+  {name:'Coat + Blue Oxford',layer:'myCoatBlack',top:'myOxfordBlue',bottom:'myKhakis',shoes:'myWhite',tags:['closet','smart','date'],why:'Black overcoat over the pale blue oxford and khakis. Simple, classic, and dressy enough for anything.'},
+  {name:'Coat + Brown Sweater',layer:'myCoatBlack',top:'onBrownSweater',bottom:'myPantsCream',shoes:'myUggs',tags:['closet','date','cold'],why:'Black overcoat over your brown sweater and cream wool pants, with Uggs. Black, brown and cream is a rich mix.'},
+  {name:'All Black Overcoat',layer:'myCoatBlack',top:'myLSBlack',bottom:'myBlackPants',shoes:'myWhite',tags:['closet','going-out','cold'],why:'Black overcoat, your new black long sleeve and black pants. One color head to toe, white sneakers to break it up.'},
+  {name:'Coat + Honey',layer:'myCoatBlack',top:'onLSHoney',bottom:'uqWoolDark',shoes:'myWhite',tags:['closet','everyday','cold'],why:'Black overcoat open over the honey long sleeve with navy pants. The honey glows against the black.'},
   {name:'Black Long Sleeve + Work Jacket',layer:'myWorkJacket',top:'myLSBlack',bottom:'myPantsCream',shoes:'myWhite',tags:['closet','everyday','cool'],why:'Your new black long sleeve under the tan work jacket, with cream pants. Black, tan and cream is a sharp, simple mix.'},
   {name:'Black Boxy Tee + Cream Pants',top:'myBoxyBlack',bottom:'myPantsCream',shoes:'myWhite',tags:['closet','everyday','date'],why:'The new black boxy tee with cream pants and white sneakers. Dark top, light bottom, nothing to think about.'},
   {name:'Black Long Sleeve + Light Blue',top:'myLSBlack',bottom:'uqWoolLight',shoes:'myWhite',tags:['closet','everyday','date'],why:'Black oversized long sleeve with your light blue wool pants. The light pants keep all that black from feeling heavy.'},

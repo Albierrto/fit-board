@@ -40,6 +40,7 @@ Updated Nov 19 from photos he sent. The keys match the `mine:true` entries in in
   - Tan canvas work jacket with a cream corduroy collar. His strongest piece.
   - Denim jacket (FF.LA).
   - Taupe nylon jacket (FF.LA), regular length.
+  - Black overcoat.
   - Light stone zip jacket.
 - **Shoes:** white sneakers and brown Uggs.
 
