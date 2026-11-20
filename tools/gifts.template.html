@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Christmas Wishlist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Built by tools/build-gifts.js from tools/gifts.template.html. Edit the template, not gifts.html. */
+:root{
+  --bg:#f3f4f7; --surface:#ffffff; --fg:#191c26; --muted:#5b6070; --line:#d9dce5;
+  --accent:#2547a8; --accent-ink:#ffffff; --pick:#c98a12; --pick-soft:#fbefd6; --zany-soft:#e4e9fb;
+  --board:#e6ddce; --board-edge:#d6cbb8;
+  --display:"Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body:Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#12141b; --surface:#1b1e28; --fg:#eceef4; --muted:#a3a8b8; --line:#2e3242;
+  --accent:#8fa8ff; --accent-ink:#0e1222; --pick:#f0b74a; --pick-soft:#3a2d12; --zany-soft:#252d4a;
+  --board:#d8cebc; --board-edge:#c6baa5; color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0; background:var(--bg); color:var(--fg); font:16px/1.55 var(--body);
+  padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); padding-block:32px 56px}
+main{max-width:720px; margin:0 auto; display:flex; flex-direction:column; gap:28px}
+h1{font:800 clamp(34px,7vw,52px)/1.02 var(--display); letter-spacing:-.02em; margin:0; text-wrap:balance}
+h2{font:600 22px/1.2 var(--display); margin:0; text-wrap:balance}
+h2 .count{font:500 15px var(--body); color:var(--muted)}
+.lede{color:var(--muted); margin:10px 0 0; max-width:62ch}
+.size{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:16px}
+.size div{display:flex; flex-direction:column; gap:2px}
+.size b{font:600 19px/1.25 var(--display)}
+.size span{font-size:12px; color:var(--muted); letter-spacing:.05em; text-transform:uppercase}
+.filters{display:flex; flex-wrap:wrap; gap:8px; position:sticky; top:env(safe-area-inset-top, 0px); z-index:5; background:var(--bg); padding-block:10px}
+.filters button{min-height:40px; padding:0 14px; border-radius:999px; border:1.5px solid var(--line); background:var(--surface); color:var(--fg); font:600 14px var(--body); cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--fg); border-color:var(--fg); color:var(--bg)}
+.filters button:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+section{display:flex; flex-direction:column; gap:12px}
+ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px}
+li{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:12px 16px 12px 12px; display:grid; grid-template-columns:84px minmax(0,1fr) auto; gap:4px 14px; align-items:start}
+li.pick{border-color:var(--pick)}
+.thumb{grid-row:1 / span 3; align-self:start; display:flex; align-items:center; justify-content:center; height:88px; border-radius:10px; background:radial-gradient(120% 90% at 50% 35%, var(--board) 0%, var(--board-edge) 100%); padding:6px}
+.thumb svg{width:100%; height:auto; max-height:76px; filter:drop-shadow(0 1px 2px rgba(40,25,10,.2))}
+.name{font-weight:600; min-width:0}
+.price{font:600 18px/1.3 var(--display); font-variant-numeric:tabular-nums; text-align:right}
+.meta{grid-column:2/-1; color:var(--muted); font-size:14px; min-width:0}
+.tag{display:inline-block; font-size:11px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; background:var(--pick-soft); color:var(--fg); border-radius:999px; padding:2px 8px; margin-right:6px; vertical-align:2px}
+.tag.zany{background:var(--zany-soft)}
+a.go{grid-column:2/-1; justify-self:start; margin-top:4px; color:var(--accent); font-weight:600; text-decoration:none; font-size:15px}
+a.go:hover,a.go:focus-visible{text-decoration:underline}
+a:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px}
+.empty{color:var(--muted); margin:0}
+.foot{color:var(--muted); font-size:14px; margin:0}
+</style>
+</head>
+<body>
+<main>
+{{DEFS}}
+  <header>
+    <h1>Christmas ideas</h1>
+    <p class="lede">Everything on his outfit board that he doesn't own yet, {{TOTAL}} pieces in all. Each one goes with clothes he already has. New pieces can be returned. Secondhand ones are one of a kind and usually can't.</p>
+  </header>
+
+  <div class="size" aria-label="His sizes">
+    <div><span>Tops and jackets</span><b>XL</b></div>
+    <div><span>Pants</span><b>XL, or 36 waist</b></div>
+    <div><span>Vintage fit check</span><b>24 to 27 in. pit to pit</b></div>
+  </div>
+
+  <div class="filters" role="group" aria-label="Filter the list">
+    <button type="button" data-f="all" aria-pressed="true">All</button>
+    <button type="button" data-f="zany" aria-pressed="false">Zany</button>
+    <button type="button" data-f="under50" aria-pressed="false">Under $50</button>
+    <button type="button" data-f="new" aria-pressed="false">New, can return</button>
+    <button type="button" data-f="used" aria-pressed="false">Secondhand</button>
+  </div>
+
+{{GROUPS}}
+
+  <p class="empty" id="none" hidden>Nothing matches that filter.</p>
+  <p class="foot">Stock was checked {{DATES}}. Secondhand pieces can sell any time, so if one is gone, pick another.</p>
+</main>
+<script>
+(function(){
+  var buttons=document.querySelectorAll('.filters button');
+  function apply(f){
+    var any=false;
+    document.querySelectorAll('section[data-sec]').forEach(function(sec){
+      var n=0;
+      sec.querySelectorAll('li').forEach(function(li){
+        var show=f==='all'||(' '+li.dataset.tags+' ').indexOf(' '+f+' ')>-1;
+        li.hidden=!show; if(show)n++;
+      });
+      sec.hidden=!n; if(n)any=true;
+      sec.querySelector('.count').textContent='('+n+')';
+    });
+    document.getElementById('none').hidden=any;
+    buttons.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.f===f));});
+  }
+  buttons.forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.f);});});
+  apply('all');
+})();
+</script>
+</body>
+</html>
