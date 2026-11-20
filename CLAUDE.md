@@ -4,7 +4,7 @@ Live site: https://albierrto.github.io/fit-board/ (GitHub Pages from `main`, rep
 
 The whole site is one file, `index.html`. Edit it directly. There is no build step.
 
-`gifts.html` is a separate Christmas gift list Bort shares (https://albierrto.github.io/fit-board/gifts.html). It lists every buyable piece that appears in a look. Never edit it by hand: after any change to the catalog or looks, run `node tools/build-gifts.js` to rebuild it. The page layout lives in `tools/gifts.template.html`, and the top picks are listed at the top of `tools/build-gifts.js`.
+`gifts.html` is a separate Christmas gift list Bort shares (https://albierrto.github.io/fit-board/gifts.html). It lists every buyable piece that appears in a look. Never edit it by hand: after any change to the catalog or looks, run `node tools/build-gifts.js` to rebuild it. The page layout lives in `tools/gifts.template.html`, and the top picks and the pieces left off (too close to what he owns) are listed at the top of `tools/build-gifts.js`. When he adds clothes to his closet, check that list again.
 
 ## Where things live in index.html
 

@@ -7,7 +7,23 @@ const path = require('path');
 
 const root = path.resolve(__dirname, '..');
 // Hand-picked favorites, shown first in their section with a "Top pick" chip.
-const PICKS = ['jwaFairIsle', 'tsRedCheck', 'marniHooded', 'thunderCardi', 'abCardi', 'carharttJ169', 'uqCordWine', 'afBomber', 'kenzoShirt', 'egDuffle'];
+const PICKS = ['jwaFairIsle', 'tsRedCheck', 'marniHooded', 'thunderCardi', 'abCardi', 'hermansSki', 'uqCordWine', 'afBomber', 'kenzoShirt', 'egDuffle'];
+// Left off the gift list because he already owns something very close (Nov 20). They can stay on the board.
+const SKIP = {
+  teeW: 'he has white and cream tees',
+  onLSCream: 'he has a cream tee and oversized long sleeves from the same line',
+  lsGreen: 'he has a sage long sleeve and a green waffle crew',
+  henBlack: 'he has a black oversized long sleeve',
+  henCream: 'he has a cream tee',
+  uqDenim: 'he has a pale blue oxford and a denim jacket',
+  onChinoGray: 'he has gray work pants',
+  onWorkCream: 'he has cream drawstring pants and the tan pair from the same line',
+  workerB: 'he has a black zip jacket and a black overcoat',
+  workerTaupe: 'he has a taupe jacket',
+  barnBeige: 'he has a tan work jacket with a cord collar',
+  carharttJ169: 'he has a tan work jacket in the same style',
+  hmFelted: 'he has a light stone zip jacket',
+};
 
 const SECTIONS = [
   ['sweaters', 'Sweaters and knits'],
@@ -33,16 +49,16 @@ const money = n => '$' + (Math.round(n * 100) / 100).toFixed(2).replace(/\.00$/,
   const p = await b.newPage();
   await p.goto('file://' + path.join(root, 'index.html'));
   await p.waitForTimeout(400);
-  const data = await p.evaluate(() => {
+  const data = await p.evaluate(skip => {
     const zany = new Set(), used = new Set();
     LOOKS.forEach(l => l.pieces.forEach(k => { used.add(k); if (l.tags.includes('zany')) zany.add(k); }));
-    const items = Object.values(PR).filter(x => !x.mine && x.url && used.has(x.id)).map(x => ({
+    const items = Object.values(PR).filter(x => !x.mine && x.url && used.has(x.id) && !skip.includes(x.id)).map(x => ({
       id: x.id, cat: x.cat, draw: x.draw, name: x.name, brand: x.brand, store: x.store, price: x.price, was: x.was,
       used: !!x.used, url: x.url, checked: x.checked || STOCK_DATE, size: x.size || (SIZE_NOTE[x.id] || 'XL'),
       zany: zany.has(x.id), svg: pieceSVG(x),
     }));
     return { defs: document.querySelector('svg[width="0"]').outerHTML, items };
-  });
+  }, Object.keys(SKIP));
   await b.close();
 
   const dates = [...new Set(data.items.map(i => i.checked))];
