@@ -4,6 +4,8 @@ Live site: https://albierrto.github.io/fit-board/ (GitHub Pages from `main`, rep
 
 The whole site is one file, `index.html`. Edit it directly. There is no build step.
 
+`gifts.html` is a separate Christmas gift list Bort shares (https://albierrto.github.io/fit-board/gifts.html). If a piece on it sells, take it off there too.
+
 ## Where things live in index.html
 
 - **Pattern defs.** A hidden `<svg width="0" height="0">` near the top. Custom prints and knits are `<pattern id="x-...">`. An id that starts with `x-` is used as is. The built-in textures (`cord`, `plaid`, `check`, `rib`, `twill`, `herring`) get light and dark variants automatically. For a new loud print or knit, add a new `x-` pattern and keep it small and simple.
