@@ -106,3 +106,15 @@ Sources read: MR PORTER's Derek Guy style guide (only partly readable) and Jake 
 - Colored pants (wine or olive cords) are an easy zany move. Use them with plain navy, cream or honey tops.
 - Leather jackets work best over soft light colors (white tee, light blue or cream pants), so they read fresh, not tough.
 - New sources: Vinted's catalog search loads fine but its item pages don't. Todd Snyder's sale is good for $84 to $94 shirts.
+
+### 2026-11-20
+
+Sources read: a write-up of POPEYE street-style spreads (sehoon.substack.com), Taylor Stitch's autumn styling with New England Menswear, and an FW26 knitwear trends guide (nss g-club). Next run, rotate to Die, Workwear!, Permanent Style and a Beams Plus or Our Legacy lookbook.
+
+- **Ochre or mustard knit with navy** (Taylor Stitch). Made the board: Uniqlo mustard V-neck over his oxford with navy wool pants, and with slate chinos.
+- **Chocolate sweater under a denim jacket** (Taylor Stitch). Dark brown makes denim look richer. Made the board as a closet look.
+- **Burgundy with charcoal** (nss FW26). Made the board: wine plaid Uniqlo : C shirt jacket over his charcoal waffle and gray work pants.
+- **Navy knit with a tobacco jacket, khakis and suede boots** (Taylor Stitch). Not on the board yet. Suede chukkas would be a good shoe buy.
+- **Long cardigan draping past the hip over a shirt** (POPEYE). Not on the board yet. Added a Poshmark shawl cardigan search to HUNT.
+- **Prints on top, plain below** (nss). Kept to it: the yellow tartan, Woolrich and ombre looks all use plain pants.
+- **Banana Republic Factory** stacks 60% off with an extra 20% at checkout. Good for alpaca-blend knits and jackets around $30 to $40.

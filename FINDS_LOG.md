@@ -205,3 +205,48 @@ New sources this run: Vinted, Todd Snyder, plus Uniqlo, H&M, ASOS, Old Navy and 
 - H&M striped half-zip: XL sold out.
 - ASOS red suede bomber: XL sold out.
 - Urban Outfitters cardigans: $90 to $230.
+
+## 2026-11-20 (scheduled hunt, evening)
+
+**Re-check:** all 118 buyable pieces in looks were checked on Nov 20. Everything still in stock or live got `checked:'Nov 20'`. Price changes: Homme Plissé pants now $207.35 landed, EG Loiter jacket $210.15, vintage rayon shirt $47.47, Crazy Horse knit $13.49.
+
+**Removed (8 pieces, 10 looks):**
+
+- Vintage Scandia geometric cardigan (eBay 820340720083): sold Nov 19.
+- Vintage 80s mohair-blend cardigan (eBay 137934345315): sold Nov 20.
+- Vintage red mohair zip cardigan (eBay 128146351084): ended by seller Nov 20.
+- Banana Republic striped mohair cardigan (Poshmark): sold out.
+- Carhartt Detroit-style jacket (Vinted 10845908017): no longer shows in any Vinted catalog search, treated as sold.
+- Todd Snyder Essex green chamois shirt: XL sold out.
+- Jack & Jones houndstooth double zip jacket (ASOS 211017355): XL out of stock.
+- Jack & Jones dark green twill overshirt (ASOS 210399815): XL out of stock.
+
+**Added: 6 pieces, 10 new looks, plus 1 closet look.** All in stock in XL on Nov 20.
+
+- Uniqlo 3D knit V-neck sweater, mustard, $39.90: https://www.uniqlo.com/us/en/products/E491361-000/00?colorDisplayCode=49
+- Uniqlo flannel shirt, yellow tartan, $39.90 (XL low stock): https://www.uniqlo.com/us/en/products/E486595-000/00?colorDisplayCode=46
+- Uniqlo : C padded shirt jacket, wine and navy plaid, $69.90: https://www.uniqlo.com/us/en/products/E489492-000/00?colorDisplayCode=19
+- Banana Republic Factory ombre sweater, brown (alpaca blend), $40 (extra 20% off at checkout): https://bananarepublicfactory.gapfactory.com/browse/product.do?pid=1175825011
+- Banana Republic Factory diamond quilted jacket, olive heather with brown trim, $39 (extra 20% off at checkout): https://bananarepublicfactory.gapfactory.com/browse/product.do?pid=1181079011
+- Vintage Woolrich hand knit wool southwestern sweater, XL, about 25.5 in. pit to pit, eBay, $48.77 landed: https://www.ebay.com/itm/860067126192
+- Closet look: "Chocolate Under Denim" (brown sweater, denim jacket, khakis).
+- HUNT: Poshmark shawl collar cardigans in XL, Grailed Beams Plus knits.
+
+New store this run: Banana Republic Factory (60% off plus an extra 20%). Its product pages use the same Gap size picker as Old Navy.
+
+**Passed on:**
+
+- Kapital tri-dip fleece crewneck (eBay 206489703904, $57.73): no clear brand tag photo.
+- BR Factory navy ombre sweater: XL sold out.
+- Uniqlo double face check tailored jacket: sold out in L and XL.
+- BEAMS multicolor orange knit (eBay 820353038747): seller has 3 feedback.
+- BEAMS PLUS floral mohair cardigan (eBay 128195603715): about $132, over budget.
+- Uniqlo check smart pants, color block merino cardigan, patterned padded jacket: women's line.
+
+**Watching:**
+
+- BEAMS PLUS yellow V-neck sweater vest, XL, $65 shipped from Japan: https://www.ebay.com/itm/227593529693
+- Vintage Puritan blue shawl collar cardigan, XL, $37.58: https://www.ebay.com/itm/287613290191
+- BEAMS Plus linen knit cardigan, brown, XL, $86.90: https://www.ebay.com/itm/407313430370
+- 70s Cowichan brown and blue zip sweater, XL, $93.38: https://www.ebay.com/itm/407335085234
+- BR Factory birdseye zipper sweater polo, light coffee, $38.
