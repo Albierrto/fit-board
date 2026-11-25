@@ -7,7 +7,7 @@ const path = require('path');
 
 const root = path.resolve(__dirname, '..');
 // Hand-picked favorites, shown first in their section with a "Top pick" chip.
-const PICKS = ['jwaFairIsle', 'tsRedCheck', 'marniHooded', 'thunderCardi', 'abCardi', 'hermansSki', 'uqCordWine', 'afBomber', 'kenzoShirt', 'egDuffle'];
+const PICKS = ['jwaFairIsle', 'brFairIsle', 'bcChecker', 'marniHooded', 'thunderCardi', 'abCardi', 'hermansSki', 'uqCordWine', 'afBomber', 'kenzoShirt', 'egDuffle'];
 // Left off the gift list because he already owns something very close (Nov 20). They can stay on the board.
 const SKIP = {
   teeW: 'he has white and cream tees',

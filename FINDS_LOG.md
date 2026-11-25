@@ -250,3 +250,45 @@ New store this run: Banana Republic Factory (60% off plus an extra 20%). Its pro
 - BEAMS Plus linen knit cardigan, brown, XL, $86.90: https://www.ebay.com/itm/407313430370
 - 70s Cowichan brown and blue zip sweater, XL, $93.38: https://www.ebay.com/itm/407335085234
 - BR Factory birdseye zipper sweater polo, light coffee, $38.
+
+## 2026-11-24 (scheduled hunt, evening)
+
+**Re-check:** all 116 buyable pieces in looks were checked on Nov 24 (Uniqlo stock API, ASOS stockprice API, H&M availability API, Gap/Old Navy/BR Factory size pickers, Todd Snyder `.js`, eBay and Poshmark listing pages, Vinted catalog search). Everything still in stock or live got `checked:'Nov 24'`. Price changes: Sears argyle cardigan now $36.99, vintage rayon shirt $45.22, J&J herringbone pants $64.95, Uniqlo JWA rugby shirt $29.90, Old Navy gray chinos $24.99, Old Navy cream long sleeve $17.49.
+
+**Removed (13 pieces, 16 looks):**
+
+- Vintage Woolrich southwestern sweater (eBay 860067126192): ended by seller Nov 20.
+- Marni x Uniqlo cobalt rib sweater (eBay 366811469010): ended by seller Nov 22.
+- Marni x Uniqlo cords (eBay 206674784075): sold Nov 23.
+- Marni x Uniqlo plaid shirt (eBay 267797242921): sold Nov 22.
+- Uniqlo shadow plaid pile blouson, Uniqlo : C cord vest, Uniqlo : C brown duffle: XL sold out.
+- H&M fireman clasp jacket and striped cable polo: XL sold out.
+- ASOS COLLUSION white boxy tee and dark green skate long sleeve: XL out of stock. Looks that used them now use his own white tee and green waffle crew. Two looks that became all-closet ("Ripstop + Heavy Tee", "Sunday Green") were dropped.
+- Todd Snyder red check camp flannel: XL sold out.
+- BR Factory ombre sweater: sold out in every size.
+
+**Added: 5 pieces, 8 looks.** All in stock in XL on Nov 24. Poshmark prices include $6.49 shipping.
+
+- Banana Republic Factory lofty shawl cardigan, brown heather, $39 (extra 25% off at checkout): https://bananarepublicfactory.gapfactory.com/browse/product.do?pid=1175531021
+- Banana Republic Factory Fair Isle reverse pattern sweater, brown, $40: https://bananarepublicfactory.gapfactory.com/browse/product.do?pid=1176573011
+- Gap relaxed polo cardigan sweater, navy, wool blend, $35: https://www.gap.com/browse/product.do?pid=908033012
+- Basketcase checkerboard mohair blend cardigan, olive and black, XL, like new, Poshmark, $90.49: https://poshmark.com/listing/Basketcase-Checkerboard-Chequer-Mohair-Wool-Blend-Button-Up-Cardigan-Sweater-XL-6b02122930bbec3b00a8d7b4
+- Nice as Heck fuzzy abstract cardigan, royal blue, XL, 26.5 in. pit to pit, Poshmark, $60.49: https://poshmark.com/listing/Nice-as-Heck-Abstract-Cardigan-XL-Blue-Wool-Blend-Fuzzy-Oversized-Skater-Sweater-6af817ee00a65a6e618631a5
+
+New store this run: Gap mainline (Black Friday prices). The Gap search API works for `brand=br`, `brand=brfs` and `brand=gap` too, from an oldnavy tab.
+
+**Passed on:**
+
+- BEAMS PLUS yellow vest (eBay 227593529693): 50 cm (about 19.7 in.) across, too small.
+- Puritan blue shawl cardigan (eBay 287613290191): ended Nov 23.
+- Lands' End black watch fuzzy cardigan (Poshmark): 29 in. pit to pit, too big.
+- Banana Republic textured polo cardigan: short sleeve summer knit.
+- BR Factory mockneck eyelash sweater and striped button-down polo: women's or short sleeve.
+- Uniqlo search results this run were mostly women's line pieces.
+
+**Watching:**
+
+- BR Factory argyle sweater, brown, $33: https://bananarepublicfactory.gapfactory.com/browse/product.do?pid=1177783011
+- Vintage J.Crew brown corduroy sport coat, XL, eBay, $30: https://www.ebay.com/itm/267761161089 (no measurements yet).
+- 70s Cowichan brown and blue zip sweater, XL, eBay, $93.38: https://www.ebay.com/itm/407335085234
+- Old Navy SoSoft cardigan, brown mushroom, $27.49.

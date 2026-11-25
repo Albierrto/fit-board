@@ -118,3 +118,14 @@ Sources read: a write-up of POPEYE street-style spreads (sehoon.substack.com), T
 - **Long cardigan draping past the hip over a shirt** (POPEYE). Not on the board yet. Added a Poshmark shawl cardigan search to HUNT.
 - **Prints on top, plain below** (nss). Kept to it: the yellow tartan, Woolrich and ombre looks all use plain pants.
 - **Banana Republic Factory** stacks 60% off with an extra 20% at checkout. Good for alpaca-blend knits and jackets around $30 to $40.
+
+### 2026-11-24
+
+Sources read: MR PORTER "6 menswear trends to invest in for 2026", Hypebeast on the BEAMS PLUS FW25 lookbook. Permanent Style's autumn knitwear top 10 wouldn't load. Next run, try Die, Workwear! (Substack), Put This On and an Our Legacy or Story mfg. lookbook.
+
+- **Brown as a layer over black** (MR PORTER). Made the board: brown shawl cardigan over his black boxy tee and black pants.
+- **Patterned or red knit under a denim jacket** (BEAMS PLUS). Made the board: brown Fair Isle under his denim jacket with cream pants.
+- **Polo collar cardigans** are the fall knit that reads dressy without trying. Made the board: Gap navy polo cardigan over honey, and over all cream.
+- **Bold color clashes** (BEAMS PLUS bright green and blue outerwear). Made the board in knit form: royal blue fuzzy cardigan over brown.
+- **Loose straight trousers, moleskin or cord** (MR PORTER). Not on the board yet. Look for brown moleskin or cord pants in a 36 waist.
+- **Tip:** Black Friday week puts Gap, BR and BR Factory knits at $30 to $45. The Gap search API covers all those brands.
