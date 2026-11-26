@@ -28,6 +28,7 @@ Updated Nov 19 from photos he sent. The keys match the `mine:true` entries in in
   - Sweaters: brown sweater (Old Navy), burgundy quarter zip.
   - Shirts: cream plaid flannel (FF.LA), pale blue oxford (FF.LA), black floral print shirt.
   - White hoodie with a small chest logo and a big back print. Keep it to chill looks.
+  - Vintage 80s Novo mohair blend cardigan: black body, teal panels, blue and pink abstract pattern (bought Nov 20). His loud cardigan slot is now covered, so wear it over plain black, cream, white or gray.
 - **Pants:**
   - Light blue and dark navy wide wool drawstring pants (Uniqlo).
   - Cream baggy wool drawstring pants (same dressy drape as the Uniqlo wool pants).

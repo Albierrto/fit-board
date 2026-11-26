@@ -292,3 +292,7 @@ New store this run: Gap mainline (Black Friday prices). The Gap search API works
 - Vintage J.Crew brown corduroy sport coat, XL, eBay, $30: https://www.ebay.com/itm/267761161089 (no measurements yet).
 - 70s Cowichan brown and blue zip sweater, XL, eBay, $93.38: https://www.ebay.com/itm/407335085234
 - Old Navy SoSoft cardigan, brown mushroom, $27.49.
+
+## 2026-11-26 (his purchase)
+
+**His closet:** added the vintage 80s Novo Promark mohair blend abstract cardigan he bought on eBay (black and teal, XL) as `myNovoCardi`, with 4 closet looks: over all black, over cream, over a white tee with navy wool pants, and over gray.
