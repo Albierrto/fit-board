@@ -296,3 +296,47 @@ New store this run: Gap mainline (Black Friday prices). The Gap search API works
 ## 2026-11-26 (his purchase)
 
 **His closet:** added the vintage 80s Novo Promark mohair blend abstract cardigan he bought on eBay (black and teal, XL) as `myNovoCardi`, with 4 closet looks: over all black, over cream, over a white tee with navy wool pants, and over gray.
+
+## 2026-11-27 (scheduled hunt, evening)
+
+**Re-check:** all 107 buyable pieces in looks were checked on Nov 27 (Uniqlo stock API, ASOS product pages, H&M size buttons, Gap/Old Navy/BR Factory size pickers, eBay listing pages, Poshmark inventory status, Vinted item pages). Everything still in stock or live got `checked:'Nov 27'`. Black Friday price drops were applied: most Jack & Jones and ASOS DESIGN pieces (now about 20% off), H&M overshirts and knits ($36 to $54), Uniqlo souffle cardigan $29.90 and orange fleece $29.90 (purple and olive fleece went up to $49.90), Sears argyle cardigan $25.89, Zeppelin cardigan $37.98, Nice as Heck cardigan $49.49.
+
+**Removed (9 pieces, 11 looks):**
+
+- Uniqlo x JW Anderson rugby shirt and Uniqlo yellow tartan flannel: XL sold out.
+- ASOS striped sweater vest, Jack & Jones chocolate cardigan, tan cord overshirt and taupe Wolf worker jacket: XL out of stock. The five looks that used the chocolate cardigan now use the BR Factory brown shawl cardigan instead.
+- Vintage Towncraft diamond knit (eBay 267842949638): ended by seller Nov 26.
+- Marni x Uniqlo knit zip hoodie (eBay 880112302058): sold.
+- Pendleton board shirt (Vinted 10815507706): item page returns 404, treated as sold.
+
+**Added: 7 pieces, 9 looks.** All in stock in XL on Nov 27.
+
+- Uniqlo lambswool crew sweater, green, $39.90: https://www.uniqlo.com/us/en/products/E486071-000/00?colorDisplayCode=54
+- Old Navy long sleeve johnny collar polo sweater, Wetland Reed (ochre), $19.99: https://oldnavy.gap.com/browse/product.do?pid=1184102012
+- Old Navy 90s loose corduroy pants, Coffee Grounds, $27.49: https://oldnavy.gap.com/browse/product.do?pid=905468002
+- Old Navy SoSoft Lite sweater vest, Dark Walnut, $24.99: https://oldnavy.gap.com/browse/product.do?pid=907652012
+- Gap relaxed stripe crew sweater, olive stripe, $89.95 with 50% off at checkout ($44.98): https://www.gap.com/browse/product.do?pid=1182958012
+- Uniqlo x Engineered Garments fleece jacket, olive, XL, 26.6 in. pit to pit, eBay, $98 landed (ships from Korea): https://www.ebay.com/itm/358705185208
+- Vintage J.Crew corduroy sport coat, tan, XL, 24.5 in. pit to pit, eBay, $30 with free shipping: https://www.ebay.com/itm/267761161089
+- HUNT: Uniqlo x Engineered Garments on eBay, Poshmark corduroy sport coats.
+
+**Passed on:**
+
+- Gap corduroy baggy pants, eggplant: the search API said in stock, but every waist was sold out on the product page.
+- Uniqlo merino polo sweater: XL sold out in every color.
+- Marni x H&M yellow shirt (Poshmark, $51.49): no measurements, and the tag size was hard to read.
+- Engineered Garments x Uniqlo canvas parka (eBay 137835475240): item specifics say size S.
+- Uniqlo x Marni popcorn V-neck (eBay 366811469009): specifics say M and short sleeve.
+- Harbour Classics fuzzy diamond cardigan (eBay 307110987213): 23 in. pit to pit.
+- Robert Stock Fair Isle vest (eBay 126853500376) and a 90s striped vest (eBay 336915378429): holes, stains.
+- American Eagle cord blazer (eBay 267839162894): 41 in. chest.
+- Beams Plus knit polo (Vinted 8790375471): hole under the arm. Engineered Garments fleece vest (Vinted): kids' size.
+- Todd Snyder sale: almost all summer shirts right now. COS: blocked by a bot check. Carhartt WIP US: not a Shopify store, couldn't check stock.
+
+**Watching:**
+
+- Vintage Italian check lambswool and mohair cardigan, purple, black and teal, IT 56, 26 in. pit to pit, eBay, $41.72: https://www.ebay.com/itm/840160344041 (passed this time only because his Novo cardigan already fills the loud-cardigan slot).
+- Beams Plus two-tone jacquard knit polo, olive, XL, Vinted, about $86: https://www.vinted.com/items/10812340694 (Japanese XL, no measurements).
+- Mondo di Marco zigzag mohair cardigan, Italy, XL 54, eBay, $46.36: https://www.ebay.com/itm/800961927855
+- Old Navy long sleeve wool-blend polo sweater, Peppercorn brown, $29.99.
+- BR Factory argyle sweater, green, $33.

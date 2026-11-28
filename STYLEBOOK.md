@@ -130,3 +130,15 @@ Sources read: MR PORTER "6 menswear trends to invest in for 2026", Hypebeast on 
 - **Bold color clashes** (BEAMS PLUS bright green and blue outerwear). Made the board in knit form: royal blue fuzzy cardigan over brown.
 - **Loose straight trousers, moleskin or cord** (MR PORTER). Not on the board yet. Look for brown moleskin or cord pants in a 36 waist.
 - **Tip:** Black Friday week puts Gap, BR and BR Factory knits at $30 to $45. The Gap search API covers all those brands.
+
+### 2026-11-27
+
+Sources read: MR PORTER "How To Get Your Layers Right" (Sep 2026), Valet. "Rugged Fall Layers", Hypebeast on the Noah FW26 and Our Legacy FW26 lookbooks (both mostly photos, little usable text). Next run, try Die, Workwear! on Substack, Put This On and Permanent Style directly instead of searching for them.
+
+- **One bold color as the middle layer** (MR PORTER: a strong blue, yellow or green knit framed by a black overcoat and off-white pants). Made the board: green Uniqlo lambswool crew under his black overcoat with the cream pants.
+- **Tonal brown broken up with cream** (MR PORTER). Made the board: tan work jacket, cream tee, coffee brown cords.
+- **Knit polo with wide trousers** (MR PORTER). Made the board: Old Navy ochre polo with the navy wool pants.
+- **Patterned sweater vest over a shirt** (MR PORTER). Made the board: Old Navy walnut striped vest over the pale blue oxford.
+- **Soft cord sport coat over a tee** is the cheapest way into tailoring. Made the board: $30 vintage J.Crew cord coat.
+- **Our Legacy FW26** leans on dark, muted colors and reworked 1940s military coats. Not on the board yet. A secondhand deck jacket or mechanic jacket would fit.
+- **Tip:** Vinted item pages load now from a vinted.com tab (fetch `/items/ID`, then read `is_closed` and `can_buy`). The Gap search API's inventory count can say "In Stock" when every size is sold out, so always open the product page.

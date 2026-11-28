@@ -19,7 +19,6 @@ const SKIP = {
   onChinoGray: 'he has gray work pants',
   onWorkCream: 'he has cream drawstring pants and the tan pair from the same line',
   workerB: 'he has a black zip jacket and a black overcoat',
-  workerTaupe: 'he has a taupe jacket',
   barnBeige: 'he has a tan work jacket with a cord collar',
   carharttJ169: 'he has a tan work jacket in the same style',
   hmFelted: 'he has a light stone zip jacket',
